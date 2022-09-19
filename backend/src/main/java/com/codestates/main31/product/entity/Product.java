@@ -1,6 +1,9 @@
 package com.codestates.main31.product.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -8,6 +11,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @Id
@@ -54,6 +60,9 @@ public class Product {
 
     @Column(nullable = false)
     private String category;
+
+    @Column(nullable = false)
+    private String productImg;
 
     /**
      * Todo: Security 후 적용 예정
