@@ -1,8 +1,8 @@
 package com.codestates.main31.product.service;
 
 import com.codestates.main31.product.entity.Product;
-import com.codestates.main31.product.exception.BusinessLogicException;
-import com.codestates.main31.product.exception.ExceptionCode;
+import com.codestates.main31.exception.BusinessLogicException;
+import com.codestates.main31.exception.ExceptionCode;
 import com.codestates.main31.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

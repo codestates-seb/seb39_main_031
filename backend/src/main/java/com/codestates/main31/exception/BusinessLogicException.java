@@ -1,4 +1,4 @@
-package com.codestates.main31.product.exception;
+package com.codestates.main31.exception;
 
 import lombok.Getter;
 

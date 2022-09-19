@@ -1,12 +1,7 @@
-package com.codestates.main31.product.exception;
+package com.codestates.main31.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 public class ErrorResponse {

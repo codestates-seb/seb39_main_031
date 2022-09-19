@@ -1,7 +1,7 @@
-package com.codestates.main31.product.Advice;
+package com.codestates.main31.advice;
 
-import com.codestates.main31.product.exception.BusinessLogicException;
-import com.codestates.main31.product.exception.ErrorResponse;
+import com.codestates.main31.exception.BusinessLogicException;
+import com.codestates.main31.exception.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
