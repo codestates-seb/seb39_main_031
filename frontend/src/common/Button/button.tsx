@@ -1,18 +1,8 @@
 import styled from "styled-components";
 
-export type Button = {
-  width?: string;
-  height?: string;
-  backgroundColor?: string;
-  borderRadius?: string;
-  color?: string;
-  fontSize?: string;
-  hoverBackground?: string;
-  onClick?: () => void;
-  children?: React.ReactNode;
-};
+import { ButtonType } from "../../types/Button";
 
-const NewButton = styled.button<Button>`
+const NewButton = styled.button<ButtonType>`
   width: ${({ width }) => (width ? width : "90px")};
   height: ${({ height }) => (height ? height : "30px")};
   background-color: ${({ backgroundColor }) =>
@@ -30,7 +20,7 @@ const NewButton = styled.button<Button>`
   }
 `;
 
-const Button = (props: Button) => {
+const Button = (props: ButtonType) => {
   return (
     <NewButton onClick={props.onClick} {...props}>
       {props.children}
