@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { ModalType } from "../../types/Modal";
+
 const ModalWrapper = styled.div<{ visible?: boolean }>`
   width: 100%;
   height: 100%;
@@ -31,14 +33,7 @@ const ModalContainer = styled.div<{ width?: string; height?: string }>`
   }
 `;
 
-export type Modal = {
-  visible?: boolean;
-  width?: string;
-  height?: string;
-  onClick?: () => void;
-};
-
-const Modal = (props: Modal) => {
+const Modal = (props: ModalType) => {
   return (
     <ModalWrapper visible={props.visible}>
       <ModalContainer>

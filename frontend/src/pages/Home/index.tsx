@@ -1,19 +1,22 @@
-import { useState } from "react";
-
+/* eslint-disable prettier/prettier */
 import Button from "../../common/Button/button";
 import Modal from "../../common/Modal/Modal";
+import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
+import { modalActions } from "../../redux/modal";
 
 const Home = () => {
-  const [visible, setVisible] = useState(false);
-  const exampleClickHandler = () => {
-    setVisible(!visible);
+  const modalState = useAppSelector(state => state.modal.modalVisible);
+  const dispatch = useAppDispatch();
+
+  const modalHandler = () => {
+    dispatch(modalActions.modal());
   };
 
   return (
     <>
       <h1>Home</h1>
-      <Button onClick={exampleClickHandler}>Btn</Button>
-      <Modal visible={visible} onClick={exampleClickHandler} />
+      <Button onClick={modalHandler}>Btn</Button>
+      <Modal visible={modalState} onClick={modalHandler} />
     </>
   );
 };
