@@ -6,7 +6,7 @@ const NewButton = styled.button<ButtonType>`
   width: ${({ width }) => (width ? width : "90px")};
   height: ${({ height }) => (height ? height : "30px")};
   background-color: ${({ backgroundColor }) =>
-    backgroundColor ? backgroundColor : "#7FB77E"};
+    backgroundColor ? backgroundColor : ({ theme }) => theme.colors.cyan400};
   border: none;
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : "5px")};
   color: ${({ color }) => (color ? color : "white")};
@@ -16,11 +16,15 @@ const NewButton = styled.button<ButtonType>`
 
   &:hover {
     background-color: ${({ hoverBackground }) =>
-      hoverBackground ? hoverBackground : "#064420"};
+      hoverBackground ? hoverBackground : ({ theme }) => theme.colors.cyan700};
   }
 `;
 
-const Button = (props: ButtonType) => {
+const Button: React.FC<ButtonType> = ({ ...props }) => {
+  if (!props.onClick) {
+    return <NewButton {...props}>{props.children}</NewButton>;
+  }
+
   return (
     <NewButton onClick={props.onClick} {...props}>
       {props.children}

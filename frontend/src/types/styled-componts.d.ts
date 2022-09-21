@@ -12,6 +12,7 @@ declare module "styled-components" {
       black200: string;
       black300: string;
       black400: string;
+      black500: string;
       black900: string;
       black000: string;
 
@@ -20,6 +21,8 @@ declare module "styled-components" {
       red700: string;
 
       white000: string;
+
+      blue: string;
     };
     fontSize: {
       size08: string;
