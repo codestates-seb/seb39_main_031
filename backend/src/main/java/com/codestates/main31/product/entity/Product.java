@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@DynamicInsert
 public class Product {
 
     @Id
@@ -28,7 +31,7 @@ public class Product {
 
     @CreatedDate
     @Column(nullable = false)
-    private LocalDateTime generatedTime;
+    private LocalDateTime generatedTime = LocalDateTime.now();
 
     @Column(nullable = false)
     private LocalDateTime endedTime;
@@ -36,21 +39,21 @@ public class Product {
     @Column(nullable = false)
     private Integer goalNum;
 
-    @Column(nullable = false)
-    private Integer stateNum;
+    @Column
+    private int stateNum;
 
     @Column(nullable = false)
     private Long goalPrice;
 
-    @Column(nullable = false)
-    private Long statePrice;
+    @Column
+    private long statePrice;
 
-    @Column(nullable = false)
-    private Boolean deleteState;
+    @Column
+    private boolean deleteState;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private ProductState state;
+    private ProductState state = ProductState.PROCEED;
 
     @Column(nullable = false)
     private String area;
