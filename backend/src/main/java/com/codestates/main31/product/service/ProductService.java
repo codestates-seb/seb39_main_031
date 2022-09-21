@@ -30,7 +30,7 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public Page<Product> readProductsList(int page) {
-        return productRepository.findAll(PageRequest.of(page, 8));
+        return productRepository.findAll(PageRequest.of(page, 9));
     }
 
     // Todo: 작성자를 제외한 인원은 수정 불가능

@@ -14,23 +14,23 @@ public class ProductRequestDto {
     @NoArgsConstructor
     public static class Post {
 
-        private String category;
-
-        private String productImg;
-
         private String title;
+
+        private String body;
 
         private Integer goalNum;
 
         private Long goalPrice;
 
-        private LocalDateTime endedTime;
+        private String productImg;
 
         private String area;
 
         private String town;
 
-        private String body;
+        private String category;
+
+        private LocalDateTime endedTime;
 
     }
 
@@ -39,19 +39,19 @@ public class ProductRequestDto {
     @NoArgsConstructor
     public static class Patch {
 
-        private String productImg;
-
         private String title;
+
+        private String body;
 
         private Integer goalNum;
 
         private Long goalPrice;
 
+        private String productImg;
+
         private ProductState state;
 
         private LocalDateTime endedTime;
-
-        private String body;
 
     }
 }

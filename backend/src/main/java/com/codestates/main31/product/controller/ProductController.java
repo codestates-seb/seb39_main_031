@@ -4,7 +4,6 @@ import com.codestates.main31.dto.MultiResponseDto;
 import com.codestates.main31.product.dto.ProductRequestDto;
 import com.codestates.main31.product.dto.ProductResponseDto;
 import com.codestates.main31.product.entity.Product;
-import com.codestates.main31.product.entity.ProductState;
 import com.codestates.main31.product.mapper.ProductMapper;
 import com.codestates.main31.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +41,7 @@ public class ProductController {
 
     @PatchMapping("/{productId}")
     public ResponseEntity<ProductResponseDto.GetDetail> updateProduct(@PathVariable Long productId,
-                                        @RequestBody ProductRequestDto.Patch patch) {
+                                                                      @RequestBody ProductRequestDto.Patch patch) {
         Product newProduct = productMapper.productRequestPatchDtoToProduct(patch);
         Product changedProduct = productService.updateProduct(productId, newProduct);
         return new ResponseEntity<>(productMapper.productToProductResponseGetDetailDto(changedProduct), HttpStatus.CREATED);
