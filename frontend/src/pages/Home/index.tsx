@@ -2,7 +2,7 @@
 import Button from "../../common/Button/ButtonForm";
 import Modal from "../../common/Modal/Modal";
 import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
-import { modalActions } from "../../redux/modal";
+import { modalActions } from "../../redux/modalSlice";
 
 const Home = () => {
   const modalState = useAppSelector(state => state.modal.modalVisible);

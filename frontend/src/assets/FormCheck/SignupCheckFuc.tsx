@@ -1,4 +1,4 @@
-export const emailCheck = (
+export const SignupEmailCheck = (
   text: string,
   setValid: (message: string) => void
 ) => {
@@ -10,7 +10,7 @@ export const emailCheck = (
   }
 };
 
-export const nicknameCheck = (
+export const SignupNicknameCheck = (
   text: string,
   setValid: (message: string) => void
 ) => {
@@ -25,7 +25,7 @@ export const nicknameCheck = (
   }
 };
 
-export const passwordCheck1 = (
+export const SignupPasswordCheck = (
   num: string,
   setValid: (message: string) => void
 ) => {
@@ -38,7 +38,7 @@ export const passwordCheck1 = (
   }
 };
 
-export const passwordCheck2 = (
+export const SignupPasswordCheck2 = (
   num: string,
   password: string,
   setValid: (message: string) => void

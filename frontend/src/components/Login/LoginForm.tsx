@@ -50,10 +50,11 @@ const LoginForm = () => {
   const [validEmail, setValidEmail] = useState<string>("");
   const [validPassword, setValidPssword] = useState<string>("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(userEmail);
     console.log(password);
+    //! 성공적으로 로그인이 되면 홈으로 이동하기
   };
 
   const onChangeEmail = useCallback(
@@ -75,7 +76,7 @@ const LoginForm = () => {
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={onSubmitHandler}>
       <InputForm
         id="userEmail"
         type="email"
