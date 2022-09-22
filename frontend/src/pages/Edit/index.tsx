@@ -6,12 +6,12 @@ const Container = styled.div`
   padding-top: 50px;
 `;
 
-const Category = () => {
+const Edit = () => {
   return (
     <Container>
-      <h1>Category</h1>
+      <h1>Edit</h1>
     </Container>
   );
 };
 
-export default Category;
+export default Edit;
