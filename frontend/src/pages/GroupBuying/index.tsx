@@ -6,12 +6,12 @@ const Container = styled.div`
   padding-top: 50px;
 `;
 
-const Category = () => {
+const GroupBuying = () => {
   return (
     <Container>
-      <h1>Category</h1>
+      <h1>GroupBuying</h1>
     </Container>
   );
 };
 
-export default Category;
+export default GroupBuying;
