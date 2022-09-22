@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import BgImg from "../../assets/Image/background.jpg";
-import DefaultInput from "./DefaultInput";
+import BgImg from "../../../../assets/Image/background.jpg";
+import SearchInput from "./SearchInput";
 
 const MainBox = styled.div`
   height: 500px;
@@ -38,7 +38,7 @@ const MainInput = () => {
         <div>대용량 물건 구매, 배달음식 금액이 부담스럽다면</div>
         <div>우리 동네 사람들과 함께 구매해요!</div>
       </Paragraph>
-      <DefaultInput placeholder="검색어를 입력하세요." width="400px" />
+      <SearchInput placeholder="검색어를 입력하세요." width="400px" />
     </MainBox>
   );
 };
