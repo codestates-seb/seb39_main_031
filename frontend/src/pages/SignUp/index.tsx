@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import SignOauthForm from "../../components/Signup/SignOauthForm";
+import OauthsForm from "../../common/Button/OauthsForm";
 import SignupForm from "../../components/Signup/SignupForm";
 
 const Container = styled.div`
@@ -52,7 +52,7 @@ const SignUp = () => {
     <Container>
       <SignupContainer>
         <UsefulContent>
-          <SignOauthForm />
+          <OauthsForm />
         </UsefulContent>
         <SignupContent>
           <SignupForm />

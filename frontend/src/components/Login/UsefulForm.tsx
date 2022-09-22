@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import OauthForm from "./LoginOauthForm";
+import OauthsForm from "../../common/Button/OauthsForm";
 
 const UsefulContent = styled.div`
   width: 100%;
@@ -50,7 +50,7 @@ const UsefulForm = () => {
         <span>간편 로그인</span>
       </UsefulTitle>
       <OauthComponent>
-        <OauthForm />
+        <OauthsForm />
       </OauthComponent>
       <SignupLink>
         <span>아직 회원이 아니라면?</span>

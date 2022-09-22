@@ -6,7 +6,7 @@ const OauthButton = styled.button<OauthButtonType>`
   width: ${({ width }) => (width ? width : "75px")};
   height: ${({ height }) => (height ? height : "75px")};
   background-color: ${({ backgroundColor }) =>
-    backgroundColor ? backgroundColor : ({ theme }) => theme.colors.black500};
+    backgroundColor ? backgroundColor : ({ theme }) => theme.colors.black300};
   border: none;
   border-radius: ${({ borderRadius }) =>
     borderRadius ? borderRadius : "100%"};
