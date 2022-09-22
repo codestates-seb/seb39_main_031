@@ -1,15 +1,16 @@
 package com.codestates.main31.product.entity;
 
+import com.codestates.main31.productimage.entity.ProductImage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -64,8 +65,8 @@ public class Product {
     @Column(nullable = false)
     private String category;
 
-    @Column(nullable = false)
-    private String productImg;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductImage> productImg;
 
     /**
      * Todo: Security 후 적용 예정
@@ -73,5 +74,12 @@ public class Product {
 //    @ManyToOne
 //    @JoinColumn(name = "userId")
 //    private User user;
+
+    public Product addProductImage(List<ProductImage> productImageList) {
+        this.productImg = productImageList;
+        productImageList.forEach(productImage -> productImage.setProduct(this));
+
+        return this;
+    }
 
 }
