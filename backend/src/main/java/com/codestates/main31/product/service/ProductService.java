@@ -1,15 +1,20 @@
 package com.codestates.main31.product.service;
 
-import com.codestates.main31.product.entity.Product;
 import com.codestates.main31.exception.BusinessLogicException;
 import com.codestates.main31.exception.ExceptionCode;
+import com.codestates.main31.product.entity.Product;
 import com.codestates.main31.product.repository.ProductRepository;
+import com.codestates.main31.productimage.entity.ProductImage;
+import com.codestates.main31.productimage.handler.ImageHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,8 +24,13 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public Product createProduct(Product product) {
-        return productRepository.save(product);
+    private final ImageHandler imageHandler;
+
+    public Product createProduct(Product product, List<MultipartFile> file) throws IOException {
+        Product savedProduct = productRepository.save(product);
+        List<ProductImage> productImageList = imageHandler.parseImage(file);
+
+        return savedProduct.addProductImage(productImageList);
     }
 
     @Transactional(readOnly = true)
