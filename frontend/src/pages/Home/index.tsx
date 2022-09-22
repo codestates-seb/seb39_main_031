@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import Button from "../../common/Button/button";
+import Button from "../../common/Button/ButtonForm";
 import Modal from "../../common/Modal/Modal";
 import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { modalActions } from "../../redux/modal";
