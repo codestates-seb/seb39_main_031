@@ -97,7 +97,7 @@ const LoginForm = () => {
         </Link>
       </LinkContent>
       <ButtoneContent>
-        <Button width="100%" height="2.5rem">
+        <Button width="100%" height="3rem">
           Login
         </Button>
       </ButtoneContent>

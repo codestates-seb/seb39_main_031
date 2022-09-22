@@ -74,7 +74,9 @@ const SignupInputs = () => {
     dispatch(signupActions.emailHandler({ email: userEmail }));
     dispatch(signupActions.nicknameHandler({ nickname: userNickname }));
     dispatch(signupActions.passwordHandler({ password: userPassword }));
-    dispatch(signupActions.passwordCheckHandler({ email: userPasswordCheck }));
+    dispatch(
+      signupActions.passwordCheckHandler({ passwordCheck: userPasswordCheck })
+    );
   }, [userEmail, userNickname, userPassword, userPasswordCheck]);
 
   return (
