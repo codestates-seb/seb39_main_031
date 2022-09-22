@@ -21,6 +21,10 @@ html, body{
     font-family: 'Pretendard-Regular';
 }
 
+#root{
+    height: 100%;
+}
+
 ol, ul, li{
     list-style: none;
 }
