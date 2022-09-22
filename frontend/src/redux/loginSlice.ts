@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type loginState = { isLogin: boolean };
+
+const initialState: loginState = { isLogin: false };
+
 const loginSlice = createSlice({
   name: "login",
-  initialState: { isLogin: false },
+  initialState,
   reducers: {
     login(state) {
       state.isLogin = !state.isLogin;

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import {
@@ -9,6 +9,8 @@ import {
 } from "../../assets/FormCheck/LoginCheckFuc";
 import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
+import { useAppDispatch } from "../../hooks/Redux";
+import { loginActions } from "../../redux/loginSlice";
 
 const Form = styled.form`
   width: 100%;
@@ -43,9 +45,17 @@ const ButtoneContent = styled.div`
   justify-content: center;
 `;
 
+const DummyUser = {
+  email: "abc@naver.com",
+  password: "123123",
+};
+
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const [userEmail, setUserEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [userPassword, setUserPassword] = useState<string>("");
 
   const [validEmail, setValidEmail] = useState<string>("");
   const [validPassword, setValidPssword] = useState<string>("");
@@ -53,8 +63,12 @@ const LoginForm = () => {
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(userEmail);
-    console.log(password);
+    console.log(userPassword);
     //! 성공적으로 로그인이 되면 홈으로 이동하기
+    if (userEmail === DummyUser.email && userPassword === DummyUser.password) {
+      dispatch(loginActions.login());
+      navigate("/");
+    }
   };
 
   const onChangeEmail = useCallback(
@@ -69,10 +83,10 @@ const LoginForm = () => {
   const onChangePassword = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const password = event.target.value;
-      setPassword(password);
+      setUserPassword(password);
       loginPasswordCheck(password, setValidPssword);
     },
-    [password]
+    [userPassword]
   );
 
   return (
