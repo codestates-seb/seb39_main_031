@@ -25,7 +25,7 @@ const LinkContent = styled.div`
   > a {
     > span {
       font-size: ${({ theme }) => theme.fontSize.size12};
-      color: ${({ theme }) => theme.colors.blue};
+      color: ${({ theme }) => theme.colors.cyan500};
     }
   }
 `;

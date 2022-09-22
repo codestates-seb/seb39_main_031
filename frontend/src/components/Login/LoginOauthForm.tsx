@@ -3,13 +3,13 @@ import styled from "styled-components";
 import OauthButtonForm from "../../common/Button/OauthButtonForm";
 
 const OauthContent = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
-const OauthForm = () => {
+const LoginOauthForm = () => {
   return (
     <OauthContent>
       <OauthButtonForm>구글</OauthButtonForm>
@@ -19,4 +19,4 @@ const OauthForm = () => {
   );
 };
 
-export default OauthForm;
+export default LoginOauthForm;

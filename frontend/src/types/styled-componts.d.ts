@@ -6,6 +6,8 @@ declare module "styled-components" {
       cyan100: string;
       cyan200: string;
       cyan400: string;
+      cyan500: string;
+      cyan600: string;
       cyan700: string;
 
       black100: string;

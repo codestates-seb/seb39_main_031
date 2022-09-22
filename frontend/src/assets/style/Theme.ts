@@ -6,6 +6,8 @@ export const theme: DefaultTheme = {
     cyan100: "#84FFFF",
     cyan200: "#18FFFF",
     cyan400: "#00E5FF",
+    cyan500: "#00BCD4",
+    cyan600: "#00ACC1",
     cyan700: "#00B8D4",
 
     black100: "#F5F5F5",

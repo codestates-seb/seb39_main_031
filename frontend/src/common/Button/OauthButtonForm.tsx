@@ -12,6 +12,7 @@ const OauthButton = styled.button<OauthButtonType>`
     borderRadius ? borderRadius : "100%"};
   text-align: center;
   cursor: pointer;
+  margin-right: 10px;
 `;
 
 const OauthButtonForm: React.FC<OauthButtonType> = ({ ...props }) => {

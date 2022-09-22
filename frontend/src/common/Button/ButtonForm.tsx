@@ -6,7 +6,7 @@ const NewButton = styled.button<ButtonType>`
   width: ${({ width }) => (width ? width : "90px")};
   height: ${({ height }) => (height ? height : "30px")};
   background-color: ${({ backgroundColor }) =>
-    backgroundColor ? backgroundColor : ({ theme }) => theme.colors.cyan400};
+    backgroundColor ? backgroundColor : ({ theme }) => theme.colors.cyan500};
   border: none;
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : "5px")};
   color: ${({ color }) => (color ? color : "white")};
@@ -16,7 +16,7 @@ const NewButton = styled.button<ButtonType>`
 
   &:hover {
     background-color: ${({ hoverBackground }) =>
-      hoverBackground ? hoverBackground : ({ theme }) => theme.colors.cyan700};
+      hoverBackground ? hoverBackground : ({ theme }) => theme.colors.cyan600};
   }
 `;
 

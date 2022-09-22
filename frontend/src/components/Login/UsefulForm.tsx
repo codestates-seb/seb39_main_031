@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import OauthForm from "./OauthForm";
+import OauthForm from "./LoginOauthForm";
 
 const UsefulContent = styled.div`
   width: 100%;
@@ -39,7 +39,7 @@ const SignupLink = styled.div`
 
   > a {
     font-size: ${({ theme }) => theme.fontSize.size12};
-    color: ${({ theme }) => theme.colors.blue} !important;
+    color: ${({ theme }) => theme.colors.cyan500} !important;
   }
 `;
 
