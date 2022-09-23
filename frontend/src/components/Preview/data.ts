@@ -3,7 +3,8 @@ export const Data = [
     product_id: 1,
     image_uri:
       "https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    title: "양파 구매하실 분들 모집합니다.",
+    title:
+      "양파 구매하실 분들 모집합니다. 양파 구매하실 분들 모집합니다. 양파 구매하실 분들 모집합니다. 양파 구매하실 분들 모집합니다.",
     user_name: "김유저",
     town: "송파구",
     goal_num: 20,

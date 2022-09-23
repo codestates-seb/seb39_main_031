@@ -10,12 +10,15 @@ const Container = styled.div`
 
 const ThumbnailBox = styled.div`
   overflow: hidden;
+  width: 100%;
+  height: 14em;
 `;
 
 const Thumbnail = styled.div<Image>`
   width: 100%;
-  height: 15em;
+  height: 100%;
   background: url(${(props) => props.image});
+  background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;
 
@@ -25,21 +28,24 @@ const Thumbnail = styled.div<Image>`
 `;
 
 const TitleUserBox = styled.div`
-  height: 5em;
+  height: 6em;
 `;
 
 const Title = styled.div`
   color: ${(props) => props.theme.colors.black000};
   font-size: ${(props) => props.theme.fontSize.size18};
   margin: 0.5em 0;
-  font-weight: 700;
+  line-height: 1.5em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 const UserInfo = styled.div`
-  font-size: ${(props) => props.theme.fontSize.size15};
+  font-size: ${(props) => props.theme.fontSize.size12};
   color: ${(props) => props.theme.colors.black500};
   margin: 0.5em 0;
-  font-weight: 700;
 `;
 
 const GongguInfo = styled.div`
