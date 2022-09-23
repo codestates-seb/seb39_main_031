@@ -12,21 +12,26 @@ const Container = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  width: 25%;
-  height: 70%;
+  width: 20%;
   padding: 34px 28px 32px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 25%) 0px 0px 7px 0px;
 `;
 
 const LoginContent = styled.div`
+  margin: 0 auto;
   width: 100%;
-  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+  max-width: 330px;
+  max-height: 550px;
 `;
 
 const UsefulContent = styled.div`
+  margin: 0 auto;
   width: 100%;
-  height: 40%;
   display: flex;
   align-items: center;
   justify-content: center;

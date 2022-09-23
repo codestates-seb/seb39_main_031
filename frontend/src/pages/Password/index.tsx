@@ -19,6 +19,7 @@ const PageContainer = styled.div`
 
 const PasswordContainer = styled.div`
   width: 40%;
+  max-width: 560px;
   padding: 35px 35px 40px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 25%) 0px 0px 7px 0px;
@@ -28,7 +29,8 @@ const PasswordTitle = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  font-size: ${({ theme }) => theme.fontSize.size20};
 `;
 
 const PasswordForm = styled.form`
@@ -39,7 +41,7 @@ const FormButton = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 3rem;
 `;
 
 const Password = () => {

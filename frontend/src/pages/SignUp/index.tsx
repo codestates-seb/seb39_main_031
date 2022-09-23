@@ -12,23 +12,22 @@ const Container = styled.div`
   align-items: center;
 `;
 const SignupContainer = styled.div`
-  width: 35%;
+  width: 30%;
   padding: 35px 35px 40px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 25%) 0px 0px 7px 0px;
+  max-width: 450px;
 `;
 const UsefulContent = styled.div`
   width: 100%;
-  height: 16%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 `;
 
 const SignupContent = styled.div`
   width: 100%;
-  height: 84%;
 `;
 const LinkContent = styled.div`
   width: 100%;

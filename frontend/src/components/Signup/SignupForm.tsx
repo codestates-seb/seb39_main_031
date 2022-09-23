@@ -14,6 +14,7 @@ const SignupButton = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 3rem;
 `;
 
 const SignupForm = () => {
@@ -60,10 +61,11 @@ const SignupForm = () => {
     <Form onSubmit={onSubmitHandler}>
       <SignupInputs />
       <SignupSelect />
-      <Button width="100%" height="3rem">
-        회원가입
-      </Button>
-      <SignupButton></SignupButton>
+      <SignupButton>
+        <Button width="100%" height="3rem">
+          회원가입
+        </Button>
+      </SignupButton>
     </Form>
   );
 };
