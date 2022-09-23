@@ -1,18 +1,25 @@
 import styled from "styled-components";
 
+import UserFormHeader from "../../components/layout/Header/userFormHeader";
 import LoginForm from "../../components/Login/LoginForm";
 import UsefulForm from "../../components/Login/UsefulForm";
 
-const Container = styled.div`
+const PageContainer = styled.div`
   width: 100%;
   height: 100%;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 90%;
+  padding: 105px 0;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const LoginContainer = styled.div`
-  width: 20%;
+  width: 25%;
+  margin: auto 0;
   padding: 34px 28px 32px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 25%) 0px 0px 7px 0px;
@@ -39,16 +46,19 @@ const UsefulContent = styled.div`
 
 const Login = () => {
   return (
-    <Container>
-      <LoginContainer>
-        <LoginContent>
-          <LoginForm />
-        </LoginContent>
-        <UsefulContent>
-          <UsefulForm />
-        </UsefulContent>
-      </LoginContainer>
-    </Container>
+    <PageContainer>
+      <UserFormHeader />
+      <Container>
+        <LoginContainer>
+          <LoginContent>
+            <LoginForm />
+          </LoginContent>
+          <UsefulContent>
+            <UsefulForm />
+          </UsefulContent>
+        </LoginContainer>
+      </Container>
+    </PageContainer>
   );
 };
 

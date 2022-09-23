@@ -14,7 +14,7 @@ const SignupButton = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 `;
 
 const SignupForm = () => {
