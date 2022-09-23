@@ -1,8 +1,16 @@
-import { Link } from "react-router-dom";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import {
+  loginEmailCheck,
+  loginPasswordCheck,
+} from "../../assets/FormCheck/LoginCheckFuc";
 import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
+import { useAppDispatch } from "../../hooks/Redux";
+import { loginActions } from "../../redux/loginSlice";
 
 const Form = styled.form`
   width: 100%;
@@ -13,7 +21,8 @@ const Validation = styled.span`
   margin-top: 5px;
   color: red;
   padding-left: 10px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  font-size: ${({ theme }) => theme.fontSize.size12};
 `;
 
 const LinkContent = styled.div`
@@ -36,24 +45,73 @@ const ButtoneContent = styled.div`
   justify-content: center;
 `;
 
+const DummyUser = {
+  email: "abc@naver.com",
+  password: "123123",
+};
+
 const LoginForm = () => {
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [userPassword, setUserPassword] = useState<string>("");
+
+  const [validEmail, setValidEmail] = useState<string>("");
+  const [validPassword, setValidPssword] = useState<string>("");
+
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(userEmail);
+    console.log(userPassword);
+    //! 성공적으로 로그인이 되면 홈으로 이동하기
+    if (userEmail === DummyUser.email && userPassword === DummyUser.password) {
+      dispatch(loginActions.login());
+      navigate("/");
+    }
   };
 
+  const onChangeEmail = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const email = event.target.value;
+      setUserEmail(email);
+      loginEmailCheck(email, setValidEmail);
+    },
+    [userEmail]
+  );
+
+  const onChangePassword = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const password = event.target.value;
+      setUserPassword(password);
+      loginPasswordCheck(password, setValidPssword);
+    },
+    [userPassword]
+  );
+
   return (
-    <Form onSubmit={handleSubmit}>
-      <InputForm id="userEmail" type="email" lableText="이메일" />
-      <Validation></Validation>
-      <InputForm id="userNickname" type="password" lableText="비밀번호" />
-      <Validation></Validation>
+    <Form onSubmit={onSubmitHandler}>
+      <InputForm
+        id="userEmail"
+        type="email"
+        lableText="이메일"
+        onChange={onChangeEmail}
+      />
+      <Validation>{validEmail}</Validation>
+      <InputForm
+        id="userNickname"
+        type="password"
+        lableText="비밀번호"
+        onChange={onChangePassword}
+      />
+      <Validation>{validPassword}</Validation>
       <LinkContent>
         <Link to="/password">
           <span>비밀번호 찾기</span>
         </Link>
       </LinkContent>
       <ButtoneContent>
-        <Button width="100%" height="2.5rem">
+        <Button width="100%" height="3rem">
           Login
         </Button>
       </ButtoneContent>

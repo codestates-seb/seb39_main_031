@@ -20,9 +20,10 @@ const InputBox = styled.div`
 `;
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  id: string;
-  type: string;
-  lableText: string;
+  id?: string;
+  type?: string;
+  lableText?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputForm: React.FC<Props> = ({ lableText, ...props }) => {

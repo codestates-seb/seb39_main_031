@@ -8,6 +8,8 @@ import {
   townOptions,
 } from "../../assets/Selector/SeletorOptions";
 import SignSeleForm from "../../common/Select/SignSeletForm";
+import { useAppDispatch } from "../../hooks/Redux";
+import { signupActions } from "../../redux/signupSlice";
 import { regions } from "../../types/OptionType";
 
 const SelectContent = styled.div`
@@ -18,41 +20,59 @@ const SelectContent = styled.div`
 `;
 
 const SignupSelect = () => {
-  const [region, setRegion] = useState<string>("");
+  const dispatch = useAppDispatch();
+
+  const [userRegion, setUserRegion] = useState<string>("");
+  const [userTown, setUserTown] = useState<string>("");
+
   const [townData, setTownData] = useState<regions>([]);
   const [control, setControl] = useState<boolean>(false);
 
-  const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setRegion(event.target.value);
+  const onRegionHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setUserRegion(event.target.value);
+  };
+
+  const onTownHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setUserTown(event.target.value);
   };
 
   useEffect(() => {
-    if (region === "지역을 선택해주세요") {
+    if (userRegion === "지역을 선택해주세요") {
       setControl(false);
     }
 
-    if (region === "서울특별시") {
+    if (userRegion === "서울특별시") {
       const town = townOptions.filter(reg => reg["서울특별시"]);
       setTownData(town[0]["서울특별시"]);
       setControl(true);
     }
 
-    if (region === "경기도") {
+    if (userRegion === "경기도") {
       const town = townOptions.filter(reg => reg["경기도"]);
       setTownData(town[0]["경기도"]);
       setControl(true);
     }
-  }, [region]);
+  }, [userRegion]);
+
+  useEffect(() => {
+    dispatch(signupActions.regionHandler({ region: userRegion }));
+    dispatch(signupActions.townHandler({ town: userTown }));
+  }, [userRegion, userTown]);
 
   return (
     <SelectContent>
       <SignSeleForm
         lableText="지역"
         datas={regionOptions}
-        onChangeHandler={onChangeHandler}
+        onChangeHandler={onRegionHandler}
         control={true}
       />
-      <SignSeleForm lableText="동네" datas={townData} control={control} />
+      <SignSeleForm
+        lableText="동네"
+        datas={townData}
+        control={control}
+        onChangeHandler={onTownHandler}
+      />
     </SelectContent>
   );
 };
