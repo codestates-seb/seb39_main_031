@@ -36,9 +36,7 @@ const ModalContainer = styled.div<{ width?: string; height?: string }>`
 const Modal = (props: ModalType) => {
   return (
     <ModalWrapper visible={props.visible}>
-      <ModalContainer>
-        <div onClick={props.onClick}>x</div>
-      </ModalContainer>
+      <ModalContainer></ModalContainer>
     </ModalWrapper>
   );
 };
