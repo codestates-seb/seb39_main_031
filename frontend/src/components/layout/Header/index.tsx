@@ -2,11 +2,14 @@
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
 
+
 import DefaultInput from "../../../common/Input/DefaultInput";
 import MainInput from "../../../common/Input/MainInput";
 import { useAppSelector } from "../../../hooks/Redux";
 import Notification from "../../Notification";
 import NavDropDown from "./Nav/NavDropDown";
+import MainInput from "./Search/MainInput";
+import SearchInput from "./Search/SearchInput";
 import * as S from "./style";
 
 const Header = () => {
@@ -26,7 +29,7 @@ const Header = () => {
             <S.MenuLink to="/category">카테고리</S.MenuLink>
           </S.MenuBox>
         </S.LeftBox>
-        <DefaultInput
+        <SearchInput
           path={location.pathname}
           placeholder="검색어를 입력하세요."
           width="32%"

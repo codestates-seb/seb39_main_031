@@ -64,7 +64,7 @@ const InputTag = styled.input`
   }
 `;
 
-const DefaultInput = ({ placeholder, path, width }: InputProps) => {
+const SearchInput = ({ placeholder, path, width }: InputProps) => {
   return (
     <InputTagBox width={width}>
       <InputTag
@@ -76,4 +76,4 @@ const DefaultInput = ({ placeholder, path, width }: InputProps) => {
   );
 };
 
-export default DefaultInput;
+export default SearchInput;
