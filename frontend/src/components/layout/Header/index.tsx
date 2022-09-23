@@ -2,9 +2,6 @@
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
 
-
-import DefaultInput from "../../../common/Input/DefaultInput";
-import MainInput from "../../../common/Input/MainInput";
 import { useAppSelector } from "../../../hooks/Redux";
 import Notification from "../../Notification";
 import NavDropDown from "./Nav/NavDropDown";

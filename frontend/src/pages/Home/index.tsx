@@ -1,5 +1,5 @@
+/* eslint-disable prettier/prettier */
 import styled from "styled-components";
-
 
 import PreviewList from "../../components/Preview/PreviewList";
 
@@ -16,7 +16,7 @@ const ListBlock = styled.div`
   padding: 3em 0 5em 0;
 
   &.favorite {
-    border-bottom: 1px solid ${(props) => props.theme.colors.black300};
+    border-bottom: 1px solid ${props => props.theme.colors.black300};
   }
 `;
 
