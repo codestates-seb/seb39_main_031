@@ -2,12 +2,15 @@ import { useRef } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
 import { FaRegHandshake } from "react-icons/fa";
-import { FiLogOut } from "react-icons/fi";
 import { HiOutlineHeart } from "react-icons/hi";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { useAppDispatch } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { loginActions } from "../../../../redux/loginSlice";
+import LogoutBtn from "./LogoutBtn";
+import NavItem from "./NavItem";
 
 const Container = styled.div`
   position: relative;
@@ -38,65 +41,61 @@ const MenuBox = styled.div`
   border-radius: 4px;
 `;
 
-const MenuLink = styled(NavLink)`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 2.5em;
-  height: 50px;
-
-  .icon {
-    margin-right: 10px;
-  }
-
-  &:hover {
-    background: ${(props) => props.theme.colors.black100};
-  }
-
-  &.edit {
-    border-bottom: 1px solid ${(props) => props.theme.colors.black200};
-  }
-
-  &.logout {
-    border-top: 1px solid ${(props) => props.theme.colors.black200};
-  }
-`;
+const navs = [
+  {
+    label: "새 공동구매",
+    path: "/edit",
+    icon: <BsPencilFill />,
+    className: "edit",
+  },
+  { label: "회원정보", path: "/user", icon: <AiOutlineUser /> },
+  { label: "참여현황", path: "/participate", icon: <FaRegHandshake /> },
+  { label: "관심목록", path: "/like", icon: <HiOutlineHeart /> },
+];
 
 const NavDropDown = () => {
   const dropDownRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isActive, setIsActive] = useOutsideClick(dropDownRef, btnRef, false);
 
-  const onClickNavBtn = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const logoutHandler = () => {
+    dispatch(loginActions.login());
+    navigate("/");
+    console.log("logout");
+  };
+
+  const navClickHandler = () => {
     setIsActive(!isActive);
   };
 
   return (
     <Container>
-      <DropDownBtn ref={btnRef} onClick={onClickNavBtn}>
+      <DropDownBtn ref={btnRef} onClick={navClickHandler}>
         <AiOutlineUser className="icon" />
       </DropDownBtn>
       {isActive && (
         <MenuBox ref={dropDownRef}>
-          <MenuLink to="/edit" className="edit" onClick={onClickNavBtn}>
-            <BsPencilFill className="icon" />새 공동구매
-          </MenuLink>
-          <MenuLink to="/user" onClick={onClickNavBtn}>
-            <AiOutlineUser className="icon" />
-            회원정보
-          </MenuLink>
-          <MenuLink to="/participate" onClick={onClickNavBtn}>
-            <FaRegHandshake className="icon" />
-            참여현황
-          </MenuLink>
-          <MenuLink to="/like" onClick={onClickNavBtn}>
-            <HiOutlineHeart className="icon" />
-            관심목록
-          </MenuLink>
-          <MenuLink to="/" className="logout" onClick={onClickNavBtn}>
-            <FiLogOut className="icon" />
-            로그아웃
-          </MenuLink>
+          {navs.map((el, index) => {
+            return (
+              <NavItem
+                key={index}
+                label={el.label}
+                path={el.path}
+                icon={el.icon}
+                className={el.className}
+                onClick={navClickHandler}
+              />
+            );
+          })}
+          <LogoutBtn
+            onClick={() => {
+              navClickHandler();
+              logoutHandler();
+            }}
+          />
         </MenuBox>
       )}
     </Container>
