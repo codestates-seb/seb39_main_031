@@ -7,7 +7,7 @@ const SelectorContainer = styled.div`
   width: 45%;
 `;
 
-const Selector = styled.select`
+const Select = styled.select`
   display: block;
   width: 100%;
   height: 2rem;
@@ -21,7 +21,7 @@ interface Data extends React.SelectHTMLAttributes<HTMLSelectElement> {
   control?: boolean;
 }
 
-const SignSeleForm: React.FC<Data> = ({
+const Selector: React.FC<Data> = ({
   lableText,
   datas,
   onChangeHandler,
@@ -32,25 +32,25 @@ const SignSeleForm: React.FC<Data> = ({
     return (
       <SelectorContainer>
         <label>{lableText}</label>
-        <Selector disabled>
+        <Select disabled>
           <option>동네를 선택해주세요</option>
-        </Selector>
+        </Select>
       </SelectorContainer>
     );
   }
   return (
     <SelectorContainer>
       <label>{lableText}</label>
-      <Selector onChange={onChangeHandler}>
+      <Select onChange={onChangeHandler}>
         {datas &&
           datas.map(data => (
             <option key={data.value} value={data.value}>
               {data.name}
             </option>
           ))}
-      </Selector>
+      </Select>
     </SelectorContainer>
   );
 };
 
-export default SignSeleForm;
+export default Selector;

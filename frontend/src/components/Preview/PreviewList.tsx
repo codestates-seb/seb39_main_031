@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -11,9 +12,9 @@ const Container = styled.div`
 const Grid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 350px);
+  grid-template-columns: repeat(3, 30%);
   grid-row-gap: 40px;
-  grid-column-gap: 50px;
+  grid-column-gap: 5%;
 `;
 
 const PreviewList = () => {
@@ -22,7 +23,7 @@ const PreviewList = () => {
   return (
     <Container>
       <Grid>
-        {data.map((el) => (
+        {data.map(el => (
           <PreviewItem
             key={el.product_id}
             image_uri={el.image_uri}

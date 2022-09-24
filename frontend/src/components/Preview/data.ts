@@ -16,7 +16,7 @@ export const Data = [
     image_uri:
       "https://images.unsplash.com/photo-1585589266882-2cb137ba7db6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80",
     title:
-      "[디지독 웹툰] 한국군 전쟁 무기 패키지 [디지독 웹툰] 한국군 전쟁 무기 패키지",
+      "[디지독 웹툰] 한국군 전쟁 무기 패키지를 함께 구매하실 분들 모집합니다!!",
     user_name: "박유저",
     town: "강남구",
     goal_num: 4,

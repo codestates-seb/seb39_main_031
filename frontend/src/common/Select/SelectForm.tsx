@@ -7,19 +7,23 @@ import {
   regionOptions,
   townOptions,
 } from "../../assets/Selector/SeletorOptions";
-import SignSeleForm from "../../common/Select/SignSeletForm";
 import { useAppDispatch } from "../../hooks/Redux";
 import { signupActions } from "../../redux/signupSlice";
 import { regions } from "../../types/OptionType";
+import Selector from "./Selector";
 
 const SelectContent = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
 `;
 
-const SignupSelect = () => {
+type Select = {
+  label1?: string;
+  label2?: string;
+};
+
+const SignupSelect = (props: Select) => {
   const dispatch = useAppDispatch();
 
   const [userRegion, setUserRegion] = useState<string>("");
@@ -61,14 +65,14 @@ const SignupSelect = () => {
 
   return (
     <SelectContent>
-      <SignSeleForm
-        lableText="지역"
+      <Selector
+        lableText={props.label1}
         datas={regionOptions}
         onChangeHandler={onRegionHandler}
         control={true}
       />
-      <SignSeleForm
-        lableText="동네"
+      <Selector
+        lableText={props.label2}
         datas={townData}
         control={control}
         onChangeHandler={onTownHandler}
