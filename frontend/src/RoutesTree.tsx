@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "./Main";
 import Category from "./pages/Category";
 import Chat from "./pages/Chat";
+import Detail from "./pages/Detail";
 import Edit from "./pages/Edit";
 import GroupBuying from "./pages/GroupBuying";
 import Home from "./pages/Home";
@@ -22,6 +23,7 @@ const RoutesTree = () => {
           <Route index element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/groupbuying" element={<GroupBuying />} />
+          <Route path="/:user_id/:product_id" element={<Detail />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/edit" element={<Edit />} />
           <Route path="/user" element={<User />} />
