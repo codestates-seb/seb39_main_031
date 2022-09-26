@@ -23,6 +23,11 @@ const RoutesTree = () => {
           <Route index element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/groupbuying" element={<GroupBuying />} />
+          <Route path="/groupbuying/:regions" element={<GroupBuying />} />
+          <Route
+            path="/groupbuying/:regions/:towns"
+            element={<GroupBuying />}
+          />
           <Route path="/:user_id/:product_id" element={<Detail />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/edit" element={<Edit />} />

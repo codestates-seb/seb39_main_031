@@ -2,9 +2,9 @@
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
+import SignupSelect from "../../common/Select/SelectForm";
 import { useAppSelector } from "../../hooks/Redux";
 import SignupInputs from "./SignupInputs";
-import SignupSelect from "./SignupSelect";
 
 const Form = styled.form`
   width: 100%;
@@ -14,6 +14,7 @@ const SignupButton = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 3rem;
 `;
 
 const SignupForm = () => {
@@ -59,11 +60,12 @@ const SignupForm = () => {
   return (
     <Form onSubmit={onSubmitHandler}>
       <SignupInputs />
-      <SignupSelect />
-      <Button width="100%" height="3rem">
-        회원가입
-      </Button>
-      <SignupButton></SignupButton>
+      <SignupSelect label1="지역" label2="동네" />
+      <SignupButton>
+        <Button width="100%" height="3rem">
+          회원가입
+        </Button>
+      </SignupButton>
     </Form>
   );
 };

@@ -1,25 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import {
   regionOptions,
   townOptions,
 } from "../../assets/Selector/SeletorOptions";
-import SignSeleForm from "../../common/Select/SignSeletForm";
 import { useAppDispatch } from "../../hooks/Redux";
 import { signupActions } from "../../redux/signupSlice";
 import { regions } from "../../types/OptionType";
+import Selector from "./Selector";
 
 const SelectContent = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
 `;
 
-const SignupSelect = () => {
+interface Select {
+  label1?: string;
+  label2?: string;
+  onSelectRegion?: React.Dispatch<React.SetStateAction<string>>;
+  onSelectTown?: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SelectForm = (props: Select) => {
   const dispatch = useAppDispatch();
 
   const [userRegion, setUserRegion] = useState<string>("");
@@ -52,7 +58,13 @@ const SignupSelect = () => {
       setTownData(town[0]["경기도"]);
       setControl(true);
     }
+
+    props.onSelectRegion && props.onSelectRegion(userRegion);
   }, [userRegion]);
+
+  useEffect(() => {
+    props.onSelectTown && props.onSelectTown(userTown);
+  }, [userTown]);
 
   useEffect(() => {
     dispatch(signupActions.regionHandler({ region: userRegion }));
@@ -61,14 +73,14 @@ const SignupSelect = () => {
 
   return (
     <SelectContent>
-      <SignSeleForm
-        lableText="지역"
+      <Selector
+        lableText={props.label1}
         datas={regionOptions}
         onChangeHandler={onRegionHandler}
         control={true}
       />
-      <SignSeleForm
-        lableText="동네"
+      <Selector
+        lableText={props.label2}
         datas={townData}
         control={control}
         onChangeHandler={onTownHandler}
@@ -77,4 +89,4 @@ const SignupSelect = () => {
   );
 };
 
-export default SignupSelect;
+export default SelectForm;
