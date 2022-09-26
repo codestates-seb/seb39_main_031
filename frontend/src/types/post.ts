@@ -3,6 +3,8 @@
 export interface Preview {
   image_uri: string;
   title: string;
+  id: number;
+  user_id: number;
   user_name: string;
   town: string;
   goal_num: number;

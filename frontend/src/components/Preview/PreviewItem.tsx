@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -64,20 +65,21 @@ const GongguInfo = styled.div`
 
 const PreviewItem = ({
   image_uri,
+  id,
   title,
   user_name,
+  user_id,
   town,
   goal_num,
   state_num,
   ended_time,
 }: Preview) => {
   const onClickHandler = () => {
-    console.log("click");
+    console.log(user_id, id);
   };
-
   return (
     <Container onClick={onClickHandler}>
-      <Link to="/">
+      <Link to={`/${user_id}/${id}`}>
         <ThumbnailBox>
           <Thumbnail src={image_uri} alt={title} />
         </ThumbnailBox>

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { useState } from "react";
 import styled from "styled-components";
 
-import { Data } from "./data";
+import { DetailData } from "../../mocks/data";
 import PreviewItem from "./PreviewItem";
 
 const Container = styled.div`
@@ -18,7 +19,7 @@ const Grid = styled.div`
 `;
 
 const PreviewList = () => {
-  const [data, setData] = useState(Data);
+  const [data, setData] = useState(DetailData);
 
   return (
     <Container>
@@ -26,6 +27,8 @@ const PreviewList = () => {
         {data.map(el => (
           <PreviewItem
             key={el.product_id}
+            id={el.product_id}
+            user_id={el.user_id}
             image_uri={el.image_uri}
             title={el.title}
             user_name={el.user_name}
