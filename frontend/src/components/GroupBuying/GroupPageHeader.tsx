@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import SelectForm from "../../common/Select/SelectForm";
@@ -22,11 +25,26 @@ const DataSelector = styled.div`
 `;
 
 const GroupPageHeader = () => {
+  const [selectRegion, setSelectRegion] = useState<string>("");
+  const [selectTown, setSelectTown] = useState<string>("");
+  const navigation = useNavigate();
+
+  useEffect(() => {
+    navigation(`/groupbuying/${selectRegion}`);
+  }, [selectRegion]);
+
+  useEffect(() => {
+    navigation(`/groupbuying/${selectRegion}/${selectTown}`);
+  }, [selectTown]);
+
   return (
     <PageHeader>
       <h1>공동구매</h1>
       <DataSelector>
-        <SelectForm />
+        <SelectForm
+          onSelectRegion={setSelectRegion}
+          onSelectTown={setSelectTown}
+        />
       </DataSelector>
     </PageHeader>
   );

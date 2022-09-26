@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import {
@@ -18,12 +18,14 @@ const SelectContent = styled.div`
   justify-content: space-between;
 `;
 
-type Select = {
+interface Select {
   label1?: string;
   label2?: string;
-};
+  onSelectRegion?: React.Dispatch<React.SetStateAction<string>>;
+  onSelectTown?: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const SignupSelect = (props: Select) => {
+const SelectForm = (props: Select) => {
   const dispatch = useAppDispatch();
 
   const [userRegion, setUserRegion] = useState<string>("");
@@ -56,7 +58,13 @@ const SignupSelect = (props: Select) => {
       setTownData(town[0]["경기도"]);
       setControl(true);
     }
+
+    props.onSelectRegion && props.onSelectRegion(userRegion);
   }, [userRegion]);
+
+  useEffect(() => {
+    props.onSelectTown && props.onSelectTown(userTown);
+  }, [userTown]);
 
   useEffect(() => {
     dispatch(signupActions.regionHandler({ region: userRegion }));
@@ -81,4 +89,4 @@ const SignupSelect = (props: Select) => {
   );
 };
 
-export default SignupSelect;
+export default SelectForm;
