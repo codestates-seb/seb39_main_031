@@ -19,7 +19,7 @@ const Page = styled.div`
 `;
 
 const Container = styled.div`
-  width: 60%;
+  width: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
