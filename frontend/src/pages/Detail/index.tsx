@@ -1,17 +1,17 @@
 import { useParams } from "react-router-dom";
 
 import { Data } from "../../mocks/data";
-import Participant from "./Participant";
+import Publisher from "./Publisher";
 
 const Detail = () => {
   const { product_id } = useParams();
   const data = Data[Number(product_id) - 1];
 
   return (
-    //TODO: 쿠키의 user_id === user_id ? <게시자 페이지 Participant/> : <참여자 페이지 Participant/>
+    //TODO: 쿠키의 user_id === user_id ? <게시자 페이지 /> : <참여자 페이지 />
 
     <>
-      <Participant
+      <Publisher
         user_id={data.user_id}
         user_name={data.user_name}
         score={data.score}

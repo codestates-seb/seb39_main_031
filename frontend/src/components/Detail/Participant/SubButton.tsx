@@ -28,9 +28,9 @@ const Subbutton = styled(Button)`
 const DetailSubButton = ({ onClick, children }: ButtonType) => {
   return (
     <Subbutton
-      width="4em"
-      height="60px"
-      fontSize="15px"
+      width="55px"
+      height="50px"
+      fontSize="12px"
       backgroundColor="white"
       color="black"
       onClick={onClick}

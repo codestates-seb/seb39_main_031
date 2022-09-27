@@ -19,7 +19,7 @@ const Page = styled.div`
 `;
 
 const Container = styled.div`
-  width: 800px;
+  width: 900px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,13 +33,12 @@ const Title = styled.h1`
 const Main = styled.main`
   display: flex;
   flex-direction: row-reverse;
-  column-gap: 2em;
+  column-gap: 60px;
 `;
 
 const Aside = styled.aside`
   width: 30%;
 `;
-
 const ButtonBlock = styled.div`
   display: flex;
   flex-direction: column;
