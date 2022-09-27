@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { ButtonType } from "../../types/Button";
-import Button from "../Button/ButtonForm";
+import Button from "../../../common/Button/ButtonForm";
+import { ButtonType } from "../../../types/Button";
 
 const Subbutton = styled(Button)`
   border: 1px solid ${(props) => props.theme.colors.black400};
