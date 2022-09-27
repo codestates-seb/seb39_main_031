@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
-import Button from "../../../common/Button/ButtonForm";
+import Button from "../../common/Button/ButtonForm";
 
-const DeleteBtn = styled(Button)`
+const ButtonContainer = styled(Button)`
+  width: 70px;
+  font-size: ${(props) => props.theme.fontSize.size15};
   border-radius: 4px;
   background: ${(props) => props.theme.colors.white000};
   border: 1px solid ${(props) => props.theme.colors.cyan600};
   color: ${(props) => props.theme.colors.cyan700};
-  font-size: 14px;
 
   &:hover {
     background: ${(props) => props.theme.colors.black100};
@@ -18,16 +19,12 @@ const DeleteBtn = styled(Button)`
   }
 `;
 
-const DeleteButton = () => {
-  const DeleteHandler = () => {
-    console.log("삭제");
-  };
+interface Props {
+  onClick: () => void;
+}
 
-  return (
-    <DeleteBtn width="50%" height="2.5em" onClick={DeleteHandler}>
-      삭제
-    </DeleteBtn>
-  );
+const NoticeButton = ({ onClick }: Props) => {
+  return <ButtonContainer onClick={onClick}>글쓰기</ButtonContainer>;
 };
 
-export default DeleteButton;
+export default NoticeButton;

@@ -1,5 +1,4 @@
 import { AiFillHome, AiFillStar } from "react-icons/ai";
-import { FaUserCircle } from "react-icons/fa";
 import styled from "styled-components";
 
 import { Image } from "../../types/post";

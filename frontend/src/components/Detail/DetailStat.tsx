@@ -95,7 +95,10 @@ const DetailStats = ({
       <Block>
         <Title>분담금액</Title>
         <Contents>
-          <span className="strong">{state_price.toLocaleString()}</span> 원
+          <span className="strong">
+            {(goal_price / goal_num).toLocaleString()}
+          </span>{" "}
+          원
         </Contents>
       </Block>
       <Block>

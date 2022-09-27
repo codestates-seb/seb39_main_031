@@ -17,7 +17,7 @@ const Page = styled.div`
 `;
 
 const Container = styled.div`
-  width: 60%;
+  width: 900px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +31,7 @@ const Title = styled.h1`
 const Main = styled.main`
   display: flex;
   flex-direction: row-reverse;
-  column-gap: 2em;
+  column-gap: 60px;
 `;
 
 const Aside = styled.aside`
