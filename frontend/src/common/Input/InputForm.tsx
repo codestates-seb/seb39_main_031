@@ -23,6 +23,8 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   type?: string;
   lableText?: string;
+  value?: string;
+  max?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -30,7 +32,13 @@ const InputForm: React.FC<Props> = ({ lableText, ...props }) => {
   return (
     <InputBox>
       <label>{lableText}</label>
-      <input {...props} maxLength={30} />
+      {props.type === "number" ? (
+        <input {...props} min="0" max={props.max} />
+      ) : props.value ? (
+        <input {...props} maxLength={30} value={props.value} readOnly />
+      ) : (
+        <input {...props} maxLength={30} />
+      )}
     </InputBox>
   );
 };

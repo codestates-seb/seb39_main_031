@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from "styled-components";
 
 import CloseDisplay from "../../../components/Detail/CloseDisplay";
@@ -10,17 +11,12 @@ import { DetailType, Image } from "../../../types/post";
 
 const Page = styled.div`
   width: 100%;
-  height: 100%;
   padding-top: 50px;
-  display: flex;
-  justify-content: center;
 `;
 
 const Container = styled.div`
   width: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin: 0 auto;
 `;
 
 const Title = styled.h1`
@@ -48,7 +44,7 @@ const Section = styled.section`
 const ImageBox = styled.div<Image>`
   width: 100%;
   height: 400px;
-  background: url(${(props) => props.image});
+  background: url(${props => props.image});
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;

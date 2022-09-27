@@ -16,7 +16,7 @@ export const DetailData = [
     title: "양파 구매하실 분들 모집합니다",
     body: "양파 구매하실 분들 모집합니다",
     generated_time: "2022-09-22",
-    ended_time: "2022-09-28",
+    ended_time: "2022-10-11",
     status: "proceeding",
   },
   {
@@ -57,7 +57,7 @@ export const DetailData = [
     title: "냉장 한우 나누실 분",
     body: "냉장 한우 나누실 분",
     generated_time: "2022-09-23",
-    ended_time: "2022-10-01",
+    ended_time: "2022-10-21",
     status: "proceeding",
   },
   {
@@ -77,7 +77,7 @@ export const DetailData = [
     title: "양파 구매하실 분들 모집합니다",
     body: "양파 구매하실 분들 모집합니다",
     generated_time: "2022-09-22",
-    ended_time: "2022-09-28",
+    ended_time: "2022-10-28",
     status: "proceeding",
   },
   {
@@ -97,7 +97,7 @@ export const DetailData = [
     title: "한국군 전쟁 무기 패키지",
     body: "한국군 전쟁 무기 패키지",
     generated_time: "2022-09-23",
-    ended_time: "2022-10-10",
+    ended_time: "2022-11-10",
     status: "end",
   },
   {
@@ -118,7 +118,7 @@ export const DetailData = [
     title: "냉장 한우 나누실 분",
     body: "냉장 한우 나누실 분",
     generated_time: "2022-09-23",
-    ended_time: "2022-10-01",
+    ended_time: "2022-10-21",
     status: "proceeding",
   },
 ];
