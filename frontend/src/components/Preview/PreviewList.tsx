@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { useState } from "react";
 import styled from "styled-components";
@@ -18,7 +19,7 @@ const Grid = styled.div`
 `;
 
 const PreviewList = () => {
-  const [data, setData] = useState(Data);
+  const [data, setData] = useState(DetailData);
 
   return (
     <Container>

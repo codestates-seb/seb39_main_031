@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -66,8 +67,10 @@ const PreviewItem = ({
   user_id,
   product_id,
   image_uri,
+  id,
   title,
   user_name,
+  user_id,
   town,
   goal_num,
   state_num,
@@ -75,9 +78,8 @@ const PreviewItem = ({
   ...props
 }: Preview) => {
   const onClickHandler = () => {
-    console.log("click");
+    console.log(user_id, id);
   };
-
   return (
     <Container onClick={onClickHandler}>
       <Link to={`/${user_id}/${product_id}`}>

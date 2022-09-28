@@ -1,3 +1,17 @@
+// TODO: 타입 정리
+// Preview
+export interface Preview {
+  image_uri: string;
+  title: string;
+  id: number;
+  user_id: number;
+  user_name: string;
+  town: string;
+  goal_num: number;
+  state_num: number;
+  ended_time: string;
+}
+
 // 썸네일, 대표 이미지 등
 export interface Image {
   image: string;
