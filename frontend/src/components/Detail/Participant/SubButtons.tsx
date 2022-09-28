@@ -5,11 +5,11 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { RiAlarmWarningLine } from "react-icons/ri";
 import styled from "styled-components";
 
-import DetailSubButton from "../../../common/Button/DetailSubButton";
+import DetailSubButton from "./SubButton";
 
 const Container = styled.div`
   display: flex;
-  column-gap: 15px;
+  justify-content: space-between;
 `;
 
 const SubButtons = () => {

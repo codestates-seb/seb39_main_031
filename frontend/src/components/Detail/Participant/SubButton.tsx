@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { ButtonType } from "../../types/Button";
-import Button from "../Button/ButtonForm";
+import Button from "../../../common/Button/ButtonForm";
+import { ButtonType } from "../../../types/Button";
 
 const Subbutton = styled(Button)`
   border: 1px solid ${(props) => props.theme.colors.black400};
@@ -28,9 +28,9 @@ const Subbutton = styled(Button)`
 const DetailSubButton = ({ onClick, children }: ButtonType) => {
   return (
     <Subbutton
-      width="4em"
-      height="60px"
-      fontSize="15px"
+      width="55px"
+      height="50px"
+      fontSize="12px"
       backgroundColor="white"
       color="black"
       onClick={onClick}

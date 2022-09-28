@@ -38,8 +38,8 @@ const TitleUserBox = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${props => props.theme.colors.black000};
-  font-size: ${props => props.theme.fontSize.size18};
+  color: ${(props) => props.theme.colors.black000};
+  font-size: ${(props) => props.theme.fontSize.size18};
   margin: 0.5em 0;
   line-height: 1.5em;
   display: -webkit-box;
@@ -49,21 +49,23 @@ const Title = styled.div`
 `;
 
 const UserInfo = styled.div`
-  font-size: ${props => props.theme.fontSize.size12};
-  color: ${props => props.theme.colors.black500};
+  font-size: ${(props) => props.theme.fontSize.size12};
+  color: ${(props) => props.theme.colors.black500};
   margin: 0.5em 0;
 `;
 
 const GongguInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  color: ${props => props.theme.colors.black400};
-  font-size: ${props => props.theme.fontSize.size12};
+  color: ${(props) => props.theme.colors.black400};
+  font-size: ${(props) => props.theme.fontSize.size12};
   margin: 0.5em 0;
   font-weight: 700;
 `;
 
 const PreviewItem = ({
+  user_id,
+  product_id,
   image_uri,
   id,
   title,
@@ -73,13 +75,14 @@ const PreviewItem = ({
   goal_num,
   state_num,
   ended_time,
+  ...props
 }: Preview) => {
   const onClickHandler = () => {
     console.log(user_id, id);
   };
   return (
     <Container onClick={onClickHandler}>
-      <Link to={`/${user_id}/${id}`}>
+      <Link to={`/${user_id}/${product_id}`}>
         <ThumbnailBox>
           <Thumbnail src={image_uri} alt={title} />
         </ThumbnailBox>

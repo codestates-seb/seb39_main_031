@@ -26,6 +26,19 @@ export interface FilledBar {
   width: string;
 }
 
+//Preview
+export interface Preview {
+  product_id: number;
+  user_id: number;
+  image_uri: string;
+  title: string;
+  user_name: string;
+  town: string;
+  goal_num: number;
+  state_num: number;
+  ended_time: string;
+}
+
 //Post
 export interface DetailType {
   user_id: number;

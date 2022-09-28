@@ -27,7 +27,7 @@ const Title = styled.h1`
 const Main = styled.main`
   display: flex;
   flex-direction: row-reverse;
-  column-gap: 2em;
+  column-gap: 60px;
 `;
 
 const Aside = styled.aside`
