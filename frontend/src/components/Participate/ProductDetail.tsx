@@ -4,7 +4,6 @@ import { Data } from "../../mocks/data";
 
 const ProductContainer = styled.div`
   width: 100%;
-  height: 40%;
   display: flex;
   border-bottom: 2px solid ${({ theme }) => theme.colors.black300};
   padding-bottom: 18px;
@@ -26,14 +25,16 @@ const ImgContent = styled.div`
 
 const InfoContent = styled.div`
   width: 60%;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
 
-const InfoTitle = styled.div`
+const ProductTitle = styled.div`
   width: 100%;
-  height: 50%;
   display: flex;
   align-items: center;
-  padding-left: 30px;
 
   > span {
     font-size: ${({ theme }) => theme.fontSize.size20};
@@ -41,12 +42,17 @@ const InfoTitle = styled.div`
   }
 `;
 
-const InfoDetail = styled.div`
+const ProductUnit = styled.div`
   width: 100%;
-  height: 50%;
   display: flex;
   align-items: center;
-  padding-left: 30px;
+  font-size: ${({ theme }) => theme.fontSize.size18};
+`;
+
+const ProductLeft = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
 
   font-size: ${({ theme }) => theme.fontSize.size18};
 
@@ -63,21 +69,30 @@ const ProductDetail = () => {
   const enddayTime = new Date(data.ended_time).getTime();
   const D_day = Math.floor((enddayTime - todayTime) / (1000 * 60 * 60 * 24));
 
-  const percentage = Math.floor((data.state_num / data.goal_num) * 100);
+  const leftOver = data.goal_num - data.state_num;
 
   return (
     <ProductContainer>
       <ImgContent>
-        <img src={data.profileImage_uri} alt={data.title} />
+        <img src={data.image_uri} alt={data.title} />
       </ImgContent>
       <InfoContent>
-        <InfoTitle>
+        <ProductTitle>
           <span>{data.title}</span>
-        </InfoTitle>
-        <InfoDetail>
-          <span className="percentage">{`${percentage}%`}</span>
-          <span>{`마감 ${D_day}일 전`}</span>
-        </InfoDetail>
+        </ProductTitle>
+        <ProductUnit>
+          <span>1kg 당 12000원</span>
+        </ProductUnit>
+        <ProductLeft>
+          <span className="percentage">{`${leftOver}개 남음`}</span>
+          {D_day < 0 ? (
+            <span>종료되었습니다.</span>
+          ) : D_day === 0 ? (
+            <span>오늘 마감됩니다.</span>
+          ) : (
+            <span>{`마감 ${D_day}일 전`}</span>
+          )}
+        </ProductLeft>
       </InfoContent>
     </ProductContainer>
   );
