@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { DetailData } from "../../mocks/data";
+import { Data } from "../../mocks/data";
 
 const ProductContainer = styled.div`
   width: 100%;
@@ -57,7 +57,7 @@ const InfoDetail = styled.div`
 `;
 
 const ProductDetail = () => {
-  const data = DetailData[0];
+  const data = Data[0];
 
   const todayTime = new Date().getTime();
   const enddayTime = new Date(data.ended_time).getTime();

@@ -19,12 +19,12 @@ const Grid = styled.div`
 `;
 
 const PreviewList = () => {
-  const [data, setData] = useState(DetailData);
+  const [data, setData] = useState(Data);
 
   return (
     <Container>
       <Grid>
-        {data.map((el) => (
+        {data.map(el => (
           <PreviewItem
             key={el.product_id}
             product_id={el.product_id}
