@@ -9,7 +9,7 @@ import {
 } from "../../assets/Selector/SeletorOptions";
 import { useAppDispatch } from "../../hooks/Redux";
 import { signupActions } from "../../redux/signupSlice";
-import { regions } from "../../types/OptionType";
+import { options } from "../../types/OptionType";
 import Selector from "./Selector";
 
 const SelectContent = styled.div`
@@ -31,7 +31,7 @@ const SelectForm = (props: Select) => {
   const [userRegion, setUserRegion] = useState<string>("");
   const [userTown, setUserTown] = useState<string>("");
 
-  const [townData, setTownData] = useState<regions>([]);
+  const [townData, setTownData] = useState<options>([]);
   const [control, setControl] = useState<boolean>(false);
 
   const onRegionHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -75,13 +75,13 @@ const SelectForm = (props: Select) => {
     <SelectContent>
       <Selector
         lableText={props.label1}
-        datas={regionOptions}
+        options={regionOptions}
         onChangeHandler={onRegionHandler}
         control={true}
       />
       <Selector
         lableText={props.label2}
-        datas={townData}
+        options={townData}
         control={control}
         onChangeHandler={onTownHandler}
       />

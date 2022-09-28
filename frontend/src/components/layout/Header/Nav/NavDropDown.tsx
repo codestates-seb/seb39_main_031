@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useRef } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
@@ -36,15 +37,15 @@ const MenuBox = styled.div`
   left: -11em;
   top: 2.5em;
   margin-right: 2em;
-  background-color: ${(props) => props.theme.colors.white000};
-  border: 1px solid ${(props) => props.theme.colors.black300};
+  background-color: ${props => props.theme.colors.white000};
+  border: 1px solid ${props => props.theme.colors.black300};
   border-radius: 4px;
 `;
 
 const navs = [
   {
     label: "새 공동구매",
-    path: "/edit",
+    path: "/new",
     icon: <BsPencilFill />,
     className: "edit",
   },

@@ -4,11 +4,11 @@ import Main from "./Main";
 import Category from "./pages/Category";
 import Chat from "./pages/Chat";
 import Detail from "./pages/Detail";
-import Edit from "./pages/Edit";
 import GroupBuying from "./pages/GroupBuying";
 import Home from "./pages/Home";
 import Like from "./pages/Like";
 import Login from "./pages/Login";
+import New from "./pages/New";
 import NotFound from "./pages/NotFound";
 import Participate from "./pages/Participate";
 import Password from "./pages/Password";
@@ -30,7 +30,7 @@ const RoutesTree = () => {
           />
           <Route path="/:user_id/:product_id" element={<Detail />} />
           <Route path="/chat" element={<Chat />} />
-          <Route path="/edit" element={<Edit />} />
+          <Route path="/new" element={<New />} />
           <Route path="/user" element={<User />} />
           <Route path="/participate" element={<Participate />} />
           <Route path="/like" element={<Like />} />

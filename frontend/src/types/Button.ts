@@ -1,3 +1,5 @@
+import React from "react";
+
 export type ButtonType = {
   width?: string;
   height?: string;
@@ -7,7 +9,7 @@ export type ButtonType = {
   fontSize?: string;
   hoverBackground?: string;
   type?: "button" | "submit" | "reset" | undefined;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   children?: React.ReactNode;
 };
 

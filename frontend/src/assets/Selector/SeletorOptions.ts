@@ -1,6 +1,6 @@
-import { regions, towns } from "../../types/OptionType";
+import { options, towns } from "../../types/OptionType";
 
-export const regionOptions: regions = [
+export const regionOptions: options = [
   { value: "지역을 선택해주세요", name: "지역을 선택해주세요" },
   { value: "서울특별시", name: "서울특별시" },
   { value: "경기도", name: "경기도" },
@@ -87,4 +87,24 @@ export const townOptions: towns = [
       { value: "화성시", name: "화성시" },
     ],
   },
+];
+
+export const category: options = [
+  { value: "카테고리를 선택해주세요", name: "카테고리를 선택해주세요" },
+  { value: "인기매물", name: "인기매물" },
+  { value: "식품", name: "식품" },
+  { value: "생활가전", name: "생활가전" },
+  { value: "가구/인테리어", name: "가구/인테리어" },
+  { value: "여성의류", name: "여성의류" },
+  { value: "여성잡화", name: "여성잡화" },
+  { value: "남성의류/잡화", name: "남성의류/잡화" },
+  { value: "유아동", name: "유아동" },
+  { value: "디지털기기", name: "디지털기기" },
+  { value: "차량용품", name: "차량용품" },
+  { value: "도서", name: "도서" },
+  { value: "뷰티/미용", name: "뷰티/미용" },
+  { value: "스포츠/레저", name: "스포츠/레저" },
+  { value: "티켓/교환권", name: "티켓/교환권" },
+  { value: "반려동물용품", name: "반려동물용품" },
+  { value: "기타 물품", name: "기타 물품" },
 ];
