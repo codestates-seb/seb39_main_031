@@ -39,8 +39,8 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Product> readProductsList(int page) {
-        return productRepository.findAll(PageRequest.of(page, 9));
+    public Page<Product> readProductsList(int page, int size) {
+        return productRepository.findAll(PageRequest.of(page-1, size));
     }
 
     // Todo: 작성자를 제외한 인원은 수정 불가능
@@ -53,14 +53,14 @@ public class ProductService {
                 .ifPresent(body -> curProduct.setBody(body));
         Optional.of(newProduct.getEndedTime())
                 .ifPresent(endedTime -> curProduct.setEndedTime(endedTime));
-        Optional.of(newProduct.getGoalNum())
-                .ifPresent(goalNum -> curProduct.setGoalNum(goalNum));
-        Optional.of(newProduct.getGoalPrice())
-                .ifPresent(goalPrice -> curProduct.setGoalPrice(goalPrice));
+        Optional.of(newProduct.getGoalQuantity())
+                .ifPresent(goalQuantity -> curProduct.setGoalQuantity(goalQuantity));
+        Optional.of(newProduct.getUnitPerPrice())
+                .ifPresent(unitPerPrice -> curProduct.setUnitPerPrice(unitPerPrice));
+        Optional.of(newProduct.getUnit())
+                .ifPresent(unit -> curProduct.setUnit(unit));
         Optional.of(newProduct.getState())
                 .ifPresent(state -> curProduct.setState(state));
-        Optional.of(newProduct.getProductImg())
-                .ifPresent(productImg -> curProduct.setProductImg(productImg));
 
         return curProduct;
     }
