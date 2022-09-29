@@ -38,16 +38,16 @@ public class Product {
     private LocalDateTime endedTime;
 
     @Column(nullable = false)
-    private Integer goalNum;
+    private Integer goalQuantity;
 
     @Column
-    private int stateNum;
+    private int stateQuantity;
 
     @Column(nullable = false)
-    private Long goalPrice;
+    private Long unit;
 
     @Column
-    private long statePrice;
+    private long unitPerPrice;
 
     @Column
     private boolean deleteState;
