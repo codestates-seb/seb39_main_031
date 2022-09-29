@@ -1,12 +1,12 @@
 package com.codestates.main31.product.dto;
 
 import com.codestates.main31.product.entity.ProductState;
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class ProductResponseDto {
 
@@ -21,21 +21,19 @@ public class ProductResponseDto {
 
         private LocalDateTime endedTime;
 
-        private Integer goalNum;
+        private Integer goalQuantity;
 
-        private Integer stateNum;
+        private int stateQuantity;
 
-        private Long goalPrice;
+        private Long unit;
 
-        private Long statePrice;
+        private long unitPerPrice;
 
         private ProductState state;
 
         private String area;
 
         private String town;
-
-        private String productImg;
 
     }
 
@@ -53,21 +51,19 @@ public class ProductResponseDto {
 
         private LocalDateTime endedTime;
 
-        private Integer goalNum;
+        private Integer goalQuantity;
 
-        private Integer stateNum;
+        private int stateQuantity;
 
-        private Long goalPrice;
+        private Long unit;
 
-        private Long statePrice;
+        private long unitPerPrice;
 
         private ProductState state;
 
         private String area;
 
         private String town;
-
-        private String productImg;
 
     }
 

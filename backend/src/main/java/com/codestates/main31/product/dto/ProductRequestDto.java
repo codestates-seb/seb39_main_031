@@ -18,11 +18,11 @@ public class ProductRequestDto {
 
         private String body;
 
-        private Integer goalNum;
+        private Integer goalQuantity;
 
-        private Long goalPrice;
+        private Long unit;
 
-        private String productImg;
+        private long unitPerPrice;
 
         private String area;
 
@@ -43,11 +43,11 @@ public class ProductRequestDto {
 
         private String body;
 
-        private Integer goalNum;
+        private Integer goalQuantity;
 
-        private Long goalPrice;
+        private Long unit;
 
-        private String productImg;
+        private long unitPerPrice;
 
         private ProductState state;
 
