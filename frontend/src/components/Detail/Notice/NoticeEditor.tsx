@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import { BlueButton, GrayButton } from "../../../common/Button/BorderButton";
 import Card from "../../../common/Card/Card";
+import DefaultEditor from "../../../common/Editor/DefaultEditor";
 import NoticeInput from "./NoticeInput";
 
 const Container = styled.div`
@@ -45,17 +46,7 @@ const NoticeEditor = ({ setIsShow }: Props) => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></NoticeInput>
-        <Editor
-          ref={editorRef}
-          hideModeSwitch={true}
-          height="250px"
-          initialEditType="wysiwyg"
-          toolbarItems={[
-            ["bold", "italic"],
-            ["link", "quote", "image", "codeblock"],
-            ["ol", "ul", "heading", "hr"],
-          ]}
-        />
+        <DefaultEditor ref={editorRef} height="250px" />
         <ButtonBlock>
           <BlueButton onClick={registerHandler}>등록</BlueButton>
           <GrayButton
