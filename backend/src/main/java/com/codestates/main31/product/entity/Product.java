@@ -47,7 +47,7 @@ public class Product {
     private Long unit;
 
     @Column
-    private long unitPerPrice;
+    private Long unitPerPrice;
 
     @Column
     private boolean deleteState;
@@ -57,7 +57,7 @@ public class Product {
     private ProductState state = ProductState.PROCEED;
 
     @Column(nullable = false)
-    private String area;
+    private String region;
 
     @Column(nullable = false)
     private String town;

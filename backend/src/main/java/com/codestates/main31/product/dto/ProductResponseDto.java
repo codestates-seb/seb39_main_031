@@ -27,11 +27,11 @@ public class ProductResponseDto {
 
         private Long unit;
 
-        private long unitPerPrice;
+        private Long unitPerPrice;
 
         private ProductState state;
 
-        private String area;
+        private String region;
 
         private String town;
 
@@ -57,11 +57,11 @@ public class ProductResponseDto {
 
         private Long unit;
 
-        private long unitPerPrice;
+        private Long unitPerPrice;
 
         private ProductState state;
 
-        private String area;
+        private String region;
 
         private String town;
 

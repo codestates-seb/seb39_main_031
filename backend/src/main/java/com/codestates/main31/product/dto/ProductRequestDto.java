@@ -22,9 +22,9 @@ public class ProductRequestDto {
 
         private Long unit;
 
-        private long unitPerPrice;
+        private Long unitPerPrice;
 
-        private String area;
+        private String region;
 
         private String town;
 
@@ -47,7 +47,7 @@ public class ProductRequestDto {
 
         private Long unit;
 
-        private long unitPerPrice;
+        private Long unitPerPrice;
 
         private ProductState state;
 
