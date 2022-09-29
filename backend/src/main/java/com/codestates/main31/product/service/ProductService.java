@@ -9,6 +9,7 @@ import com.codestates.main31.productimage.handler.ImageHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,27 +40,27 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Product> readProductsList(int page, int size) {
-        return productRepository.findAll(PageRequest.of(page-1, size));
+    public Page<Product> readProductsList(int page, int size, Specification<Product> spec) {
+        return productRepository.findAll(spec, PageRequest.of(page-1, size));
     }
 
     // Todo: 작성자를 제외한 인원은 수정 불가능
     public Product updateProduct(Long productId, Product newProduct) {
         Product curProduct = findProduct(productId);
 
-        Optional.of(newProduct.getTitle())
+        Optional.ofNullable(newProduct.getTitle())
                 .ifPresent(title -> curProduct.setTitle(title));
-        Optional.of(newProduct.getBody())
+        Optional.ofNullable(newProduct.getBody())
                 .ifPresent(body -> curProduct.setBody(body));
-        Optional.of(newProduct.getEndedTime())
+        Optional.ofNullable(newProduct.getEndedTime())
                 .ifPresent(endedTime -> curProduct.setEndedTime(endedTime));
-        Optional.of(newProduct.getGoalQuantity())
+        Optional.ofNullable(newProduct.getGoalQuantity())
                 .ifPresent(goalQuantity -> curProduct.setGoalQuantity(goalQuantity));
-        Optional.of(newProduct.getUnitPerPrice())
+        Optional.ofNullable(newProduct.getUnitPerPrice())
                 .ifPresent(unitPerPrice -> curProduct.setUnitPerPrice(unitPerPrice));
-        Optional.of(newProduct.getUnit())
+        Optional.ofNullable(newProduct.getUnit())
                 .ifPresent(unit -> curProduct.setUnit(unit));
-        Optional.of(newProduct.getState())
+        Optional.ofNullable(newProduct.getState())
                 .ifPresent(state -> curProduct.setState(state));
 
         return curProduct;

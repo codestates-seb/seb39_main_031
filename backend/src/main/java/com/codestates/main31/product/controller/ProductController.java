@@ -5,9 +5,11 @@ import com.codestates.main31.product.dto.ProductRequestDto;
 import com.codestates.main31.product.dto.ProductResponseDto;
 import com.codestates.main31.product.entity.Product;
 import com.codestates.main31.product.mapper.ProductMapper;
+import com.codestates.main31.product.repository.ProductSpecification;
 import com.codestates.main31.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,8 +43,15 @@ public class ProductController {
 
     @GetMapping
     public MultiResponseDto<ProductResponseDto.GetList> readProductsList(@RequestParam int page,
-                                                                         @RequestParam(defaultValue = "9", required = false) int size) {
-        Page<Product> readProductsList = productService.readProductsList(page, size);
+                                                                         @RequestParam(defaultValue = "9", required = false) int size,
+                                                                         @ModelAttribute ProductSpecification.ProductCriteria criteria) {
+        Specification<Product> spec = (root, query, builder) -> null;
+
+        if (criteria.getCategory() != null) spec = spec.and((root, query, builder) -> builder.equal(root.get("category"), criteria.getCategory()));
+        if (criteria.getRegion() != null) spec = spec.and((root, query, builder) -> builder.equal(root.get("region"), criteria.getRegion()));
+        if (criteria.getTown() != null) spec = spec.and((root, query, builder) -> builder.equal(root.get("town"), criteria.getTown()));
+
+        Page<Product> readProductsList = productService.readProductsList(page, size, spec);
         return productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);
     }
 
