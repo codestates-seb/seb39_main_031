@@ -26,8 +26,9 @@ public class ProductController {
     private final ProductMapper productMapper;
 
     @PostMapping
-    public ResponseEntity<ProductResponseDto.GetDetail> createProduct(@RequestPart ProductRequestDto.Post postDto,
-                                                                      @RequestPart("file") List<MultipartFile> file) throws IOException {
+    public ResponseEntity<ProductResponseDto.GetDetail> createProduct(
+            @RequestPart ProductRequestDto.Post postDto,
+            @RequestPart("file") List<MultipartFile> file) throws IOException {
         Product savedProduct = productService.createProduct(productMapper.productRequestPostDtoToProduct(postDto), file);
         return new ResponseEntity<>(productMapper.productToProductResponseGetDetailDto(savedProduct), HttpStatus.CREATED);
     }
@@ -39,8 +40,9 @@ public class ProductController {
     }
 
     @GetMapping
-    public MultiResponseDto<ProductResponseDto.GetList> readProductsList(@RequestParam int page) {
-        Page<Product> readProductsList = productService.readProductsList(page);
+    public MultiResponseDto<ProductResponseDto.GetList> readProductsList(@RequestParam int page,
+                                                                         @RequestParam(defaultValue = "9", required = false) int size) {
+        Page<Product> readProductsList = productService.readProductsList(page, size);
         return productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);
     }
 
