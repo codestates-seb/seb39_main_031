@@ -2,6 +2,7 @@ package com.codestates.main31.user.auth.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
 import com.codestates.main31.user.auth.filter.entity.PrincipalDetails;
 import com.codestates.main31.user.config.security.JwtConfig;
 import com.codestates.main31.user.entity.User;
@@ -63,7 +64,18 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withClaim("id", principalDetails.getUser().getUserId())
                 .withClaim("email", principalDetails.getUser().getEmail())
                 .withClaim("username", principalDetails.getUser().getUsername())
+                .withClaim("addressId", principalDetails.getUser().getAddress().getAddressId())
                 .sign(Algorithm.HMAC512(jwtConfig.getSecret()));
+
         response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + jwtToken);
+        ObjectMapper mapper = new ObjectMapper();
+        String result = mapper.writeValueAsString(principalDetails.getUser());
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        response.getWriter().write(result);
+    }
+    public String getToken (String token){
+        Claim claim = JWT.decode(token).getClaim("id");
+        return claim.asString();
     }
 }

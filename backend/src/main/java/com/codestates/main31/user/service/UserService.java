@@ -1,5 +1,7 @@
 package com.codestates.main31.user.service;
 
+import com.codestates.main31.exception.BusinessLogicException;
+import com.codestates.main31.exception.ExceptionCode;
 import com.codestates.main31.helper.event.UserPasswordApplicationEvent;
 import com.codestates.main31.user.entity.User;
 import com.codestates.main31.user.repository.UserRepository;
@@ -7,6 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.sql.Time;
+import java.sql.Timestamp;
+
 
 @Service
 @RequiredArgsConstructor
@@ -17,22 +23,31 @@ public class UserService {
 
     private final ApplicationEventPublisher publisher;
 
+
     public User getUser(Long memberId){
-        User user = userRepository.findById(memberId).orElse(null);
+        User user = userRepository.findById(memberId).orElseThrow(()-> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
         return user;
     }
 
     public User findByEmail(String email){
         User nan = new User();
-        nan.setEmail("NO");
-        nan.setUserId(-1L);
         User user = userRepository.findByEmail(email).orElse(nan);
         return user;
     }
 
     public User postUser(User newUser) {
+        User user;
+        Boolean existUser = userRepository.findByEmail(newUser.getEmail()).isPresent();
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-        return userRepository.save(newUser);
+
+        if(existUser) {
+            user =userRepository.findByEmail(newUser.getEmail()).orElse(null);
+            if(!(user.isDeleteState())){
+                throw new BusinessLogicException(ExceptionCode.USER_EMAIL_EXIST);
+            }
+        }
+        user = newUser;
+        return userRepository.save(user);
     }
 
     public User findPassword(String email){
@@ -47,7 +62,11 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void putUser(){}
+    public void patchUser(){
 
-    public void deleteUser(){}
+    }
+
+    public void deleteUser(){
+
+    }
 }
