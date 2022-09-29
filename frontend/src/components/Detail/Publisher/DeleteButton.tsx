@@ -1,32 +1,14 @@
-import styled from "styled-components";
+import { GrayButton } from "../../../common/Button/BorderButton";
 
-import Button from "../../../common/Button/ButtonForm";
+interface Props {
+  onClick: () => void;
+}
 
-const DeleteBtn = styled(Button)`
-  border-radius: 4px;
-  background: ${(props) => props.theme.colors.white000};
-  border: 1px solid ${(props) => props.theme.colors.cyan600};
-  color: ${(props) => props.theme.colors.cyan700};
-  font-size: 14px;
-
-  &:hover {
-    background: ${(props) => props.theme.colors.black100};
-  }
-
-  &:active {
-    background: ${(props) => props.theme.colors.black200};
-  }
-`;
-
-const DeleteButton = () => {
-  const DeleteHandler = () => {
-    console.log("삭제");
-  };
-
+const DeleteButton = ({ onClick }: Props) => {
   return (
-    <DeleteBtn width="50%" height="2.5em" onClick={DeleteHandler}>
+    <GrayButton width="50%" height="2.5em" onClick={onClick}>
       삭제
-    </DeleteBtn>
+    </GrayButton>
   );
 };
 

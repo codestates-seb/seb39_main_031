@@ -4,7 +4,7 @@ import { Editor } from "@toast-ui/react-editor";
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import Button from "../../../common/Button/ButtonForm";
+import { BlueButton, GrayButton } from "../../../common/Button/BorderButton";
 import Card from "../../../common/Card/Card";
 import NoticeInput from "./NoticeInput";
 
@@ -19,42 +19,6 @@ const ButtonBlock = styled.div`
   justify-content: flex-end;
   column-gap: 10px;
   margin-top: 1em;
-`;
-
-const RegisterButton = styled(Button)`
-  width: 70px;
-  height: 30px;
-  font-size: ${(props) => props.theme.fontSize.size15};
-  border-radius: 4px;
-  background: ${(props) => props.theme.colors.white000};
-  border: 1px solid ${(props) => props.theme.colors.cyan600};
-  color: ${(props) => props.theme.colors.cyan700};
-
-  &:hover {
-    background: ${(props) => props.theme.colors.black100};
-  }
-
-  &:active {
-    background: ${(props) => props.theme.colors.black200};
-  }
-`;
-
-const CancelButton = styled(Button)`
-  width: 70px;
-  height: 30px;
-  font-size: ${(props) => props.theme.fontSize.size15};
-  border-radius: 4px;
-  background: ${(props) => props.theme.colors.white000};
-  border: 1px solid ${(props) => props.theme.colors.black500};
-  color: ${(props) => props.theme.colors.black500};
-
-  &:hover {
-    background: ${(props) => props.theme.colors.black100};
-  }
-
-  &:active {
-    background: ${(props) => props.theme.colors.black200};
-  }
 `;
 
 interface Props {
@@ -93,14 +57,14 @@ const NoticeEditor = ({ setIsShow }: Props) => {
           ]}
         />
         <ButtonBlock>
-          <RegisterButton onClick={registerHandler}>등록</RegisterButton>
-          <CancelButton
+          <BlueButton onClick={registerHandler}>등록</BlueButton>
+          <GrayButton
             onClick={() => {
               setIsShow(false);
             }}
           >
             취소
-          </CancelButton>
+          </GrayButton>
         </ButtonBlock>
       </Card>
     </Container>
