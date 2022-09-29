@@ -37,8 +37,8 @@ const MenuBox = styled.div`
   left: -11em;
   top: 2.5em;
   margin-right: 2em;
-  background-color: ${props => props.theme.colors.white000};
-  border: 1px solid ${props => props.theme.colors.black300};
+  background-color: ${(props) => props.theme.colors.white000};
+  border: 1px solid ${(props) => props.theme.colors.black300};
   border-radius: 4px;
 `;
 
@@ -51,7 +51,7 @@ const navs = [
   },
   { label: "회원정보", path: "/user", icon: <AiOutlineUser /> },
   { label: "참여현황", path: "/participate", icon: <FaRegHandshake /> },
-  { label: "관심목록", path: "/like", icon: <HiOutlineHeart /> },
+  { label: "관심목록", path: "/favorite", icon: <HiOutlineHeart /> },
 ];
 
 const NavDropDown = () => {
