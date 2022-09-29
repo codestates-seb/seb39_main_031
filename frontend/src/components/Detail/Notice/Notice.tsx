@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import NoticeButton from "../../../components/Notice/NoticeButton";
-import NoticeEditor from "../../../components/Notice/NoticeEditor";
-import NoticeList from "../../../components/Notice/NoticeList";
+import NoticeButton from "./NoticeButton";
+import NoticeEditor from "./NoticeEditor";
+import NoticeList from "./NoticeList";
 
 const Container = styled.div`
   width: 100%;

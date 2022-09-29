@@ -1,7 +1,22 @@
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 import { Data } from "../../mocks/data";
-import Publisher from "./Publisher";
+import Participant from "./Participant";
+
+const Page = styled.div`
+  width: 100%;
+  padding: 70px 0;
+  display: flex;
+  justify-content: center;
+`;
+
+const Container = styled.div`
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 const Detail = () => {
   const { product_id } = useParams();
@@ -10,26 +25,28 @@ const Detail = () => {
   return (
     //TODO: 쿠키의 user_id === user_id ? <게시자 페이지 /> : <참여자 페이지 />
 
-    <>
-      <Publisher
-        user_id={data.user_id}
-        user_name={data.user_name}
-        score={data.score}
-        profileImage_uri={data.profileImage_uri}
-        product_id={data.product_id}
-        town={data.town}
-        goal_num={data.goal_num}
-        state_num={data.state_num}
-        image_uri={data.image_uri}
-        goal_price={data.goal_price}
-        state_price={data.state_price}
-        title={data.title}
-        body={data.body}
-        generated_time={data.generated_time}
-        ended_time={data.ended_time}
-        status={data.status}
-      />
-    </>
+    <Page>
+      <Container>
+        <Participant
+          user_id={data.user_id}
+          user_name={data.user_name}
+          score={data.score}
+          profileImage_uri={data.profileImage_uri}
+          product_id={data.product_id}
+          town={data.town}
+          goal_num={data.goal_num}
+          state_num={data.state_num}
+          image_uri={data.image_uri}
+          goal_price={data.goal_price}
+          state_price={data.state_price}
+          title={data.title}
+          body={data.body}
+          generated_time={data.generated_time}
+          ended_time={data.ended_time}
+          status={data.status}
+        />
+      </Container>
+    </Page>
   );
 };
 

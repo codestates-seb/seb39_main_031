@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-import Button from "../../common/Button/ButtonForm";
+import Button from "../../../common/Button/ButtonForm";
 
 const ButtonContainer = styled(Button)`
   width: 70px;
+  height: 30px;
   font-size: ${(props) => props.theme.fontSize.size15};
   border-radius: 4px;
   background: ${(props) => props.theme.colors.white000};

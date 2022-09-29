@@ -9,16 +9,6 @@ import JoinButton from "../../../components/Detail/Participant/JoinButton";
 import SubButtons from "../../../components/Detail/Participant/SubButtons";
 import { DetailType, Image } from "../../../types/post";
 
-const Page = styled.div`
-  width: 100%;
-  padding-top: 50px;
-`;
-
-const Container = styled.div`
-  width: 60%;
-  margin: 0 auto;
-`;
-
 const Title = styled.h1`
   padding: 1em 0;
   text-align: center;
@@ -44,7 +34,7 @@ const Section = styled.section`
 const ImageBox = styled.div<Image>`
   width: 100%;
   height: 400px;
-  background: url(${props => props.image});
+  background: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;
@@ -69,35 +59,33 @@ const Participant = ({
   status,
 }: DetailType) => {
   return (
-    <Page>
-      <Container>
-        <Title>{title}</Title>
-        <Main>
-          <Aside>
-            <DetailStats
-              ended_time={ended_time}
-              goal_num={goal_num}
-              state_num={state_num}
-              state_price={state_price}
-              goal_price={goal_price}
-              generated_time={generated_time}
-            />
-            {status === "proceeding" ? <JoinButton /> : <CloseDisplay />}
-            <SubButtons />
-            <DetailUserInfo
-              profileImage_uri={profileImage_uri}
-              user_name={user_name}
-              town={town}
-              score={score}
-            />
-          </Aside>
-          <Section>
-            <ImageBox image={image_uri} />
-            <DetailContent body={body} />
-          </Section>
-        </Main>
-      </Container>
-    </Page>
+    <>
+      <Title>{title}</Title>
+      <Main>
+        <Aside>
+          <DetailStats
+            ended_time={ended_time}
+            goal_num={goal_num}
+            state_num={state_num}
+            state_price={state_price}
+            goal_price={goal_price}
+            generated_time={generated_time}
+          />
+          {status === "proceeding" ? <JoinButton /> : <CloseDisplay />}
+          <SubButtons />
+          <DetailUserInfo
+            profileImage_uri={profileImage_uri}
+            user_name={user_name}
+            town={town}
+            score={score}
+          />
+        </Aside>
+        <Section>
+          <ImageBox image={image_uri} />
+          <DetailContent body={body} />
+        </Section>
+      </Main>
+    </>
   );
 };
 

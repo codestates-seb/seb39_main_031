@@ -3,6 +3,7 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
+      cyan50: string;
       cyan100: string;
       cyan200: string;
       cyan400: string;

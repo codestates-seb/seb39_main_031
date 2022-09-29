@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import Notice from "../../pages/Detail/Notice";
-import ProductInfo from "../../pages/Detail/ProductInfo";
+import Notice from "./Notice/Notice";
+import ProductInfo from "./ProductInfo";
 
 const Container = styled.div`
   display: flex;

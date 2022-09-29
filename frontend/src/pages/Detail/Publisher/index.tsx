@@ -5,25 +5,10 @@ import DetailContent from "../../../components/Detail/DetailContent";
 import DetailStats from "../../../components/Detail/DetailStat";
 import DetailUserInfo from "../../../components/Detail/DetailUserInfo";
 import CloseButton from "../../../components/Detail/Publisher/CloseButton";
-import DeleteButton from "../../../components/Detail/Publisher/DeleteHandler";
+import DeleteButton from "../../../components/Detail/Publisher/DeleteButton";
 import ModifyButton from "../../../components/Detail/Publisher/ModifyButton";
 import ParticipantList from "../../../components/Detail/Publisher/ParticipantList";
 import { DetailType, Image } from "../../../types/post";
-
-const Page = styled.div`
-  width: 100%;
-  height: 100%;
-  padding-top: 50px;
-  display: flex;
-  justify-content: center;
-`;
-
-const Container = styled.div`
-  width: 900px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
 
 const Title = styled.h1`
   padding: 1em 0;
@@ -85,41 +70,39 @@ const Publisher = ({
   status,
 }: DetailType) => {
   return (
-    <Page>
-      <Container>
-        <Title>{title}</Title>
-        <Main>
-          <Aside>
-            <DetailStats
-              ended_time={ended_time}
-              goal_num={goal_num}
-              state_num={state_num}
-              state_price={state_price}
-              goal_price={goal_price}
-              generated_time={generated_time}
-            />
-            <ButtonBlock>
-              {status === "proceeding" ? <CloseButton /> : <CloseDisplay />}
-              <DetailButton>
-                <ModifyButton />
-                <DeleteButton />
-              </DetailButton>
-            </ButtonBlock>
-            <DetailUserInfo
-              profileImage_uri={profileImage_uri}
-              user_name={user_name}
-              town={town}
-              score={score}
-            />
-          </Aside>
-          <Section>
-            <ImageBox image={image_uri} />
-            <ParticipantList />
-            <DetailContent body={body} />
-          </Section>
-        </Main>
-      </Container>
-    </Page>
+    <>
+      <Title>{title}</Title>
+      <Main>
+        <Aside>
+          <DetailStats
+            ended_time={ended_time}
+            goal_num={goal_num}
+            state_num={state_num}
+            state_price={state_price}
+            goal_price={goal_price}
+            generated_time={generated_time}
+          />
+          <ButtonBlock>
+            {status === "proceeding" ? <CloseButton /> : <CloseDisplay />}
+            <DetailButton>
+              <ModifyButton />
+              <DeleteButton />
+            </DetailButton>
+          </ButtonBlock>
+          <DetailUserInfo
+            profileImage_uri={profileImage_uri}
+            user_name={user_name}
+            town={town}
+            score={score}
+          />
+        </Aside>
+        <Section>
+          <ImageBox image={image_uri} />
+          <ParticipantList />
+          <DetailContent body={body} />
+        </Section>
+      </Main>
+    </>
   );
 };
 
