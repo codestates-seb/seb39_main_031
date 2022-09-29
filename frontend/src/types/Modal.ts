@@ -4,3 +4,11 @@ export type ModalType = {
   height?: string;
   onClick?: () => void;
 };
+
+export type DeleteModalType = {
+  visible?: boolean;
+  width?: string;
+  height?: string;
+  onDelete?: () => void;
+  onCancel?: () => void;
+};
