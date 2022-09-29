@@ -81,11 +81,11 @@ const DetailStats = ({
   return (
     <>
       <Block>
-        <Title>남은시간</Title>
+        <Title>남은 시간</Title>
         {remainTime}
       </Block>
       <Block>
-        <Title>목표수량</Title>
+        <Title>목표 수량</Title>
         <Contents>
           <span className="strong">{state_num}</span> 개 /
           <span className="strong"> {goal_num}</span> 개
@@ -93,9 +93,10 @@ const DetailStats = ({
         <ProgressBar state_num={state_num} goal_num={goal_num} />
       </Block>
       <Block>
-        <Title>분담금액</Title>
+        <Title>단위 가격</Title>
         <Contents>
           <span className="strong">
+            {/*TODO: 단위 가격으로 수정 필요 */}
             {(goal_price / goal_num).toLocaleString()}
           </span>{" "}
           원
@@ -104,6 +105,7 @@ const DetailStats = ({
       <Block>
         <TotalInfo>
           <div className="title">총 금액</div>
+          {/*TODO: 단위 가격 * goal_num 수정 필요 */}
           <div>{goal_price.toLocaleString()}</div>
         </TotalInfo>
         <TotalInfo>

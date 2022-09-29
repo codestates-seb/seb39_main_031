@@ -22,17 +22,18 @@ const List = styled.li`
   width: 100%;
   height: 50px;
   text-align: center;
+  color: ${(props) => props.theme.colors.black900};
   border-top: 1px solid ${(props) => props.theme.colors.black200};
 
   &.title {
     font-weight: 900;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-top: 2px solid ${(props) => props.theme.colors.black300};
+    border-bottom: 2px solid ${(props) => props.theme.colors.black300};
   }
 
   &.total {
     font-weight: 900;
-    border-top: 2px solid black;
+    border-top: 2px solid ${(props) => props.theme.colors.black300};
   }
 
   & > .name {
