@@ -4,8 +4,8 @@ import { Editor } from "@toast-ui/react-editor";
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import Button from "../../common/Button/ButtonForm";
-import Card from "../../common/Card/Card";
+import Button from "../../../common/Button/ButtonForm";
+import Card from "../../../common/Card/Card";
 import NoticeInput from "./NoticeInput";
 
 const Container = styled.div`
@@ -23,6 +23,7 @@ const ButtonBlock = styled.div`
 
 const RegisterButton = styled(Button)`
   width: 70px;
+  height: 30px;
   font-size: ${(props) => props.theme.fontSize.size15};
   border-radius: 4px;
   background: ${(props) => props.theme.colors.white000};
@@ -40,6 +41,7 @@ const RegisterButton = styled(Button)`
 
 const CancelButton = styled(Button)`
   width: 70px;
+  height: 30px;
   font-size: ${(props) => props.theme.fontSize.size15};
   border-radius: 4px;
   background: ${(props) => props.theme.colors.white000};

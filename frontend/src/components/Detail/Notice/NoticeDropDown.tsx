@@ -2,8 +2,8 @@ import { useRef } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import styled from "styled-components";
 
-import Button from "../../common/Button/ButtonForm";
-import { useOutsideClick } from "../../hooks/useOutsideClick";
+import Button from "../../../common/Button/ButtonForm";
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
 
 const Container = styled.div`
   position: relative;
@@ -29,6 +29,7 @@ const ButtonBox = styled.div`
 
 const ButtonItem = styled(Button)`
   width: 70px;
+  height: 30px;
   font-size: ${(props) => props.theme.fontSize.size15};
   background: ${(props) => props.theme.colors.white000};
   border-radius: 0;
