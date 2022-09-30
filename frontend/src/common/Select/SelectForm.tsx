@@ -23,9 +23,18 @@ interface Select {
   label2?: string;
   onSelectRegion?: React.Dispatch<React.SetStateAction<string>>;
   onSelectTown?: React.Dispatch<React.SetStateAction<string>>;
+  selectRegion?: string;
+  selectTown?: string;
 }
 
-const SelectForm = (props: Select) => {
+const SelectForm = ({
+  label1,
+  label2,
+  onSelectRegion,
+  onSelectTown,
+  selectRegion,
+  selectTown,
+}: Select) => {
   const dispatch = useAppDispatch();
 
   const [userRegion, setUserRegion] = useState<string>("");
@@ -48,22 +57,22 @@ const SelectForm = (props: Select) => {
     }
 
     if (userRegion === "서울특별시") {
-      const town = townOptions.filter(reg => reg["서울특별시"]);
+      const town = townOptions.filter((reg) => reg["서울특별시"]);
       setTownData(town[0]["서울특별시"]);
       setControl(true);
     }
 
     if (userRegion === "경기도") {
-      const town = townOptions.filter(reg => reg["경기도"]);
+      const town = townOptions.filter((reg) => reg["경기도"]);
       setTownData(town[0]["경기도"]);
       setControl(true);
     }
 
-    props.onSelectRegion && props.onSelectRegion(userRegion);
+    onSelectRegion && onSelectRegion(userRegion);
   }, [userRegion]);
 
   useEffect(() => {
-    props.onSelectTown && props.onSelectTown(userTown);
+    onSelectTown && onSelectTown(userTown);
   }, [userTown]);
 
   useEffect(() => {
@@ -74,16 +83,18 @@ const SelectForm = (props: Select) => {
   return (
     <SelectContent>
       <Selector
-        lableText={props.label1}
+        lableText={label1}
         options={regionOptions}
         onChangeHandler={onRegionHandler}
         control={true}
+        selected={selectRegion}
       />
       <Selector
-        lableText={props.label2}
+        lableText={label2}
         options={townData}
         control={control}
         onChangeHandler={onTownHandler}
+        selected={selectTown}
       />
     </SelectContent>
   );

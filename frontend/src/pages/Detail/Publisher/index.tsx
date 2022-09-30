@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import DeleteModal from "../../../common/Modal/DeleteModal";
@@ -60,7 +61,9 @@ const Publisher = ({
   score,
   profileImage_uri,
   product_id,
+  region,
   town,
+  category,
   goal_num,
   state_num,
   image_uri,
@@ -72,6 +75,7 @@ const Publisher = ({
   ended_time,
   status,
 }: DetailType) => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isVisible = useAppSelector((state) => state.modal.modalVisible);
 
@@ -110,7 +114,25 @@ const Publisher = ({
           <ButtonBlock>
             {status === "proceeding" ? <CloseButton /> : <CloseDisplay />}
             <DetailButton>
-              <ModifyButton />
+              <ModifyButton
+                onClick={() =>
+                  navigate("/edit", {
+                    state: {
+                      user_id,
+                      product_id,
+                      title,
+                      category,
+                      image_uri,
+                      goal_num,
+                      generated_time,
+                      ended_time,
+                      region,
+                      town,
+                      body,
+                    },
+                  })
+                }
+              />
               <DeleteButton onClick={deleteModalHandler} />
             </DetailButton>
           </ButtonBlock>

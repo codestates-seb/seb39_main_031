@@ -16,7 +16,12 @@ const EditorComponent = styled.div`
   margin-top: 1rem;
 `;
 
-const TextEditor = () => {
+interface Props {
+  value?: string;
+  editorRef?: React.RefObject<Editor>;
+}
+
+const TextEditor = ({ value, editorRef }: Props) => {
   const onUploadImage = async (
     blob: Blob | File,
     callback: (url: string, text?: string) => void
@@ -31,6 +36,8 @@ const TextEditor = () => {
       <EditorComponent>
         <Editor
           placeholder="내용을 입력해주세요."
+          initialValue={value}
+          ref={editorRef}
           initialEditType="wysiwyg"
           hideModeSwitch={true}
           language="ko-KR"

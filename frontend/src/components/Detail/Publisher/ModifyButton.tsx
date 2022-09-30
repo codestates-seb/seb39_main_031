@@ -1,12 +1,12 @@
 import { BlueButton } from "../../../common/Button/BorderButton";
 
-const ModifyButton = () => {
-  const ModifyHandler = () => {
-    console.log("수정");
-  };
+interface Props {
+  onClick?: () => void;
+}
 
+const ModifyButton = ({ onClick }: Props) => {
   return (
-    <BlueButton width="50%" height="2.5em" onClick={ModifyHandler}>
+    <BlueButton width="50%" height="2.5em" onClick={onClick}>
       수정
     </BlueButton>
   );
