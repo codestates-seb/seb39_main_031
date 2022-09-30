@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { useLocation } from "react-router-dom";
 
 import { getCookie } from "./config/Cookie";
 import { useAppDispatch } from "./hooks/Redux";
@@ -10,15 +9,13 @@ import RoutesTree from "./RoutesTree";
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const location = useLocation();
+  const userInfo = getCookie("userInfo");
 
-  if (location.pathname === "/") {
-    const userInfo = getCookie("userInfo");
-
+  useEffect(() => {
     if (userInfo) {
       dispatch(loginActions.login());
     }
-  }
+  }, []);
 
   return (
     <>

@@ -4,7 +4,6 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
 import { FaRegHandshake } from "react-icons/fa";
 import { HiOutlineHeart } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { removeCookie } from "../../../../config/Cookie";
@@ -60,14 +59,12 @@ const NavDropDown = () => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isActive, setIsActive] = useOutsideClick(dropDownRef, btnRef, false);
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const logoutHandler = () => {
-    // dispatch(loginActions.login());
+    dispatch(loginActions.logout());
     removeCookie("userInfo");
     window.location.replace("/");
-    console.log("logout");
   };
 
   const navClickHandler = () => {

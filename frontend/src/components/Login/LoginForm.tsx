@@ -67,13 +67,11 @@ const LoginForm = () => {
         return res.data;
       });
 
-    console.log(userInfo);
-
     setCookie("userInfo", userInfo, {
       path: "/",
       maxAge: 6000,
     });
-    navigate("/");
+    window.location.replace("/");
 
     //! 성공적으로 로그인이 되면 홈으로 이동하기
   };
