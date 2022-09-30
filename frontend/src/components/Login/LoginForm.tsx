@@ -1,4 +1,6 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios from "axios";
 import { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -9,6 +11,7 @@ import {
 } from "../../assets/FormCheck/LoginCheckFuc";
 import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
+import { setCookie } from "../../config/Cookie";
 import { useAppDispatch } from "../../hooks/Redux";
 import { loginActions } from "../../redux/loginSlice";
 
@@ -62,13 +65,26 @@ const LoginForm = () => {
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(userEmail);
-    console.log(userPassword);
+
+    const userInfo = await axios
+      .post("/login", {
+        userEmail,
+        userPassword,
+      })
+      .then(res => {
+        return res.data;
+      });
+
+    setCookie("userInfo", userInfo, {
+      path: "/",
+      maxAge: 6000,
+    });
+    navigate("/");
+
     //! 성공적으로 로그인이 되면 홈으로 이동하기
-    if (userEmail === DummyUser.email && userPassword === DummyUser.password) {
-      dispatch(loginActions.login());
-      navigate("/");
-    }
+    // if (userEmail === DummyUser.email && userPassword === DummyUser.password) {
+    //   dispatch(loginActions.login());
+    // }
   };
 
   const onChangeEmail = useCallback(
