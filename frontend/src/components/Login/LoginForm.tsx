@@ -67,6 +67,8 @@ const LoginForm = () => {
         return res.data;
       });
 
+    console.log(userInfo);
+
     setCookie("userInfo", userInfo, {
       path: "/",
       maxAge: 6000,

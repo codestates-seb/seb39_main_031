@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable prettier/prettier */
 import { rest } from "msw";
 
@@ -13,6 +14,14 @@ import {
   responseForPage9,
   responseForPage10,
 } from "./datalist";
+
+type user = {
+  userEmail: string;
+  userPassword: string;
+  userNickname: string;
+}[];
+
+const users: user = [];
 
 const handlers = [
   rest.get("https://groupbuying/api/", (req, res, ctx) => {
@@ -52,8 +61,27 @@ const handlers = [
 
     return res(ctx.status(200), ctx.delay(400), ctx.json(response));
   }),
+
   rest.post("/login", async (req, res, ctx) => {
     const { userEmail, userPassword } = await req.json();
+    const isUser: user = [];
+
+    users.map(user => {
+      if (user.userEmail === userEmail && user.userPassword === userPassword) {
+        isUser.push(user);
+      }
+    });
+
+    if (isUser) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          userId: "20000",
+          userNickname: isUser[0].userNickname,
+          profileImage_uri: "https://source.unsplash.com/80x80/?cat",
+        })
+      );
+    }
 
     if (userEmail === "asdf@naver.com" && userPassword === "123123") {
       return res(
@@ -65,6 +93,23 @@ const handlers = [
         })
       );
     }
+  }),
+
+  rest.post("/signup", async (req, res, ctx) => {
+    const { email, nickname, password } = await req.json();
+    if (email && password) {
+      users.push({
+        userEmail: email,
+        userPassword: password,
+        userNickname: nickname,
+      });
+    }
+    return res(
+      ctx.status(200),
+      ctx.json({
+        signup: "good",
+      })
+    );
   }),
 ];
 
