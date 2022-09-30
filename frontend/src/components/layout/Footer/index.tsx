@@ -5,12 +5,14 @@ import styled from "styled-components";
 
 const Container = styled.footer`
   width: 100%;
-  height: 150px;
+  height: 100px;
   background-color: ${props => props.theme.colors.black900};
   color: ${props => props.theme.colors.white000};
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  transform: translateY(-100%);
 `;
 
 const LinkBox = styled.div`
