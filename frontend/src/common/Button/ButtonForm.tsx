@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { ButtonType } from "../../types/Button";
 
 const NewButton = styled.button<ButtonType>`
-  width: ${({ width }) => (width ? width : "90px")};
-  height: ${({ height }) => (height ? height : "30px")};
+  width: ${({ width }) => (width ? width : "")};
+  height: ${({ height }) => (height ? height : "")};
   background-color: ${({ backgroundColor }) =>
     backgroundColor ? backgroundColor : ({ theme }) => theme.colors.cyan500};
   border: none;

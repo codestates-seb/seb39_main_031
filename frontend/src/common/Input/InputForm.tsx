@@ -1,7 +1,10 @@
 /* eslint-disable prettier/prettier */
 import styled from "styled-components";
 
-const InputBox = styled.div`
+const InputBox = styled.div<{ width?: string; marginBottom?: string }>`
+  width: ${({ width }) => (width ? width : "100%")};
+  margin-bottom: ${({ marginBottom }) => (marginBottom ? marginBottom : "")};
+
   > label {
     font-weight: bolder;
     font-size: ${({ theme }) => theme.fontSize.size15};
@@ -21,16 +24,31 @@ const InputBox = styled.div`
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
+  width?: string;
+  marginBottom?: string;
   type?: string;
   lableText?: string;
+  value?: string;
+  max?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputForm: React.FC<Props> = ({ lableText, ...props }) => {
+const InputForm: React.FC<Props> = ({
+  lableText,
+  width,
+  marginBottom,
+  ...props
+}) => {
   return (
-    <InputBox>
+    <InputBox width={width} marginBottom={marginBottom}>
       <label>{lableText}</label>
-      <input {...props} maxLength={30} />
+      {props.type === "number" ? (
+        <input {...props} min="0" max={props.max} />
+      ) : props.value ? (
+        <input {...props} maxLength={30} value={props.value} readOnly />
+      ) : (
+        <input {...props} maxLength={30} />
+      )}
     </InputBox>
   );
 };

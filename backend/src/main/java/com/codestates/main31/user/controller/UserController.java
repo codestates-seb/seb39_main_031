@@ -2,17 +2,31 @@ package com.codestates.main31.user.controller;
 
 import com.codestates.main31.address.Address;
 import com.codestates.main31.address.AddressService;
+import com.codestates.main31.entereduser.EnteredUser;
 import com.codestates.main31.user.Dto.UserDto;
+import com.codestates.main31.user.auth.filter.JwtAuthenticationFilter;
+import com.codestates.main31.user.auth.filter.entity.PrincipalDetails;
 import com.codestates.main31.user.entity.User;
 import com.codestates.main31.user.mapper.UserMapper;
 import com.codestates.main31.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.attribute.UserPrincipal;
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,10 +45,12 @@ public class UserController {
         return new ResponseEntity<>(mapper.userToUserResponseDto(savedUser), HttpStatus.OK);
     }
 
-    @PostMapping("/me")
-    public ResponseEntity<UserDto.Response> getUserByEmail(@RequestBody String email) {
-        User savedUser = userService.findByEmail(email);
-        return new ResponseEntity<>(mapper.userToUserResponseDto(savedUser), HttpStatus.OK);
+    @GetMapping("/me")
+    public ResponseEntity getUserByEmail(@AuthenticationPrincipal UserDetails userdetails) {
+        User result = userService.findByEmail(userdetails.getUsername());
+        Map<String, Object> map = new HashMap<>();
+        map.put("result",result);
+        return new ResponseEntity<Map>(map, HttpStatus.OK);
     }
 
     @PostMapping
@@ -48,7 +64,7 @@ public class UserController {
     }
 
     @PostMapping("/{email}/find")
-    public ResponseEntity<UserDto.Response> postUser(@PathVariable String email) {
+    public ResponseEntity<UserDto.Response> postUser(@PathVariable("email") String email) {
         User resetUser = userService.findPassword(email);
         return new ResponseEntity<>(mapper.userToUserResponseDto(resetUser), HttpStatus.CREATED);
     }

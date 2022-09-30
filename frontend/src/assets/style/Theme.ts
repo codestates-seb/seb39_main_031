@@ -3,6 +3,7 @@ import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
   colors: {
+    cyan50: "#E0F7FA",
     cyan100: "#84FFFF",
     cyan200: "#18FFFF",
     cyan400: "#00E5FF",

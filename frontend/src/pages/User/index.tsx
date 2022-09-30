@@ -1,16 +1,29 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+import UserContent from "../../components/User/UserContent";
+import UserInfo from "../../components/User/UserInfo";
+
+const Page = styled.div`
   width: 100%;
-  height: 100%;
-  padding-top: 50px;
+  padding: 70px 0;
+  display: flex;
+  justify-content: center;
+`;
+
+const Container = styled.div`
+  width: 900px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const User = () => {
   return (
-    <Container>
-      <h1>User</h1>
-    </Container>
+    <Page>
+      <Container>
+        <UserInfo />
+        <UserContent />
+      </Container>
+    </Page>
   );
 };
 

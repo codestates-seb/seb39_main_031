@@ -12,7 +12,7 @@ const ModalWrapper = styled.div<{ visible?: boolean }>`
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 0;
+  z-index: 900;
 `;
 
 const ModalContainer = styled.div<{ width?: string; height?: string }>`
@@ -22,6 +22,8 @@ const ModalContainer = styled.div<{ width?: string; height?: string }>`
   transform: translate(-50%, -50%);
   width: ${({ width }) => (width ? width : "60%")};
   height: ${({ height }) => (height ? height : "40%")};
+  max-width: 560px;
+  max-height: 280px;
   padding: 16px;
   background: white;
   border-radius: 10px;

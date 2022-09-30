@@ -1,12 +1,13 @@
+/* eslint-disable prettier/prettier */
 import { BsGithub } from "react-icons/bs";
 import { SiNotion } from "react-icons/si";
 import styled from "styled-components";
 
-const Container = styled.div`
-  width: 100vw;
+const Container = styled.footer`
+  width: 100%;
   height: 150px;
-  background-color: ${(props) => props.theme.colors.black900};
-  color: ${(props) => props.theme.colors.white000};
+  background-color: ${props => props.theme.colors.black900};
+  color: ${props => props.theme.colors.white000};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +17,7 @@ const LinkBox = styled.div`
   .icon {
     font-size: 25px;
     margin-left: 0.5em;
-    color: ${(props) => props.theme.colors.white000};
+    color: ${props => props.theme.colors.white000};
   }
 `;
 

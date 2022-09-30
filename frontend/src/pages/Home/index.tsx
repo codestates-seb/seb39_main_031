@@ -4,12 +4,8 @@ import styled from "styled-components";
 import PreviewList from "../../components/Preview/PreviewList";
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  width: 65%;
+  margin: 0 auto;
 `;
 
 const ListBlock = styled.div`

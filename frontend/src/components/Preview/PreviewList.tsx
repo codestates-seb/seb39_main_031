@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
 import { useState } from "react";
 import styled from "styled-components";
 
-import { Data } from "./data";
+import { Data } from "../../mocks/data";
 import PreviewItem from "./PreviewItem";
 
 const Container = styled.div`
@@ -11,9 +13,9 @@ const Container = styled.div`
 const Grid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 350px);
+  grid-template-columns: repeat(3, 30%);
   grid-row-gap: 40px;
-  grid-column-gap: 50px;
+  grid-column-gap: 5%;
 `;
 
 const PreviewList = () => {
@@ -22,9 +24,11 @@ const PreviewList = () => {
   return (
     <Container>
       <Grid>
-        {data.map((el) => (
+        {data.map(el => (
           <PreviewItem
             key={el.product_id}
+            product_id={el.product_id}
+            user_id={el.user_id}
             image_uri={el.image_uri}
             title={el.title}
             user_name={el.user_name}

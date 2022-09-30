@@ -1,16 +1,26 @@
 import styled from "styled-components";
 
+const PageContainer = styled.div`
+  width: 100%;
+  padding: 90px 0 40px;
+`;
+
 const Container = styled.div`
   width: 100%;
-  height: 100%;
-  padding-top: 50px;
+  margin: 0 auto;
 `;
+const CategoryContent = styled.div``;
+
+const ProductListContent = styled.div``;
 
 const Category = () => {
   return (
-    <Container>
-      <h1>Category</h1>
-    </Container>
+    <PageContainer>
+      <Container>
+        <CategoryContent></CategoryContent>
+        <ProductListContent></ProductListContent>
+      </Container>
+    </PageContainer>
   );
 };
 

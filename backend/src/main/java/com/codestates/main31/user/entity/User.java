@@ -2,11 +2,14 @@ package com.codestates.main31.user.entity;
 
 import com.codestates.main31.address.Address;
 import com.codestates.main31.user.auth.filter.entity.RoleType;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -28,6 +31,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @ManyToOne
@@ -38,6 +42,7 @@ public class User {
     private boolean deleteState;
 
     @Column(name = "generated_time")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
     private Timestamp generatedTime;
 
     @Column(name = "avg_score")
