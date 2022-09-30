@@ -7,12 +7,10 @@ import com.codestates.main31.product.entity.ProductState;
 import com.codestates.main31.product.repository.ProductRepository;
 import com.codestates.main31.user.entity.User;
 import com.codestates.main31.user.repository.UserRepository;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +38,7 @@ public class EnteredUserService {
                 .deleteState(false)
                 .build();
         repository.save(event);
-        product.setStateNum(product.getStateNum()+amount);
+        product.setStateQuantity(product.getStateQuantity()+amount);
         productRepository.save(product);
         return event;
     }
