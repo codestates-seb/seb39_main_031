@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
@@ -19,6 +21,7 @@ const SignupButton = styled.div`
 
 const SignupForm = () => {
   const users = useAppSelector(state => state.signup);
+  const navigate = useNavigate();
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,7 +57,11 @@ const SignupForm = () => {
       users.region &&
       users.town
     ) {
-      console.log("good");
+      console.log(users);
+      const result = await axios.post("/signup", users).then(res => res.data);
+      if (result.signup === "good") {
+        navigate("/login");
+      }
     }
   };
   return (

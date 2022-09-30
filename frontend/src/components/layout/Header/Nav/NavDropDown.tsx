@@ -4,9 +4,9 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
 import { FaRegHandshake } from "react-icons/fa";
 import { HiOutlineHeart } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { removeCookie } from "../../../../config/Cookie";
 import { useAppDispatch } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import { loginActions } from "../../../../redux/loginSlice";
@@ -59,13 +59,12 @@ const NavDropDown = () => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isActive, setIsActive] = useOutsideClick(dropDownRef, btnRef, false);
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const logoutHandler = () => {
-    dispatch(loginActions.login());
-    navigate("/");
-    console.log("logout");
+    dispatch(loginActions.logout());
+    removeCookie("userInfo");
+    window.location.replace("/");
   };
 
   const navClickHandler = () => {

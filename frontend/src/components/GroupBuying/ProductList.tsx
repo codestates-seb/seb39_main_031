@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import PreviewList from "../Preview/PreviewList";
+import ProductDatas from "./\bProductDatas";
 
 const ListContainer = styled.div`
   width: 100%;
@@ -12,7 +12,7 @@ const ListContainer = styled.div`
 const ProductList = () => {
   return (
     <ListContainer>
-      <PreviewList />
+      <ProductDatas />
     </ListContainer>
   );
 };

@@ -42,9 +42,7 @@ const InputForm: React.FC<Props> = ({
   return (
     <InputBox width={width} marginBottom={marginBottom}>
       <label>{lableText}</label>
-      {props.type === "number" ? (
-        <input {...props} min="0" max={props.max} />
-      ) : props.value ? (
+      {props.value ? (
         <input {...props} maxLength={30} value={props.value} readOnly />
       ) : (
         <input {...props} maxLength={30} />
