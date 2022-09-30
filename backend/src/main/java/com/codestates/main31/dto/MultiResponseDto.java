@@ -12,7 +12,7 @@ public class MultiResponseDto<T> {
     private List<T> data;
     private PageInfo pageInfo;
 
-    public MultiResponseDto(List<T> data, Page page) {
+    public <M> MultiResponseDto(List<T> data, Page<M> page) {
         this.data = data;
         this.pageInfo = new PageInfo(
                 page.getNumber() + 1,

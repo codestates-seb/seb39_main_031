@@ -7,7 +7,10 @@ import lombok.RequiredArgsConstructor;
 public enum ExceptionCode {
 
     PRODUCT_NOT_FOUND(404, "Product not exist"),
+    NOTICE_NOT_FOUND(404, "notice not exist"),
+
     PRODUCT_EXIST(409, "Product already exist"),
+
     INVALID_PRODUCT_VALUE(400, "Invalid Product Argument"),
     USER_NOT_FOUND(404, "User is not exist"),
     USER_EMAIL_EXIST(404, "User is already exist"),
@@ -17,7 +20,6 @@ public enum ExceptionCode {
 
 
     ;
-
 
     @Getter
     private final int status;
