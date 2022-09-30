@@ -7,6 +7,7 @@ import { HiOutlineHeart } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { removeCookie } from "../../../../config/Cookie";
 import { useAppDispatch } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import { loginActions } from "../../../../redux/loginSlice";
@@ -63,8 +64,9 @@ const NavDropDown = () => {
   const dispatch = useAppDispatch();
 
   const logoutHandler = () => {
-    dispatch(loginActions.login());
-    navigate("/");
+    // dispatch(loginActions.login());
+    removeCookie("userInfo");
+    window.location.replace("/");
     console.log("logout");
   };
 

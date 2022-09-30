@@ -21,7 +21,13 @@ type user = {
   userNickname: string;
 }[];
 
-const users: user = [];
+const users: user = [
+  {
+    userEmail: "abc@naver.com",
+    userPassword: "123123",
+    userNickname: "손흥민",
+  },
+];
 
 const handlers = [
   rest.get("https://groupbuying/api/", (req, res, ctx) => {
