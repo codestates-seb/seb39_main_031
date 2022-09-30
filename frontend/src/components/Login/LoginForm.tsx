@@ -12,8 +12,6 @@ import {
 import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
 import { setCookie } from "../../config/Cookie";
-import { useAppDispatch } from "../../hooks/Redux";
-import { loginActions } from "../../redux/loginSlice";
 
 const Form = styled.form`
   width: 100%;
@@ -48,14 +46,8 @@ const ButtoneContent = styled.div`
   justify-content: center;
 `;
 
-const DummyUser = {
-  email: "abc@naver.com",
-  password: "123123",
-};
-
 const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
@@ -82,9 +74,6 @@ const LoginForm = () => {
     navigate("/");
 
     //! 성공적으로 로그인이 되면 홈으로 이동하기
-    // if (userEmail === DummyUser.email && userPassword === DummyUser.password) {
-    //   dispatch(loginActions.login());
-    // }
   };
 
   const onChangeEmail = useCallback(
