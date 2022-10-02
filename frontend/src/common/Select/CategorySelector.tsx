@@ -25,19 +25,25 @@ interface Props extends React.SelectHTMLAttributes<HTMLSelectElement> {
   lableText?: string;
   options?: options;
   onChangeHandler?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  selected?: string;
 }
 
 const CategorySelector: React.FC<Props> = ({
   lableText,
   options,
   onChangeHandler,
+  selected,
 }) => {
   return (
     <SelectorContainer>
       <label>{lableText}</label>
-      <Select onChange={onChangeHandler} placeholder="카테고리를 선택해주세요.">
+      <Select
+        defaultValue={selected}
+        onChange={onChangeHandler}
+        placeholder="카테고리를 선택해주세요."
+      >
         {options &&
-          options.map(data => (
+          options.map((data) => (
             <option key={data.value} value={data.value}>
               {data.name}
             </option>

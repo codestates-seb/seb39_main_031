@@ -89,7 +89,7 @@ export const townOptions: towns = [
   },
 ];
 
-export const category: options = [
+export const categories: options = [
   { value: "카테고리를 선택해주세요", name: "카테고리를 선택해주세요" },
   { value: "인기매물", name: "인기매물" },
   { value: "식품", name: "식품" },

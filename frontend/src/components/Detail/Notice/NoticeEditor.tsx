@@ -4,8 +4,9 @@ import { Editor } from "@toast-ui/react-editor";
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import Button from "../../../common/Button/ButtonForm";
+import { BlueButton, GrayButton } from "../../../common/Button/BorderButton";
 import Card from "../../../common/Card/Card";
+import DefaultEditor from "../../../common/Editor/DefaultEditor";
 import NoticeInput from "./NoticeInput";
 
 const Container = styled.div`
@@ -19,42 +20,6 @@ const ButtonBlock = styled.div`
   justify-content: flex-end;
   column-gap: 10px;
   margin-top: 1em;
-`;
-
-const RegisterButton = styled(Button)`
-  width: 70px;
-  height: 30px;
-  font-size: ${(props) => props.theme.fontSize.size15};
-  border-radius: 4px;
-  background: ${(props) => props.theme.colors.white000};
-  border: 1px solid ${(props) => props.theme.colors.cyan600};
-  color: ${(props) => props.theme.colors.cyan700};
-
-  &:hover {
-    background: ${(props) => props.theme.colors.black100};
-  }
-
-  &:active {
-    background: ${(props) => props.theme.colors.black200};
-  }
-`;
-
-const CancelButton = styled(Button)`
-  width: 70px;
-  height: 30px;
-  font-size: ${(props) => props.theme.fontSize.size15};
-  border-radius: 4px;
-  background: ${(props) => props.theme.colors.white000};
-  border: 1px solid ${(props) => props.theme.colors.black500};
-  color: ${(props) => props.theme.colors.black500};
-
-  &:hover {
-    background: ${(props) => props.theme.colors.black100};
-  }
-
-  &:active {
-    background: ${(props) => props.theme.colors.black200};
-  }
 `;
 
 interface Props {
@@ -81,26 +46,16 @@ const NoticeEditor = ({ setIsShow }: Props) => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></NoticeInput>
-        <Editor
-          ref={editorRef}
-          hideModeSwitch={true}
-          height="250px"
-          initialEditType="wysiwyg"
-          toolbarItems={[
-            ["bold", "italic"],
-            ["link", "quote", "image", "codeblock"],
-            ["ol", "ul", "heading", "hr"],
-          ]}
-        />
+        <DefaultEditor ref={editorRef} height="250px" />
         <ButtonBlock>
-          <RegisterButton onClick={registerHandler}>등록</RegisterButton>
-          <CancelButton
+          <BlueButton onClick={registerHandler}>등록</BlueButton>
+          <GrayButton
             onClick={() => {
               setIsShow(false);
             }}
           >
             취소
-          </CancelButton>
+          </GrayButton>
         </ButtonBlock>
       </Card>
     </Container>

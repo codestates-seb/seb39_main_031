@@ -20,3 +20,10 @@ export type OauthButtonType = {
   borderRadius?: string;
   children?: React.ReactNode;
 };
+
+export type BorderButtonType = {
+  onClick?: () => void;
+  width?: string;
+  height?: string;
+  children?: React.ReactNode;
+};

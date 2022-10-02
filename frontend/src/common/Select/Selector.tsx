@@ -20,6 +20,7 @@ interface Props extends React.SelectHTMLAttributes<HTMLSelectElement> {
   options?: options;
   onChangeHandler?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   control?: boolean;
+  selected?: string;
 }
 
 const Selector: React.FC<Props> = ({
@@ -27,14 +28,15 @@ const Selector: React.FC<Props> = ({
   options,
   onChangeHandler,
   control,
+  selected,
 }) => {
   return (
     <SelectorContainer>
       <label>{lableText}</label>
       {control ? (
-        <Select onChange={onChangeHandler}>
+        <Select onChange={onChangeHandler} defaultValue={selected}>
           {options &&
-            options.map(data => (
+            options.map((data) => (
               <option key={data.value} value={data.value}>
                 {data.name}
               </option>
