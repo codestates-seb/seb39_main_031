@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { Data } from "../../mocks/data";
-
 const ProductContainer = styled.div`
   width: 100%;
   display: flex;
@@ -62,26 +60,42 @@ const ProductLeft = styled.div`
   }
 `;
 
-const ProductDetail = () => {
-  const data = Data[0];
+interface Props {
+  image_uri: string;
+  title: string;
+  goal_num: number;
+  state_num: number;
+  state_price: number;
+  status: string;
+  ended_time: string;
+}
 
+const ProductDetail = ({
+  image_uri,
+  title,
+  goal_num,
+  state_num,
+  state_price,
+  status,
+  ended_time,
+}: Props) => {
   const todayTime = new Date().getTime();
-  const enddayTime = new Date(data.ended_time).getTime();
+  const enddayTime = new Date(ended_time).getTime();
   const D_day = Math.floor((enddayTime - todayTime) / (1000 * 60 * 60 * 24));
 
-  const leftOver = data.goal_num - data.state_num;
+  const leftOver = goal_num - state_num;
 
   return (
     <ProductContainer>
       <ImgContent>
-        <img src={data.image_uri} alt={data.title} />
+        <img src={image_uri} alt={title} />
       </ImgContent>
       <InfoContent>
         <ProductTitle>
-          <span>{data.title}</span>
+          <span>{title}</span>
         </ProductTitle>
         <ProductUnit>
-          <span>1kg 당 12000원</span>
+          <span>1kg 당 {state_price}</span>
         </ProductUnit>
         <ProductLeft>
           <span className="percentage">{`${leftOver}개 남음`}</span>

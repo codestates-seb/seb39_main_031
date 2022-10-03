@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import CloseDisplay from "../../../components/Detail/CloseDisplay";
@@ -60,6 +61,8 @@ const Participant = ({
   ended_time,
   status,
 }: DetailType) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Title>{title}</Title>
@@ -73,7 +76,26 @@ const Participant = ({
             goal_price={goal_price}
             generated_time={generated_time}
           />
-          {status === "proceeding" ? <JoinButton /> : <CloseDisplay />}
+          {status === "proceeding" ? (
+            <JoinButton
+              onClick={() =>
+                // TODO: 단위, 단위 가격(임의로 state_price 사용) 필요
+                navigate("/participate", {
+                  state: {
+                    image_uri,
+                    title,
+                    goal_num,
+                    state_num,
+                    state_price,
+                    status,
+                    ended_time,
+                  },
+                })
+              }
+            />
+          ) : (
+            <CloseDisplay />
+          )}
           <SubButtons />
           <DetailUserInfo
             profileImage_uri={profileImage_uri}
