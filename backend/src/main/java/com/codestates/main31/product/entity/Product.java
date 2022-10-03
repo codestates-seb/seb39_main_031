@@ -27,7 +27,7 @@ public class Product {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
     @CreatedDate
