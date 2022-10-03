@@ -1,21 +1,23 @@
 package com.codestates.main31.productimage.handler;
 
 import com.codestates.main31.productimage.entity.ProductImage;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Component
+@RequiredArgsConstructor
 public class ImageHandler {
 
-    @Value("${image.path}")
-    private String imagePath;
+    @Value("${cloud.aws.s3.titlePath}")
+    private String titlePath;
+
+    private final S3Handler s3Handler;
 
     public List<ProductImage> parseImage(List<MultipartFile> multipartFiles) throws IOException {
 
@@ -25,22 +27,14 @@ public class ImageHandler {
             if (!multipartFile.isEmpty()) {
 
                 String originName = multipartFile.getOriginalFilename();
-                String uuid = UUID.randomUUID().toString();
-                String extension = originName.substring(originName.lastIndexOf("."));
-                String savedName = uuid + extension;
-                String savedPath = imagePath + savedName;
+
+                String savedPath = s3Handler.uploadImage(multipartFile, titlePath);
 
                 ProductImage productImage = ProductImage.builder()
                         .originName(originName)
-                        .savedName(savedName)
                         .savedPath(savedPath)
                         .build();
                 productImageList.add(productImage);
-
-                File file = new File(savedPath);
-                if (!file.exists()) file.mkdirs();
-
-                multipartFile.transferTo(file);
             }
         }
 
