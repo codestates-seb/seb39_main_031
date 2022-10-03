@@ -1,5 +1,6 @@
 package com.codestates.main31.product.entity;
 
+import com.codestates.main31.category.entity.Category;
 import com.codestates.main31.productimage.entity.ProductImage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -62,10 +63,11 @@ public class Product {
     @Column(nullable = false)
     private String town;
 
-    @Column(nullable = false)
-    private String category;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product")
     private List<ProductImage> productImg;
 
     /**

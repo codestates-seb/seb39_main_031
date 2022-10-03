@@ -1,5 +1,6 @@
 package com.codestates.main31.product.mapper;
 
+import com.codestates.main31.category.entity.Category;
 import com.codestates.main31.dto.MultiResponseDto;
 import com.codestates.main31.product.dto.ProductRequestDto;
 import com.codestates.main31.product.dto.ProductResponseDto;
@@ -12,6 +13,12 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
     Product productRequestPostDtoToProduct(ProductRequestDto.Post postDto);
+
+    default Category stringToCategory(String category) {
+        Category newCategory = new Category();
+        newCategory.setCategory(category);
+        return newCategory;
+    }
 
     Product productRequestPatchDtoToProduct(ProductRequestDto.Patch patchDto);
 
