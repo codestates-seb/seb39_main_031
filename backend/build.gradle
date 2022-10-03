@@ -28,7 +28,7 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
 
     // security
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'com.auth0:java-jwt:3.19.2'
 
@@ -38,6 +38,10 @@ dependencies {
 
     // mail
     implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // file upload
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+    implementation 'org.jsoup:jsoup:1.15.3'
 }
 
 tasks.named('test') {
