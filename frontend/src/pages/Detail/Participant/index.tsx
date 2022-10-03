@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import CloseDisplay from "../../../components/Detail/CloseDisplay";
-import DetailContent from "../../../components/Detail/DetailContent";
+import { ParticipantContent } from "../../../components/Detail/DetailContent";
 import DetailStats from "../../../components/Detail/DetailStat";
 import DetailUserInfo from "../../../components/Detail/DetailUserInfo";
 import JoinButton from "../../../components/Detail/Participant/JoinButton";
@@ -11,8 +11,10 @@ import SubButtons from "../../../components/Detail/Participant/SubButtons";
 import { DetailType, Image } from "../../../types/post";
 
 const Title = styled.h1`
-  padding: 1em 0;
+  padding-bottom: 1em;
   text-align: center;
+  font-size: 40px;
+  font-weight: 700;
 `;
 
 const Main = styled.main`
@@ -106,7 +108,7 @@ const Participant = ({
         </Aside>
         <Section>
           <ImageBox image={image_uri} />
-          <DetailContent body={body} />
+          <ParticipantContent body={body} />
         </Section>
       </Main>
     </>

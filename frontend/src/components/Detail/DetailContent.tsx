@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import Notice from "./Notice/Notice";
+import { ParticipantNotice, PublisherNotice } from "./Notice/Notice";
 import ProductInfo from "./ProductInfo";
 
 const Container = styled.div`
@@ -16,23 +16,30 @@ const TabTitleBox = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
-  background-color: ${(props) => props.theme.colors.black300};
+  column-gap: 30px;
+  background-color: ${(props) => props.theme.colors.white000};
+  border-bottom: 1px solid ${(props) => props.theme.colors.black200};
 `;
 
 const Tab = styled.div`
-  width: 20%;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-size: 18px;
+  margin-left: 1em;
+  font-weight: 700;
+  color: ${(props) => props.theme.colors.black400};
+  transition: all 0.2s linear;
 
   &:hover {
-    background-color: ${(props) => props.theme.colors.black400};
+    color: ${(props) => props.theme.colors.black900};
   }
 
   &.active {
-    font-weight: 900;
+    color: ${(props) => props.theme.colors.black900};
+    border-bottom: 4px solid ${(props) => props.theme.colors.cyan400};
   }
 `;
 
@@ -50,7 +57,8 @@ interface Props {
   body: string;
 }
 
-const DetailContent = ({ body }: Props) => {
+//TODO: 게시자 상세 페이지 내용
+export const PublisherContent = ({ body }: Props) => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
   return (
@@ -68,9 +76,31 @@ const DetailContent = ({ body }: Props) => {
           );
         })}
       </TabTitleBox>
-      {selectedTab === 0 ? <ProductInfo body={body} /> : <Notice />}
+      {selectedTab === 0 ? <ProductInfo body={body} /> : <PublisherNotice />}
     </Container>
   );
 };
 
-export default DetailContent;
+//TODO: 참가자 상세 페이지 내용
+export const ParticipantContent = ({ body }: Props) => {
+  const [selectedTab, setSelectedTab] = useState<number>(0);
+
+  return (
+    <Container>
+      <TabTitleBox>
+        {tabs.map((el, index) => {
+          return (
+            <Tab
+              key={index}
+              className={selectedTab === index ? "active" : ""}
+              onClick={() => setSelectedTab(index)}
+            >
+              {el.label}
+            </Tab>
+          );
+        })}
+      </TabTitleBox>
+      {selectedTab === 0 ? <ProductInfo body={body} /> : <ParticipantNotice />}
+    </Container>
+  );
+};

@@ -2,19 +2,22 @@ import styled from "styled-components";
 
 import NoticeDropDown from "./NoticeDropDown";
 
-const Container = styled.section``;
+const Container = styled.section`
+  border-bottom: 1px solid ${(props) => props.theme.colors.black200};
+`;
 
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: ${(props) => props.theme.colors.black200};
-  padding: 1em 0.5em 1em 1em;
+  background: ${(props) => props.theme.colors.white000};
+  border-bottom: 0.5px solid ${(props) => props.theme.colors.black200};
+  padding: 1.5em 0.5em 1.5em 1em;
 `;
 
 const Title = styled.div`
   width: 20em;
-  font-size: ${(props) => props.theme.fontSize.size18};
+  font-size: 20px;
   font-weight: 700;
 `;
 
@@ -23,12 +26,14 @@ const Block = styled.div`
   justify-content: space-around;
   width: 7em;
   .date {
+    color: ${(props) => props.theme.colors.black500};
     font-size: ${(props) => props.theme.fontSize.size15};
   }
 `;
 
 const Content = styled.div`
-  padding: 2em;
+  font-size: 17px;
+  padding: 3em 2em;
 `;
 
 interface Props {

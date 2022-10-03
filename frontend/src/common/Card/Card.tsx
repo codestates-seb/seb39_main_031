@@ -9,7 +9,7 @@ const CardContainer = styled.div<Props>`
   border-radius: 4px;
   background-color: ${({ backgroundColor }) =>
     backgroundColor ? backgroundColor : "white"};
-  border: 1px solid rgb(214, 217, 220);
+  border: 1px solid ${(props) => props.theme.colors.black200}; ;
 `;
 
 interface Props {
