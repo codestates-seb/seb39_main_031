@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ModalType } from "../../types/Modal";
+import { ModalType, StyledModalProps } from "../../types/Modal";
 
 const ModalWrapper = styled.div<{ visible?: boolean }>`
   width: 100%;
@@ -15,28 +15,31 @@ const ModalWrapper = styled.div<{ visible?: boolean }>`
   z-index: 0;
 `;
 
-const ModalContainer = styled.div<{ width?: string; height?: string }>`
+const ModalContainer = styled.div<StyledModalProps>`
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: ${({ width }) => (width ? width : "60%")};
-  height: ${({ height }) => (height ? height : "40%")};
+
   padding: 16px;
   background: white;
   border-radius: 10px;
   text-align: center;
   z-index: 1000;
 
+  ${({ customModalStyle }) => customModalStyle && customModalStyle};
+
   > div {
     cursor: pointer;
   }
 `;
 
-const Modal = (props: ModalType) => {
+const Modal = ({ visible, children, customModalStyle }: ModalType) => {
   return (
-    <ModalWrapper visible={props.visible}>
-      <ModalContainer></ModalContainer>
+    <ModalWrapper visible={visible}>
+      <ModalContainer customModalStyle={customModalStyle}>
+        {children}
+      </ModalContainer>
     </ModalWrapper>
   );
 };

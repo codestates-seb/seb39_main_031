@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { Data } from "../../mocks/data";
-import Publisher from "./Publisher";
+import Participant from "./Participant";
 
 const Page = styled.div`
   width: 100%;
@@ -27,7 +27,7 @@ const Detail = () => {
 
     <Page>
       <Container>
-        <Publisher
+        <Participant
           user_id={data.user_id}
           user_name={data.user_name}
           score={data.score}
