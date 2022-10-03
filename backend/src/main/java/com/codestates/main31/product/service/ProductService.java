@@ -6,7 +6,12 @@ import com.codestates.main31.product.entity.Product;
 import com.codestates.main31.product.repository.ProductRepository;
 import com.codestates.main31.productimage.entity.ProductImage;
 import com.codestates.main31.productimage.handler.ImageHandler;
+import com.codestates.main31.productimage.handler.S3Handler;
 import lombok.RequiredArgsConstructor;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -27,8 +32,11 @@ public class ProductService {
 
     private final ImageHandler imageHandler;
 
+    private final S3Handler s3Handler;
+
     public Product createProduct(Product product, List<MultipartFile> file) throws IOException {
-        Product savedProduct = productRepository.save(product);
+        Product parseProduct = parseContextAndSaveImage(product);
+        Product savedProduct = productRepository.save(parseProduct);
         List<ProductImage> productImageList = imageHandler.parseImage(file);
 
         return savedProduct.addProductImage(productImageList);
@@ -74,6 +82,28 @@ public class ProductService {
 
     public Product findProduct(Long productId) {
         return productRepository.findById(productId).orElseThrow(()-> new BusinessLogicException(ExceptionCode.PRODUCT_NOT_FOUND));
+    }
+
+    private Product parseContextAndSaveImage(Product product) {
+        Document doc = Jsoup.parse(product.getBody());
+        String body = product.getBody();
+        Elements images = doc.getElementsByTag("img");
+
+        if(images.size() > 0) {
+            for (Element image : images) {
+                String source = image.attr("src");
+
+                source = source.replace(s3Handler.getUrl(), "");
+                String newSource = s3Handler.getRealPath() + source.split("/")[1];
+
+                body = body.replace(source, newSource);
+
+                s3Handler.updateImage(source, newSource);
+            }
+        }
+
+        product.setBody(body);
+        return product;
     }
 
 }
