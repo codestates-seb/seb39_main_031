@@ -26,15 +26,11 @@ public class ProductImage {
     private String originName;
 
     @Column(nullable = false)
-    private String savedName;
-
-    @Column(nullable = false)
     private String savedPath;
 
     @Builder
-    public ProductImage(Product product, String originName, String savedName, String savedPath) {
+    public ProductImage(Product product, String originName, String savedPath) {
         this.originName = originName;
-        this.savedName = savedName;
         this.savedPath = savedPath;
     }
 }
