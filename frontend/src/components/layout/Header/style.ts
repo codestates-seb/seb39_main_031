@@ -1,16 +1,16 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
 export const Container = styled.header`
   width: 100%;
 `;
 
 export const HeaderBox = styled.div`
   width: 100%;
-  height: 50px;
-  padding-top: 1em;
+  height: 70px;
+  padding: 1em 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: absolute;
 `;
 
@@ -30,33 +30,40 @@ export const Logo = styled.div`
   font-weight: 700;
 `;
 
+export const LogoImage = styled.img`
+  width: 120px;
+`;
+
 export const MenuBox = styled.nav`
   display: flex;
   justify-content: flex-start;
   width: 50%;
-  column-gap: 30px;
+  column-gap: 35px;
 `;
 
 export const MenuLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: ${(props) => {
-    return props.theme.fontSize.size20;
-  }};
+  font-weight: 700;
+  font-size: 24px;
+
+  &.main {
+    color: white !important;
+
+    &:hover {
+      color: ${(props) => props.theme.colors.cyan200} !important;
+      transition: color 0.3s;
+    }
+  }
 
   &:hover {
-    color: ${(props) => {
-      return props.theme.colors.black400;
-    }};
+    color: ${(props) => props.theme.colors.black400};
     transition: color 0.3s;
   }
 
   &.active {
-    font-weight: 700;
-    color: ${(props) => {
-      return props.theme.colors.cyan700;
-    }};
+    color: ${(props) => props.theme.colors.cyan700};
     transition: color 0.3s;
   }
 `;
@@ -70,6 +77,11 @@ export const RightBox = styled.nav`
   margin: 0 10px;
 
   .icon {
-    font-size: 25px;
+    font-size: 30px;
+    color: ${(props) => props.theme.colors.black900};
+  }
+
+  .main {
+    color: ${(props) => props.theme.colors.white000};
   }
 `;
