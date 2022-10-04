@@ -113,7 +113,7 @@ public class ProductService {
     }
 
     private Category findCategory(String category) {
-        return categoryRepository.findByCategory(category).orElseThrow(() -> new BusinessLogicException(ExceptionCode.PRODUCT_NOT_FOUND));
+        return categoryRepository.findByCategory(category).orElseThrow(() -> new BusinessLogicException(ExceptionCode.CATEGORY_NOT_FOUND));
     }
 
 }
