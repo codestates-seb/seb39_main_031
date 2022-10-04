@@ -47,7 +47,7 @@ public class ProductController {
                                                                          @ModelAttribute ProductSpecification.ProductCriteria criteria) {
         Specification<Product> spec = (root, query, builder) -> null;
 
-        if (criteria.getCategory() != null) spec = spec.and((root, query, builder) -> builder.equal(root.get("category"), criteria.getCategory()));
+        if (criteria.getCategory() != null) spec = spec.and((root, query, builder) -> builder.equal(root.join("category").get("category"), criteria.getCategory()));
         if (criteria.getRegion() != null) spec = spec.and((root, query, builder) -> builder.equal(root.get("region"), criteria.getRegion()));
         if (criteria.getTown() != null) spec = spec.and((root, query, builder) -> builder.equal(root.get("town"), criteria.getTown()));
 

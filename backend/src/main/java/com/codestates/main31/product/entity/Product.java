@@ -1,5 +1,7 @@
 package com.codestates.main31.product.entity;
 
+import com.codestates.main31.address.Address;
+import com.codestates.main31.category.entity.Category;
 import com.codestates.main31.productimage.entity.ProductImage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +29,7 @@ public class Product {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
     @CreatedDate
@@ -56,16 +58,15 @@ public class Product {
     @Column(nullable = false)
     private ProductState state = ProductState.PROCEED;
 
-    @Column(nullable = false)
-    private String region;
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
-    @Column(nullable = false)
-    private String town;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    @Column(nullable = false)
-    private String category;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product")
     private List<ProductImage> productImg;
 
     /**
