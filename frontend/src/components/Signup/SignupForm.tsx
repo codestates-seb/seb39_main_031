@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
 import axios from "axios";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
 import SignupSelect from "../../common/Select/SelectForm";
 import { useAppSelector } from "../../hooks/Redux";
+import { loginState } from "../../redux/signupSlice";
 import SignupInputs from "./SignupInputs";
 
 const Form = styled.form`
@@ -22,6 +24,10 @@ const SignupButton = styled.div`
 const SignupForm = () => {
   const users = useAppSelector(state => state.signup);
   const navigate = useNavigate();
+  const { mutate } = useMutation(
+    async (userInfo: loginState) =>
+      await axios.post("/signup", userInfo).then(({ data }) => data)
+  );
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,10 +64,11 @@ const SignupForm = () => {
       users.town
     ) {
       console.log(users);
-      const result = await axios.post("/signup", users).then(res => res.data);
-      if (result.signup === "good") {
-        navigate("/login");
-      }
+      mutate(users, {
+        onSuccess: () => {
+          navigate("/login");
+        },
+      });
     }
   };
   return (

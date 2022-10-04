@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import CloseDisplay from "../../../components/Detail/CloseDisplay";
@@ -8,6 +8,7 @@ import DetailStats from "../../../components/Detail/DetailStat";
 import DetailUserInfo from "../../../components/Detail/DetailUserInfo";
 import JoinButton from "../../../components/Detail/Participant/JoinButton";
 import SubButtons from "../../../components/Detail/Participant/SubButtons";
+import { useAppSelector } from "../../../hooks/Redux";
 import { DetailType, Image } from "../../../types/post";
 
 const Title = styled.h1`
@@ -37,7 +38,7 @@ const Section = styled.section`
 const ImageBox = styled.div<Image>`
   width: 100%;
   height: 400px;
-  background: url(${(props) => props.image});
+  background: url(${props => props.image});
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;
@@ -62,8 +63,29 @@ const Participant = ({
   generated_time,
   ended_time,
   status,
+  base_price,
 }: DetailType) => {
   const navigate = useNavigate();
+  const { isLogin } = useAppSelector(state => state.login);
+
+  const onClickHandler = () => {
+    // TODO: 단위, 단위 가격(임의로 state_price 사용) 필요
+    console.log(user_id, product_id);
+    isLogin
+      ? navigate(`/participate/${user_id}/${product_id}`, {
+          state: {
+            image_uri,
+            title,
+            goal_num,
+            state_num,
+            state_price,
+            status,
+            ended_time,
+            base_price,
+          },
+        })
+      : navigate("/login");
+  };
 
   return (
     <>
@@ -79,22 +101,7 @@ const Participant = ({
             generated_time={generated_time}
           />
           {status === "proceeding" ? (
-            <JoinButton
-              onClick={() =>
-                // TODO: 단위, 단위 가격(임의로 state_price 사용) 필요
-                navigate("/participate", {
-                  state: {
-                    image_uri,
-                    title,
-                    goal_num,
-                    state_num,
-                    state_price,
-                    status,
-                    ended_time,
-                  },
-                })
-              }
-            />
+            <JoinButton onClick={onClickHandler} />
           ) : (
             <CloseDisplay />
           )}

@@ -1,4 +1,7 @@
+/* eslint-disable prettier/prettier */
 import styled from "styled-components";
+
+import { participate_product } from "../../types/participate";
 
 const ProductContainer = styled.div`
   width: 100%;
@@ -60,42 +63,26 @@ const ProductLeft = styled.div`
   }
 `;
 
-interface Props {
-  image_uri: string;
-  title: string;
-  goal_num: number;
-  state_num: number;
-  state_price: number;
-  status: string;
-  ended_time: string;
-}
-
-const ProductDetail = ({
-  image_uri,
-  title,
-  goal_num,
-  state_num,
-  state_price,
-  status,
-  ended_time,
-}: Props) => {
+const ProductDetail = (props: participate_product) => {
   const todayTime = new Date().getTime();
-  const enddayTime = new Date(ended_time).getTime();
+  const enddayTime = new Date(props.ended_time).getTime();
   const D_day = Math.floor((enddayTime - todayTime) / (1000 * 60 * 60 * 24));
 
-  const leftOver = goal_num - state_num;
+  const leftOver = props.goal_num - props.state_num;
 
   return (
     <ProductContainer>
       <ImgContent>
-        <img src={image_uri} alt={title} />
+        <img src={props.image_uri} alt={props.title} />
       </ImgContent>
       <InfoContent>
         <ProductTitle>
-          <span>{title}</span>
+          <span>{props.title}</span>
         </ProductTitle>
         <ProductUnit>
-          <span>1kg 당 {state_price}</span>
+          <span>
+            {props.unit} 당 {props.base_price}
+          </span>
         </ProductUnit>
         <ProductLeft>
           <span className="percentage">{`${leftOver}개 남음`}</span>

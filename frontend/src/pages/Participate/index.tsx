@@ -1,5 +1,8 @@
+/* eslint-disable prettier/prettier */
+import axios from "axios";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import ProductModal from "../../common/Modal/ProductModal/ProductModal";
@@ -23,9 +26,21 @@ const ParticipateContainer = styled.div`
 `;
 
 const Participate = () => {
+  // const { user_id, product_id } = useParams();
+
+  // const { data } = useQuery(
+  //   ["participate", user_id, product_id],
+  //   async () =>
+  //     await axios
+  //       .get(`/participate/${user_id}/${product_id}`)
+  //       .then(({ data }) => data)
+  // );
+
+  // console.log(data);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isVisible = useAppSelector((state) => state.modal.modalVisible);
+  const isVisible = useAppSelector(state => state.modal.modalVisible);
 
   const location = useLocation();
   const state = location.state as DetailType;
@@ -35,13 +50,14 @@ const Participate = () => {
     goal_num,
     state_num,
     state_price,
-    status,
     ended_time,
+    unit,
+    base_price,
   } = state;
 
-  const [userNickname, setUserNickname] = useState("김박사");
+  console.log(state);
+
   const [quantity, setQuantity] = useState(0);
-  const unit = "1kg";
 
   const openModalHandler = () => {
     console.log("삭제 모달");
@@ -60,7 +76,7 @@ const Participate = () => {
 
   return (
     <Container>
-      <ProductModal
+      {/* <ProductModal
         modalTitle="해당 공동 구매에 참여하시겠습니까?"
         visible={isVisible}
         onCheck={checkButtonHandler}
@@ -68,26 +84,41 @@ const Participate = () => {
         image_uri={image_uri}
         title={title}
         state_price={state_price}
-        userNickname={userNickname}
         quantity={quantity}
-      />
+      /> */}
       <ParticipateContainer>
+        {/* {data && (
+          <ProductDetail
+            ended_time={data.ended_time}
+            goal_num={data.goal_num}
+            state_num={data.state_num}
+            title={data.title}
+            image_uri={data.image_uri}
+          />
+        )}
+        {data && (
+          <ParticipateInfo
+            base_price={data.base_price}
+            goal_num={data.goal_num}
+          />
+        )} */}
         <ProductDetail
           image_uri={image_uri}
           title={title}
           goal_num={goal_num}
           state_num={state_num}
-          state_price={state_price}
-          status={status}
+          base_price={base_price}
           ended_time={ended_time}
+          unit={unit}
         />
         <ParticipateInfo
-          onOpenModal={openModalHandler}
-          userNickname={userNickname}
-          quantity={quantity}
-          setUserNickname={setUserNickname}
-          unit={unit}
-          setQuantity={setQuantity}
+          // onOpenModal={openModalHandler}
+          // quantity={quantity}
+          // setUserNickname={setUserNickname}
+          // unit={unit}
+          // setQuantity={setQuantity}
+          base_price={base_price}
+          goal_num={goal_num}
         />
       </ParticipateContainer>
     </Container>

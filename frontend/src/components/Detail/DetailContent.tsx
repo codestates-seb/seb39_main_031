@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -17,8 +18,8 @@ const TabTitleBox = styled.div`
   height: 50px;
   display: flex;
   column-gap: 30px;
-  background-color: ${(props) => props.theme.colors.white000};
-  border-bottom: 1px solid ${(props) => props.theme.colors.black200};
+  background-color: ${props => props.theme.colors.white000};
+  border-bottom: 1px solid ${props => props.theme.colors.black200};
 `;
 
 const Tab = styled.div`
@@ -30,16 +31,16 @@ const Tab = styled.div`
   font-size: 18px;
   margin-left: 1em;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.black400};
+  color: ${props => props.theme.colors.black400};
   transition: all 0.2s linear;
 
   &:hover {
-    color: ${(props) => props.theme.colors.black900};
+    color: ${props => props.theme.colors.black900};
   }
 
   &.active {
-    color: ${(props) => props.theme.colors.black900};
-    border-bottom: 4px solid ${(props) => props.theme.colors.cyan400};
+    color: ${props => props.theme.colors.black900};
+    border-bottom: 4px solid ${props => props.theme.colors.cyan400};
   }
 `;
 

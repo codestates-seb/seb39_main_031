@@ -30,11 +30,15 @@ const RoutesTree = () => {
             element={<GroupBuying />}
           />
           <Route path="/:user_id/:product_id" element={<Detail />} />
+          <Route
+            path="/participate/:user_id/:product_id"
+            element={<Participate />}
+          />
+
           <Route path="/chat" element={<Chat />} />
           <Route path="/new" element={<New />} />
           <Route path="/edit" element={<Edit />} />
           <Route path="/user" element={<User />} />
-          <Route path="/participate" element={<Participate />} />
           <Route path="/favorite" element={<Favorite />} />
         </Route>
         <Route path="/login" element={<Login />} />

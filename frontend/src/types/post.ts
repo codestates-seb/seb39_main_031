@@ -35,7 +35,7 @@ export interface DetailType {
   product_id: number;
   region: string;
   town: string;
-  category: string;
+  category?: string;
   goal_num: number;
   state_num: number;
   goal_price: number;
@@ -46,6 +46,8 @@ export interface DetailType {
   generated_time: string;
   ended_time: string;
   status: string;
+  unit: string;
+  base_price: number;
 }
 
 // Edit Post
