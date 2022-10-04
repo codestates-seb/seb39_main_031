@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/address/**","/members/**").permitAll()
+                .antMatchers("/products/**", "/image/**").permitAll()
                 .anyRequest()
                 .authenticated();
         return http.build();
