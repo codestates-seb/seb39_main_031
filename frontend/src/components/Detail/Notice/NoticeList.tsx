@@ -3,8 +3,8 @@ import styled from "styled-components";
 import NoticeItem from "./NoticeItem";
 
 const Container = styled.div`
-  margin: 1em 0 5em 0;
-  border: 1px solid ${(props) => props.theme.colors.black200};
+  margin: 3em 0 5em 0;
+  border-top: 1px solid ${(props) => props.theme.colors.black200};
 `;
 
 const data = [

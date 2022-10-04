@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { VscBell } from "react-icons/vsc";
+import { FaBell } from "react-icons/fa";
 import styled from "styled-components";
 
 import Tabs from "../../common/Tabs/Tabs";
@@ -18,7 +18,12 @@ const NotifiBtn = styled.button`
   margin-left: -0.5em;
 
   .icon {
-    font-size: 25px;
+    font-size: 28px;
+    color: ${(props) => props.theme.colors.black900};
+  }
+
+  .main {
+    color: ${(props) => props.theme.colors.white000};
   }
 `;
 
@@ -48,7 +53,11 @@ const tabs: Array<TabsType> = [
   { label: "활동", index: 2, Component: Active },
 ];
 
-const Notification = () => {
+interface Props {
+  className?: string;
+}
+
+const Notification = ({ className }: Props) => {
   const notifiRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isActive, setIsActive] = useOutsideClick(notifiRef, btnRef, false);
@@ -60,7 +69,7 @@ const Notification = () => {
   return (
     <Container>
       <NotifiBtn ref={btnRef} onClick={onClickNavBtn}>
-        <VscBell className="icon" />
+        <FaBell className={className} />
       </NotifiBtn>
       {isActive && (
         <NotifiBox ref={notifiRef}>

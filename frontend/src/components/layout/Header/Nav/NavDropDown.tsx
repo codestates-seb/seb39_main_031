@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsPencilFill } from "react-icons/bs";
-import { FaRegHandshake } from "react-icons/fa";
+import { FaRegHandshake, FaUserCircle } from "react-icons/fa";
 import { HiOutlineHeart } from "react-icons/hi";
 import styled from "styled-components";
 
@@ -24,7 +24,12 @@ const DropDownBtn = styled.button`
   margin-left: -0.5em;
 
   .icon {
-    font-size: 28px;
+    font-size: 30px;
+    color: ${(props) => props.theme.colors.black900};
+  }
+
+  .main {
+    color: ${(props) => props.theme.colors.white000};
   }
 `;
 
@@ -54,7 +59,10 @@ const navs = [
   { label: "관심목록", path: "/favorite", icon: <HiOutlineHeart /> },
 ];
 
-const NavDropDown = () => {
+interface Props {
+  className?: string;
+}
+const NavDropDown = ({ className }: Props) => {
   const dropDownRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isActive, setIsActive] = useOutsideClick(dropDownRef, btnRef, false);
@@ -74,7 +82,7 @@ const NavDropDown = () => {
   return (
     <Container>
       <DropDownBtn ref={btnRef} onClick={navClickHandler}>
-        <AiOutlineUser className="icon" />
+        <FaUserCircle className={className} />
       </DropDownBtn>
       {isActive && (
         <MenuBox ref={dropDownRef}>

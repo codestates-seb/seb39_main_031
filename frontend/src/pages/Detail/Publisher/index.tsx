@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import DeleteModal from "../../../common/Modal/DeleteModal";
 import CloseDisplay from "../../../components/Detail/CloseDisplay";
-import DetailContent from "../../../components/Detail/DetailContent";
+import { PublisherContent } from "../../../components/Detail/DetailContent";
 import DetailStats from "../../../components/Detail/DetailStat";
 import DetailUserInfo from "../../../components/Detail/DetailUserInfo";
 import CloseButton from "../../../components/Detail/Publisher/CloseButton";
@@ -15,8 +15,10 @@ import { modalActions } from "../../../redux/modalSlice";
 import { DetailType, Image } from "../../../types/post";
 
 const Title = styled.h1`
-  padding: 1em 0;
+  padding-bottom: 1em;
   text-align: center;
+  font-size: 40px;
+  font-weight: 700;
 `;
 
 const Main = styled.main`
@@ -146,7 +148,7 @@ const Publisher = ({
         <Section>
           <ImageBox image={image_uri} />
           <ParticipantList />
-          <DetailContent body={body} />
+          <PublisherContent body={body} />
         </Section>
       </Main>
     </>
