@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "./Main";
 import Category from "./pages/Category";
 import Chat from "./pages/Chat";
+import CurrentStatus from "./pages/CurrentStatus";
 import Detail from "./pages/Detail";
 import Edit from "./pages/Edit";
 import Favorite from "./pages/Favorite";
@@ -34,11 +35,11 @@ const RoutesTree = () => {
             path="/participate/:user_id/:product_id"
             element={<Participate />}
           />
-
+          <Route path="/edit" element={<Edit />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/new" element={<New />} />
-          <Route path="/edit" element={<Edit />} />
           <Route path="/user" element={<User />} />
+          <Route path="/current" element={<CurrentStatus />} />
           <Route path="/favorite" element={<Favorite />} />
         </Route>
         <Route path="/login" element={<Login />} />

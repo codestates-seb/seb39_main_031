@@ -55,7 +55,7 @@ const navs = [
     className: "edit",
   },
   { label: "회원정보", path: "/user", icon: <AiOutlineUser /> },
-  { label: "참여현황", path: "/participate", icon: <FaRegHandshake /> },
+  { label: "참여현황", path: "/current", icon: <FaRegHandshake /> },
   { label: "관심목록", path: "/favorite", icon: <HiOutlineHeart /> },
 ];
 
