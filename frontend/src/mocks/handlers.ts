@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable array-callback-return */
 /* eslint-disable prettier/prettier */
 import { rest } from "msw";
 
+import { DetailType } from "../types/post";
 import {
+  fullData,
   responseForPage1,
   responseForPage2,
   responseForPage3,
@@ -28,6 +31,10 @@ const users: user = [
     userNickname: "손흥민",
   },
 ];
+
+const productData: DetailType[] = [];
+
+const participateList = [];
 
 const handlers = [
   rest.get("https://groupbuying/api/", (req, res, ctx) => {
@@ -74,15 +81,16 @@ const handlers = [
 
     users.map(user => {
       if (user.userEmail === userEmail && user.userPassword === userPassword) {
-        isUser.push(user);
+        return isUser.push(user);
       }
     });
 
     if (isUser) {
+      console.log(isUser);
       return res(
         ctx.status(200),
         ctx.json({
-          userId: "20000",
+          userId: "2",
           userNickname: isUser[0].userNickname,
           profileImage_uri: "https://source.unsplash.com/80x80/?cat",
         })
@@ -103,6 +111,7 @@ const handlers = [
 
   rest.post("/signup", async (req, res, ctx) => {
     const { email, nickname, password } = await req.json();
+    console.log(email, nickname, password);
     if (email && password) {
       users.push({
         userEmail: email,
@@ -116,6 +125,36 @@ const handlers = [
         signup: "good",
       })
     );
+  }),
+
+  rest.get("/product/:userid/:productid", (req, res, ctx) => {
+    const { userid, productid } = req.params;
+
+    fullData.map(data => {
+      if (
+        data.user_id === Number(userid) &&
+        data.product_id === Number(productid)
+      ) {
+        productData[0] = data;
+      }
+    });
+    console.log(productData[0]);
+    return res(ctx.status(200), ctx.json(productData[0]));
+  }),
+
+  rest.get("/participate/:user_id/:product_id", async (req, res, ctx) => {
+    const { user_id, product_id } = req.params;
+
+    fullData.map(data => {
+      if (
+        data.user_id === Number(user_id) &&
+        data.product_id === Number(product_id)
+      ) {
+        productData[0] = data;
+      }
+    });
+    console.log(productData[0]);
+    return res(ctx.status(200), ctx.json(productData[0]));
   }),
 ];
 

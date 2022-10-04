@@ -4,6 +4,7 @@ import { BiMinus, BiPlus } from "react-icons/bi";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
+import { participate_Info } from "../../types/participate";
 
 const InfoContainer = styled.div`
   width: 100%;
@@ -53,11 +54,10 @@ const QuntityControl = styled.div`
   }
 `;
 
-const ParticipateInfo = () => {
-  const basePrice = 12000;
-  const totalQty = 10;
-  const user_nickname = "김박사";
-  const [quantity, setQuantity] = useState<number>(1);
+const ParticipateInfo = (props: participate_Info) => {
+  const basePrice = parseInt(props.base_price);
+  const totalQty = parseInt(props.goal_num);
+  const [quantity, setQuantity] = useState<string>("1");
   const [price, setPrice] = useState<number>(basePrice);
 
   //! 데이터에서 최대 수량 받아서 input의 props로 내려주기
@@ -76,16 +76,20 @@ const ParticipateInfo = () => {
   //   console.log(participationInfo);
   // };
   useEffect(() => {
-    setPrice(basePrice * quantity);
+    if (quantity === "") {
+      return setPrice(0);
+    }
+    setPrice(basePrice * parseInt(quantity));
   }, [quantity]);
 
   const pluseQty = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
-      if (quantity >= totalQty) {
+
+      if (parseInt(quantity) >= totalQty) {
         return;
       }
-      setQuantity(quantity + 1);
+      setQuantity(`${parseInt(quantity) + 1}`);
     },
     [quantity]
   );
@@ -94,12 +98,29 @@ const ParticipateInfo = () => {
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
 
-      if (quantity > 1) {
-        setQuantity(quantity - 1);
+      if (parseInt(quantity) > 1) {
+        setQuantity(`${parseInt(quantity) - 1}`);
       }
     },
     [quantity]
   );
+
+  const onchangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checkNum = /[^0-9]/g;
+    const target = event.target.value;
+
+    if (target.match(checkNum)) {
+      return alert("숫자만 입력해야합니다");
+    }
+
+    if (parseInt(target) < 1) {
+      return alert("1개 이상 선택해야 합니다");
+    }
+    if (parseInt(target) > totalQty) {
+      return alert(`최대 ${totalQty}개 선택할 수 있습니다`);
+    }
+    setQuantity(target);
+  };
 
   return (
     <InfoContainer>
@@ -110,7 +131,7 @@ const ParticipateInfo = () => {
             <Button onClick={minusQty} width="24px" height="24px">
               <BiMinus size="12" />
             </Button>
-            <input type="text" value={quantity} />
+            <input type="text" value={quantity} onChange={onchangeHandler} />
             <Button onClick={pluseQty} width="24px" height="24px">
               <BiPlus size="12" />
             </Button>

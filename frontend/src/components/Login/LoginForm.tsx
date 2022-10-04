@@ -2,7 +2,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import {
@@ -46,32 +47,35 @@ const ButtoneContent = styled.div`
   justify-content: center;
 `;
 
-const LoginForm = () => {
-  const navigate = useNavigate();
+interface loginInfo {
+  userEmail: string;
+  userPassword: string;
+}
 
+const LoginForm = () => {
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
 
   const [validEmail, setValidEmail] = useState<string>("");
   const [validPassword, setValidPssword] = useState<string>("");
 
-  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const { mutate } = useMutation(
+    async (loginInfo: loginInfo) =>
+      await axios.post("/login", loginInfo).then(({ data }) => data)
+  );
+
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const userInfo = await axios
-      .post("/login", {
-        userEmail,
-        userPassword,
-      })
-      .then(res => {
-        return res.data;
-      });
-
-    setCookie("userInfo", userInfo, {
-      path: "/",
-      maxAge: 6000,
+    const userLogin: loginInfo = { userEmail, userPassword };
+    mutate(userLogin, {
+      onSuccess: data => {
+        setCookie("userInfo", data, {
+          path: "/",
+          maxAge: 6000,
+        });
+        window.location.replace("/");
+      },
     });
-    window.location.replace("/");
 
     //! 성공적으로 로그인이 되면 홈으로 이동하기
   };

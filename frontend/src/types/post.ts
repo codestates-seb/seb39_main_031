@@ -46,4 +46,6 @@ export interface DetailType {
   generated_time: string;
   ended_time: string;
   status: string;
+  unit?: string;
+  base_price?: string | number;
 }

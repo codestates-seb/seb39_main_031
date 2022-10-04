@@ -15,6 +15,9 @@ const App = () => {
     if (userInfo) {
       dispatch(loginActions.login());
     }
+    if (!userInfo) {
+      dispatch(loginActions.logout());
+    }
   }, []);
 
   return (

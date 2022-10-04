@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import ParticipateInfo from "../../components/Participate/ParticipateInfo";
@@ -17,11 +20,35 @@ const ParticipateContainer = styled.div`
 `;
 
 const Participate = () => {
+  const { user_id, product_id } = useParams();
+
+  const { data } = useQuery(
+    ["participate", user_id, product_id],
+    async () =>
+      await axios
+        .get(`/participate/${user_id}/${product_id}`)
+        .then(({ data }) => data)
+  );
+
+  console.log(data);
   return (
     <Container>
       <ParticipateContainer>
-        <ProductDetail />
-        <ParticipateInfo />
+        {data && (
+          <ProductDetail
+            ended_time={data.ended_time}
+            goal_num={data.goal_num}
+            state_num={data.state_num}
+            title={data.title}
+            image_uri={data.image_uri}
+          />
+        )}
+        {data && (
+          <ParticipateInfo
+            base_price={data.base_price}
+            goal_num={data.goal_num}
+          />
+        )}
       </ParticipateContainer>
     </Container>
   );

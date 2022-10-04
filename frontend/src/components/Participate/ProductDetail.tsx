@@ -1,6 +1,8 @@
+/* eslint-disable prettier/prettier */
+
 import styled from "styled-components";
 
-import { Data } from "../../mocks/data";
+import { participate_product } from "../../types/participate";
 
 const ProductContainer = styled.div`
   width: 100%;
@@ -62,23 +64,21 @@ const ProductLeft = styled.div`
   }
 `;
 
-const ProductDetail = () => {
-  const data = Data[0];
-
+const ProductDetail = (props: participate_product) => {
   const todayTime = new Date().getTime();
-  const enddayTime = new Date(data.ended_time).getTime();
+  const enddayTime = new Date(props.ended_time).getTime();
   const D_day = Math.floor((enddayTime - todayTime) / (1000 * 60 * 60 * 24));
 
-  const leftOver = data.goal_num - data.state_num;
+  const leftOver = parseInt(props.goal_num) - parseInt(props.state_num);
 
   return (
     <ProductContainer>
       <ImgContent>
-        <img src={data.image_uri} alt={data.title} />
+        <img src={props.image_uri} alt={props.title} />
       </ImgContent>
       <InfoContent>
         <ProductTitle>
-          <span>{data.title}</span>
+          <span>{props.title}</span>
         </ProductTitle>
         <ProductUnit>
           <span>1kg 당 12000원</span>
