@@ -1,5 +1,7 @@
 package com.codestates.main31.product.service;
 
+import com.codestates.main31.address.Address;
+import com.codestates.main31.address.AddressRepository;
 import com.codestates.main31.category.entity.Category;
 import com.codestates.main31.category.repository.CategoryRepository;
 import com.codestates.main31.exception.BusinessLogicException;
@@ -34,12 +36,15 @@ public class ProductService {
 
     private final CategoryRepository categoryRepository;
 
+    private final AddressRepository addressRepository;
+
     private final ImageHandler imageHandler;
 
     private final S3Handler s3Handler;
 
     public Product createProduct(Product product, List<MultipartFile> file) throws IOException {
         product.setCategory(findCategory(product.getCategory().getCategory()));
+        product.setAddress(findAddress(product));
 
         Product parseProduct = parseContextAndSaveImage(product);
         Product savedProduct = productRepository.save(parseProduct);
@@ -114,6 +119,10 @@ public class ProductService {
 
     private Category findCategory(String category) {
         return categoryRepository.findByCategory(category).orElseThrow(() -> new BusinessLogicException(ExceptionCode.CATEGORY_NOT_FOUND));
+    }
+
+    private Address findAddress(Product product) {
+        return addressRepository.findByRegionAndTown(product.getAddress().getRegion().toString(), product.getAddress().getTown()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.ADDRESS_NOT_FOUND));
     }
 
 }

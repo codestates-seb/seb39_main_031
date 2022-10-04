@@ -8,8 +8,8 @@ public enum ExceptionCode {
 
     PRODUCT_NOT_FOUND(404, "Product not exist"),
     NOTICE_NOT_FOUND(404, "Notice not exist"),
-
     CATEGORY_NOT_FOUND(404, "Category not exist"),
+    ADDRESS_NOT_FOUND(404, "Category not exist"),
 
     PRODUCT_EXIST(409, "Product already exist"),
 

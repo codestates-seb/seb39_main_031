@@ -65,6 +65,8 @@ public class ProductResponseDto {
 
         private String town;
 
+        private String category;
+
     }
 
 }
