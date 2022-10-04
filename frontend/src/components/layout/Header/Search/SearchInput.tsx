@@ -1,12 +1,6 @@
 import { BiSearch } from "react-icons/bi";
 import styled from "styled-components";
 
-interface InputProps {
-  placeholder?: string;
-  path?: string;
-  width?: string;
-}
-
 const InputTagBox = styled.div<InputProps>`
   display: flex;
   width: ${({ width }) => (width ? width : "100%")};
@@ -21,7 +15,7 @@ const InputTagBox = styled.div<InputProps>`
     }};
     position: absolute;
     right: auto;
-    left: 0.5em;
+    left: 0.7em;
     top: 47%;
     margin-top: -9px;
     pointer-events: none;
@@ -32,31 +26,25 @@ const InputTagBox = styled.div<InputProps>`
   }
 `;
 
-const InputTag = styled.input`
+const InputTag = styled.input<InputProps>`
   width: 100%;
+  height: 50px;
   padding: 8px;
-  padding-left: 30px;
-  border: 1px solid
-    ${(props) => {
-      return props.theme.colors.black300;
-    }};
-  border-radius: 4px;
-  font-size: ${(props) => {
-    return props.theme.fontSize.size15;
-  }};
+  padding-left: 40px;
+  border: 3px solid
+    ${({ borderColor }) => (borderColor ? borderColor : "#EEEEEE")};
+  border-radius: 30px;
+  font-size: ${(props) => props.theme.fontSize.size15};
 
   &::placeholder {
-    color: ${(props) => {
-      return props.theme.colors.black400;
-    }};
+    color: ${(props) => props.theme.colors.black400};
   }
 
   &:focus {
     outline: none;
     border-color: ${(props) => {
-      return props.theme.colors.cyan100;
+      return props.theme.colors.cyan200;
     }};
-    box-shadow: 0 0 0 3px #dcfafa;
   }
 
   &.disable {
@@ -64,12 +52,20 @@ const InputTag = styled.input`
   }
 `;
 
-const SearchInput = ({ placeholder, path, width }: InputProps) => {
+interface InputProps {
+  placeholder?: string;
+  path?: string;
+  width?: string;
+  borderColor?: string;
+}
+
+const SearchInput = ({ placeholder, path, width, borderColor }: InputProps) => {
   return (
     <InputTagBox width={width}>
       <InputTag
         className={path === "/" ? "disable" : ""}
         placeholder={placeholder}
+        borderColor={borderColor}
       />
       <BiSearch className={path === "/" ? "disable" : "icon"} />
     </InputTagBox>

@@ -1236,6 +1236,8 @@ export const responseForPage10 = {
   ],
 };
 
+//! FullData
+
 export const fullData = [
   {
     user_id: 1,
@@ -1244,6 +1246,10 @@ export const fullData = [
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 1,
     town: "송파구",
+    region: "서울특별시",
+    category: "식품",
+    base_price: 12000,
+    unit: "1kg",
     goal_num: 10,
     state_num: 1,
     image_uri:
@@ -1255,8 +1261,6 @@ export const fullData = [
     generated_time: "2022-09-22",
     ended_time: "2022-09-26",
     status: "proceeding",
-    base_price: 12000,
-    unit: "1kg",
   },
   {
     user_id: 2,
@@ -1265,6 +1269,10 @@ export const fullData = [
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 2,
     town: "강남구",
+    region: "서울특별시",
+    category: "가전제품",
+    base_price: 20000,
+    unit: "1개",
     goal_num: 5,
     state_num: 2,
     image_uri:
@@ -1285,8 +1293,12 @@ export const fullData = [
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 3,
     town: "마포구",
+    region: "서울특별시",
     goal_num: 2,
     state_num: 1,
+    category: "식품",
+    base_price: 12000,
+    unit: "200g",
     image_uri:
       "https://cdn.pixabay.com/photo/2022/08/14/21/47/snake-7386684__480.jpg",
     goal_price: 100000,
@@ -1304,6 +1316,10 @@ export const fullData = [
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 4,
     town: "송파구",
+    region: "서울특별시",
+    category: "식품",
+    base_price: 5000,
+    unit: "1kg",
     goal_num: 4,
     state_num: 1,
     image_uri:
@@ -1323,6 +1339,10 @@ export const fullData = [
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 5,
     town: "강남구",
+    region: "서울특별시",
+    category: "가전제품",
+    base_price: 20000,
+    unit: "1개",
     goal_num: 10,
     state_num: 2,
     image_uri:
@@ -1342,7 +1362,11 @@ export const fullData = [
     score: 2.5,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 6,
+    region: "서울특별시",
     town: "마포구",
+    category: "식품",
+    base_price: 20000,
+    unit: "200g",
     goal_num: 2,
     state_num: 1,
     image_uri:
@@ -1361,7 +1385,11 @@ export const fullData = [
     score: 3.0,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 7,
+    region: "서울특별시",
     town: "송파구",
+    category: "식품",
+    base_price: 8000,
+    unit: "1kg",
     goal_num: 10,
     state_num: 1,
     image_uri:
@@ -1380,7 +1408,11 @@ export const fullData = [
     score: 2.5,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 8,
+    region: "서울특별시",
     town: "강남구",
+    category: "가전제품",
+    base_price: 20000,
+    unit: "1개",
     goal_num: 5,
     state_num: 2,
     image_uri:
@@ -1400,7 +1432,11 @@ export const fullData = [
     score: 2.5,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 9,
+    region: "서울특별시",
     town: "마포구",
+    category: "식품",
+    base_price: 8000,
+    unit: "1kg",
     goal_num: 2,
     state_num: 1,
     image_uri:
@@ -1419,7 +1455,11 @@ export const fullData = [
     score: 3.0,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 10,
+    region: "서울특별시",
     town: "송파구",
+    category: "식품",
+    base_price: 8000,
+    unit: "1kg",
     goal_num: 4,
     state_num: 1,
     image_uri:
@@ -1438,7 +1478,11 @@ export const fullData = [
     score: 2.5,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 11,
+    region: "서울특별시",
     town: "강남구",
+    category: "가전제품",
+    base_price: 20000,
+    unit: "1개",
     goal_num: 10,
     state_num: 2,
     image_uri:
@@ -1458,7 +1502,11 @@ export const fullData = [
     score: 2.5,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 12,
+    region: "서울특별시",
     town: "마포구",
+    category: "식품",
+    base_price: 8000,
+    unit: "1kg",
     goal_num: 2,
     state_num: 1,
     image_uri:

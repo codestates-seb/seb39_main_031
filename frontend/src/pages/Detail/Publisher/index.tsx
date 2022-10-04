@@ -1,18 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import DeleteModal from "../../../common/Modal/DeleteModal";
 import CloseDisplay from "../../../components/Detail/CloseDisplay";
-import DetailContent from "../../../components/Detail/DetailContent";
+import { PublisherContent } from "../../../components/Detail/DetailContent";
 import DetailStats from "../../../components/Detail/DetailStat";
 import DetailUserInfo from "../../../components/Detail/DetailUserInfo";
 import CloseButton from "../../../components/Detail/Publisher/CloseButton";
 import DeleteButton from "../../../components/Detail/Publisher/DeleteButton";
 import ModifyButton from "../../../components/Detail/Publisher/ModifyButton";
 import ParticipantList from "../../../components/Detail/Publisher/ParticipantList";
+import { useAppDispatch, useAppSelector } from "../../../hooks/Redux";
+import { modalActions } from "../../../redux/modalSlice";
 import { DetailType, Image } from "../../../types/post";
 
 const Title = styled.h1`
-  padding: 1em 0;
+  padding-bottom: 1em;
   text-align: center;
+  font-size: 40px;
+  font-weight: 700;
 `;
 
 const Main = styled.main`
@@ -57,7 +63,9 @@ const Publisher = ({
   score,
   profileImage_uri,
   product_id,
+  region,
   town,
+  category,
   goal_num,
   state_num,
   image_uri,
@@ -69,8 +77,31 @@ const Publisher = ({
   ended_time,
   status,
 }: DetailType) => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const isVisible = useAppSelector((state) => state.modal.modalVisible);
+
+  const deleteModalHandler = () => {
+    console.log("삭제 모달");
+    dispatch(modalActions.modal());
+  };
+
+  const deleteButtonHandler = () => {
+    console.log("삭제 버튼");
+  };
+
+  const cancelButtonHandler = () => {
+    console.log("삭제 취소 버튼");
+    dispatch(modalActions.modal());
+  };
+
   return (
     <>
+      <DeleteModal
+        visible={isVisible}
+        onDelete={deleteButtonHandler}
+        onCancel={cancelButtonHandler}
+      />
       <Title>{title}</Title>
       <Main>
         <Aside>
@@ -85,8 +116,26 @@ const Publisher = ({
           <ButtonBlock>
             {status === "proceeding" ? <CloseButton /> : <CloseDisplay />}
             <DetailButton>
-              <ModifyButton />
-              <DeleteButton />
+              <ModifyButton
+                onClick={() =>
+                  navigate("/edit", {
+                    state: {
+                      user_id,
+                      product_id,
+                      title,
+                      category,
+                      image_uri,
+                      goal_num,
+                      generated_time,
+                      ended_time,
+                      region,
+                      town,
+                      body,
+                    },
+                  })
+                }
+              />
+              <DeleteButton onClick={deleteModalHandler} />
             </DetailButton>
           </ButtonBlock>
           <DetailUserInfo
@@ -99,7 +148,7 @@ const Publisher = ({
         <Section>
           <ImageBox image={image_uri} />
           <ParticipantList />
-          <DetailContent body={body} />
+          <PublisherContent body={body} />
         </Section>
       </Main>
     </>

@@ -52,14 +52,25 @@ const QuntityControl = styled.div`
     border: none;
     font-size: ${({ theme }) => theme.fontSize.size24};
   }
+  > input::-webkit-outer-spin-button,
+  > input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 const ParticipateInfo = (props: participate_Info) => {
-  const basePrice = parseInt(props.base_price);
-  const totalQty = parseInt(props.goal_num);
-  const [quantity, setQuantity] = useState<string>("1");
-  const [price, setPrice] = useState<number>(basePrice);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [price, setPrice] = useState<number>(props.base_price);
 
+  // const ParticipateInfo = ({
+  //   userNickname,
+  //   unit,
+  //   quantity,
+  //   setUserNickname,
+  //   setQuantity,
+  //   onOpenModal,
+  // }: Props) => {
   //! 데이터에서 최대 수량 받아서 input의 props로 내려주기
 
   // const onSubmitHandler = (event: React.FormEvent) => {
@@ -76,20 +87,20 @@ const ParticipateInfo = (props: participate_Info) => {
   //   console.log(participationInfo);
   // };
   useEffect(() => {
-    if (quantity === "") {
+    if (!quantity) {
       return setPrice(0);
     }
-    setPrice(basePrice * parseInt(quantity));
+    setPrice(props.base_price * quantity);
   }, [quantity]);
 
   const pluseQty = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
 
-      if (parseInt(quantity) >= totalQty) {
+      if (quantity >= props.goal_num) {
         return;
       }
-      setQuantity(`${parseInt(quantity) + 1}`);
+      setQuantity(quantity + 1);
     },
     [quantity]
   );
@@ -98,32 +109,40 @@ const ParticipateInfo = (props: participate_Info) => {
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
 
-      if (parseInt(quantity) > 1) {
-        setQuantity(`${parseInt(quantity) - 1}`);
+      if (quantity > 1) {
+        setQuantity(quantity - 1);
       }
     },
     [quantity]
   );
 
-  const onchangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const checkNum = /[^0-9]/g;
-    const target = event.target.value;
-
-    if (target.match(checkNum)) {
-      return alert("숫자만 입력해야합니다");
+  const onSubmitHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!quantity) {
+      return alert("수량을 입력해주세요");
     }
 
-    if (parseInt(target) < 1) {
+    // onOpenModal();
+  };
+
+  const onchangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const target = event.target.valueAsNumber;
+
+    // if (!target) {
+    //   return;
+    // }
+
+    if (target < 1) {
       return alert("1개 이상 선택해야 합니다");
     }
-    if (parseInt(target) > totalQty) {
-      return alert(`최대 ${totalQty}개 선택할 수 있습니다`);
+    if (target > props.goal_num) {
+      return alert(`최대 ${props.goal_num}개 선택할 수 있습니다`);
     }
     setQuantity(target);
   };
 
   return (
-    <InfoContainer>
+    <InfoContainer onSubmit={onSubmitHandler}>
       <InfoContent>
         <ProductQuantity>
           <p>수량</p>
@@ -131,7 +150,7 @@ const ParticipateInfo = (props: participate_Info) => {
             <Button onClick={minusQty} width="24px" height="24px">
               <BiMinus size="12" />
             </Button>
-            <input type="text" value={quantity} onChange={onchangeHandler} />
+            <input type="number" value={quantity} onChange={onchangeHandler} />
             <Button onClick={pluseQty} width="24px" height="24px">
               <BiPlus size="12" />
             </Button>
@@ -141,12 +160,13 @@ const ParticipateInfo = (props: participate_Info) => {
           <p>총 금액</p>
           <span>{price}</span>
         </TotalPrice>
+
+        <ButtonContent>
+          <Button width="50%" height="2.5rem">
+            참여하기
+          </Button>
+        </ButtonContent>
       </InfoContent>
-      <ButtonContent>
-        <Button width="50%" height="2.5rem">
-          참여하기
-        </Button>
-      </ButtonContent>
     </InfoContainer>
   );
 };

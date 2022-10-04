@@ -54,8 +54,11 @@ const Detail = () => {
               score={data.score}
               profileImage_uri={data.profileImage_uri}
               product_id={data.product_id}
+              region={data.region}
+              unit={data.unit}
               town={data.town}
               goal_num={data.goal_num}
+              category={data.category}
               state_num={data.state_num}
               image_uri={data.image_uri}
               goal_price={data.goal_price}
@@ -65,6 +68,7 @@ const Detail = () => {
               generated_time={data.generated_time}
               ended_time={data.ended_time}
               status={data.status}
+              base_price={data.base_price}
             />
           )}
         </Container>
@@ -86,9 +90,11 @@ const Detail = () => {
             score={data.score}
             profileImage_uri={data.profileImage_uri}
             product_id={data.product_id}
+            region={data.region}
             town={data.town}
             goal_num={data.goal_num}
             state_num={data.state_num}
+            category={data.category}
             image_uri={data.image_uri}
             goal_price={data.goal_price}
             state_price={data.state_price}
@@ -97,6 +103,8 @@ const Detail = () => {
             generated_time={data.generated_time}
             ended_time={data.ended_time}
             status={data.status}
+            base_price={data.base_price}
+            unit={data.unit}
           />
         ) : (
           data && (
@@ -106,8 +114,11 @@ const Detail = () => {
               score={data.score}
               profileImage_uri={data.profileImage_uri}
               product_id={data.product_id}
+              region={data.region}
+              unit={data.unit}
               town={data.town}
               goal_num={data.goal_num}
+              category={data.category}
               state_num={data.state_num}
               image_uri={data.image_uri}
               goal_price={data.goal_price}
@@ -117,6 +128,7 @@ const Detail = () => {
               generated_time={data.generated_time}
               ended_time={data.ended_time}
               status={data.status}
+              base_price={data.base_price}
             />
           )
         )}

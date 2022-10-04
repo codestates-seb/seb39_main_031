@@ -4,6 +4,7 @@ import Main from "./Main";
 import Category from "./pages/Category";
 import Chat from "./pages/Chat";
 import Detail from "./pages/Detail";
+import Edit from "./pages/Edit";
 import Favorite from "./pages/Favorite";
 import GroupBuying from "./pages/GroupBuying";
 import Home from "./pages/Home";
@@ -36,6 +37,7 @@ const RoutesTree = () => {
 
           <Route path="/chat" element={<Chat />} />
           <Route path="/new" element={<New />} />
+          <Route path="/edit" element={<Edit />} />
           <Route path="/user" element={<User />} />
           <Route path="/favorite" element={<Favorite />} />
         </Route>

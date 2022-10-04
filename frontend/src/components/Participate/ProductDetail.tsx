@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-
 import styled from "styled-components";
 
 import { participate_product } from "../../types/participate";
@@ -69,7 +68,7 @@ const ProductDetail = (props: participate_product) => {
   const enddayTime = new Date(props.ended_time).getTime();
   const D_day = Math.floor((enddayTime - todayTime) / (1000 * 60 * 60 * 24));
 
-  const leftOver = parseInt(props.goal_num) - parseInt(props.state_num);
+  const leftOver = props.goal_num - props.state_num;
 
   return (
     <ProductContainer>
@@ -81,7 +80,9 @@ const ProductDetail = (props: participate_product) => {
           <span>{props.title}</span>
         </ProductTitle>
         <ProductUnit>
-          <span>1kg 당 12000원</span>
+          <span>
+            {props.unit} 당 {props.base_price}
+          </span>
         </ProductUnit>
         <ProductLeft>
           <span className="percentage">{`${leftOver}개 남음`}</span>

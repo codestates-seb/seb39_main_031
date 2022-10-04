@@ -5,7 +5,9 @@ export const Data = [
     score: 3.0,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 1,
+    region: "서울특별시",
     town: "송파구",
+    category: "식품",
     goal_num: 10,
     state_num: 1,
     image_uri:
@@ -24,7 +26,9 @@ export const Data = [
     score: 2.5,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 2,
+    region: "서울특별시",
     town: "강남구",
+    category: "생활가전",
     goal_num: 5,
     state_num: 2,
     image_uri:
@@ -44,7 +48,9 @@ export const Data = [
     score: 2.5,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 3,
+    region: "서울특별시",
     town: "마포구",
+    category: "가구/인테리어",
     goal_num: 2,
     state_num: 1,
     image_uri:
@@ -63,7 +69,9 @@ export const Data = [
     score: 3.0,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 4,
+    region: "서울특별시",
     town: "송파구",
+    category: "여성의류",
     goal_num: 4,
     state_num: 1,
     image_uri:
@@ -82,7 +90,9 @@ export const Data = [
     score: 2.5,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 5,
+    region: "서울특별시",
     town: "강남구",
+    category: "식품",
     goal_num: 10,
     state_num: 2,
     image_uri:
@@ -102,7 +112,9 @@ export const Data = [
     score: 2.5,
     profileImage_uri: "https://source.unsplash.com/80x80/?cat",
     product_id: 6,
+    region: "서울특별시",
     town: "마포구",
+    category: "식품",
     goal_num: 2,
     state_num: 1,
     image_uri:

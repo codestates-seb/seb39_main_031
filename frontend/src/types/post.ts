@@ -1,6 +1,4 @@
 // TODO: 타입 정리
-// Preview
-
 // 썸네일, 대표 이미지 등
 export interface Image {
   image: string;
@@ -35,7 +33,9 @@ export interface DetailType {
   score: number;
   profileImage_uri: string;
   product_id: number;
+  region: string;
   town: string;
+  category?: string;
   goal_num: number;
   state_num: number;
   goal_price: number;
@@ -46,6 +46,21 @@ export interface DetailType {
   generated_time: string;
   ended_time: string;
   status: string;
-  unit?: string;
-  base_price?: string | number;
+  unit: string;
+  base_price: number;
+}
+
+// Edit Post
+export interface EditType {
+  user_id: number;
+  product_id: number;
+  category: string;
+  image_uri: string;
+  title: string;
+  goal_num: number;
+  generated_time: string;
+  ended_time: string;
+  region: string;
+  town: string;
+  body: string;
 }

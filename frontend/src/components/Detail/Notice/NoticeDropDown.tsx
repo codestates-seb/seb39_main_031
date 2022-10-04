@@ -19,7 +19,7 @@ const ButtonBox = styled.div`
   flex-direction: column;
   justify-content: center;
   position: absolute;
-  bottom: -5em;
+  bottom: -5.7em;
   left: -2.4em;
   background-color: ${(props) => props.theme.colors.white000};
   border: 1px solid ${(props) => props.theme.colors.black300};

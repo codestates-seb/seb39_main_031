@@ -34,8 +34,6 @@ const users: user = [
 
 const productData: DetailType[] = [];
 
-const participateList = [];
-
 const handlers = [
   rest.get("https://groupbuying/api/", (req, res, ctx) => {
     const pageNumber = req.url.searchParams.get("page");

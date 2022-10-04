@@ -1,0 +1,6 @@
+aws:
+  paramstore:
+    enabled: true
+    prefix: /spring-boot-aws
+    name: main31
+    profileSeparator: _

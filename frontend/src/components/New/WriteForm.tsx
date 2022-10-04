@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { category } from "../../assets/Selector/SeletorOptions";
+import { categories } from "../../assets/Selector/SeletorOptions";
 import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
 import CategorySelector from "../../common/Select/CategorySelector";
@@ -35,7 +35,7 @@ const WriteForm = () => {
     <EditForm>
       <CategorySelector
         lableText="카테고리"
-        options={category}
+        options={categories}
         onChangeHandler={onChangeHandler}
       />
       <InputForm lableText="상품명" type="text" marginBottom="2rem" />
