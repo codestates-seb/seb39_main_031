@@ -15,5 +15,6 @@ public interface AddressRepository extends JpaRepository<Address, Long>{
     )
     List<Address> findByRegion(@Param("region") String region);
 
+    @Query(value = "SELECT * FROM address where region=:region and town=:town", nativeQuery = true)
     Optional<Address> findByRegionAndTown(String region, String town);
 }
