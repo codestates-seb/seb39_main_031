@@ -4,12 +4,15 @@ import { BiMinus, BiPlus } from "react-icons/bi";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
+import { useAppDispatch } from "../../hooks/Redux";
+import { joinModal } from "../../redux/modalSlice";
 import { participate_Info } from "../../types/participate";
 
 const InfoContainer = styled.div`
   width: 100%;
   padding: 24px;
 `;
+
 const InfoContent = styled.div`
   width: 100%;
 `;
@@ -60,32 +63,22 @@ const QuntityControl = styled.div`
 `;
 
 const ParticipateInfo = (props: participate_Info) => {
+  //! 데이터에서 최대 수량 받아서 input의 props로 내려주기
+  const dispatch = useAppDispatch();
+
   const [quantity, setQuantity] = useState<number>(1);
   const [price, setPrice] = useState<number>(props.base_price);
 
-  // const ParticipateInfo = ({
-  //   userNickname,
-  //   unit,
-  //   quantity,
-  //   setUserNickname,
-  //   setQuantity,
-  //   onOpenModal,
-  // }: Props) => {
-  //! 데이터에서 최대 수량 받아서 input의 props로 내려주기
+  const onSubmitHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+    // if (!quantity) {
+    //   return alert("수량을 입력해주세요");
+    // }
 
-  // const onSubmitHandler = (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   if (quantity === "0" || quantity === "") {
-  //     return alert("수량을 입력해주세요");
-  //   }
-  //   const participationInfo = {
-  //     user_nickname,
-  //     unit,
-  //     quantity,
-  //   };
+    //TODO: 버튼 onClick 이벤트 수정
+    dispatch(joinModal({ modalType: "joinModal", isVisible: true }));
+  };
 
-  //   console.log(participationInfo);
-  // };
   useEffect(() => {
     if (!quantity) {
       return setPrice(0);
@@ -115,15 +108,6 @@ const ParticipateInfo = (props: participate_Info) => {
     },
     [quantity]
   );
-
-  const onSubmitHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-    if (!quantity) {
-      return alert("수량을 입력해주세요");
-    }
-
-    // onOpenModal();
-  };
 
   const onchangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target.valueAsNumber;
@@ -162,7 +146,13 @@ const ParticipateInfo = (props: participate_Info) => {
         </TotalPrice>
 
         <ButtonContent>
-          <Button width="50%" height="2.5rem">
+          <Button
+            width="50%"
+            height="2.5rem"
+            onClick={() =>
+              dispatch(joinModal({ modalType: "joinModal", isVisible: true }))
+            }
+          >
             참여하기
           </Button>
         </ButtonContent>

@@ -5,10 +5,9 @@ import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
-import PasswordModal from "../../common/Modal/PasswordModal.tsx";
 import UserFormHeader from "../../components/layout/Header/userFormHeader";
-import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
-import { modalActions } from "../../redux/modalSlice";
+import { useAppDispatch } from "../../hooks/Redux";
+import { closeModal, passwordModal } from "../../redux/modalSlice";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -55,7 +54,6 @@ const Password = () => {
   const navigation = useNavigate();
 
   const [userEmail, setUserEmail] = useState<string>("");
-  const isVible = useAppSelector(state => state.modal.modalVisible);
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,11 +62,11 @@ const Password = () => {
       return alert("이메일을 입력해주세요");
     }
 
-    dispatch(modalActions.modal());
+    dispatch(passwordModal({ modalType: "passwordModal", isVisible: true }));
 
     setTimeout(() => {
       navigation("/login");
-      dispatch(modalActions.modal());
+      dispatch(closeModal());
     }, 3000);
   };
 
@@ -78,7 +76,6 @@ const Password = () => {
 
   return (
     <PageContainer>
-      <PasswordModal visible={isVible} />
       <UserFormHeader />
       <Container>
         <PasswordContainer>

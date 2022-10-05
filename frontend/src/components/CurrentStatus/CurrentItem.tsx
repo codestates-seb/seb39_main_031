@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
+import { useAppDispatch } from "../../hooks/Redux";
+import { endModal, notjoinModal, ratingModal } from "../../redux/modalSlice";
 import { Image } from "../../types/post";
 import { saveRemainDate } from "../../utils/saveRemainDate";
 import CancelButton from "./CancelButton";
-import CloseButton from "./CloseButton";
+import EndButton from "./EndButton";
 import RatingButton from "./RatingButton";
 
 const Container = styled.section`
@@ -65,6 +67,8 @@ interface Props {
   user_name?: string;
   town?: string;
   status: string;
+  state_price: number;
+  quantity: number;
 }
 
 const CurrentItem = ({
@@ -75,6 +79,8 @@ const CurrentItem = ({
   user_name,
   town,
   status,
+  state_price,
+  quantity,
 }: Props) => {
   let remainTime;
   const [type, time] = saveRemainDate(ended_time);
@@ -87,6 +93,29 @@ const CurrentItem = ({
   if (type === "day") {
     remainTime = `${time}일 남음`;
   }
+
+  const dispatch = useAppDispatch();
+
+  const cancelModalHandler = () => {
+    console.log("공구 참여 취소 모달");
+    dispatch(
+      notjoinModal({
+        modalType: "notjoinModal",
+        isVisible: true,
+        props: { image_uri, title, state_price, quantity },
+      })
+    );
+  };
+
+  const endModalHandler = () => {
+    console.log("공구 종료 모달");
+    dispatch(endModal({ modalType: "endModal", isVisible: true }));
+  };
+
+  const ratingModalHandlr = () => {
+    console.log("공구 평점 모달");
+    dispatch(ratingModal({ modalType: "ratingModal", isVisible: true }));
+  };
 
   return (
     <Container>
@@ -102,11 +131,11 @@ const CurrentItem = ({
       </InfoBox>
       <ButtonBox>
         {status === "proceeding" ? (
-          <CancelButton />
+          <CancelButton onClick={cancelModalHandler} />
         ) : (
           <>
-            <RatingButton />
-            <CloseButton />
+            <RatingButton onClick={ratingModalHandlr} />
+            <EndButton onClick={endModalHandler} />
           </>
         )}
       </ButtonBox>

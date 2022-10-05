@@ -7,8 +7,9 @@ import { BlueButton, GrayButton } from "../Button/BorderButton";
 import Modal from "./Modal";
 
 const customModalStyle = css`
-  width: 400px;
-  height: 200px;
+  width: auto;
+  height: auto;
+  padding: 50px 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,30 +22,31 @@ const ButtonBox = styled.section`
   column-gap: 2em;
 `;
 
-const DeleteModal = () => {
-  const navigate = useNavigate();
+const JoinModal = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const deleteButtonHandler = () => {
-    console.log("삭제 버튼");
+  const JoinButtonHandler = () => {
+    console.log("공구 참여하기");
     dispatch(closeModal());
     navigate(-1);
   };
 
   const cancelButtonHandler = () => {
-    console.log("삭제 취소 버튼");
     dispatch(closeModal());
   };
 
   return (
     <Modal customModalStyle={customModalStyle}>
-      <div>작성하신 글을 삭제하시겠습니까?</div>
+      <header>
+        <h3>해당 공동 구매에 참여하시겠습니까?</h3>
+      </header>
       <ButtonBox>
-        <BlueButton onClick={deleteButtonHandler}>삭제</BlueButton>
+        <BlueButton onClick={JoinButtonHandler}>확인</BlueButton>
         <GrayButton onClick={cancelButtonHandler}>취소</GrayButton>
       </ButtonBox>
     </Modal>
   );
 };
 
-export default DeleteModal;
+export default JoinModal;

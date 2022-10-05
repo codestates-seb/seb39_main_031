@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 import { ModalType, StyledModalProps } from "../../types/Modal";
 
-const ModalWrapper = styled.div<{ visible?: boolean }>`
+const ModalWrapper = styled.div`
   width: 100%;
   height: 100%;
-  display: ${({ visible }) => (visible ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -34,9 +33,9 @@ const ModalContainer = styled.div<StyledModalProps>`
   }
 `;
 
-const Modal = ({ visible, children, customModalStyle }: ModalType) => {
+const Modal = ({ children, customModalStyle }: ModalType) => {
   return (
-    <ModalWrapper visible={visible}>
+    <ModalWrapper>
       <ModalContainer customModalStyle={customModalStyle}>
         {children}
       </ModalContainer>

@@ -28,7 +28,7 @@ export type OauthButtonType = {
 };
 
 export interface BorderButtonType {
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   width?: string;
   height?: string;
   children?: React.ReactNode;
