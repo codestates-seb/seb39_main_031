@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -75,9 +74,11 @@ const Detail = () => {
       </Page>
     );
   }
+
   data && data.user_id === parseInt(user.userId)
     ? console.log("good")
     : console.log("fasle");
+
   return (
     //TODO: 쿠키의 user_id === user_id ? <게시자 페이지 /> : <참여자 페이지 />
 

@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { useNavigate, useParams } from "react-router-dom";
+// import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "../../../common/Button/ButtonForm";
-import { useAppSelector } from "../../../hooks/Redux";
 
 const Container = styled(Button)`
   border-radius: 3px;

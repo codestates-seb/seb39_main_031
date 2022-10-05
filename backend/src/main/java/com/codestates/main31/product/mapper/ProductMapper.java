@@ -4,13 +4,14 @@ import com.codestates.main31.dto.MultiResponseDto;
 import com.codestates.main31.product.dto.ProductRequestDto;
 import com.codestates.main31.product.dto.ProductResponseDto;
 import com.codestates.main31.product.entity.Product;
+import com.codestates.main31.productimage.mapper.ProductImageMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {ProductImageMapper.class})
 public interface ProductMapper {
     @Mapping(source = "region", target = "address.region")
     @Mapping(source = "town", target = "address.town")
@@ -24,6 +25,8 @@ public interface ProductMapper {
     @Mapping(target = "town", source = "address.town")
     ProductResponseDto.GetDetail productToProductResponseGetDetailDto(Product product);
 
+    @Mapping(target = "region", source = "address.region")
+    @Mapping(target = "town", source = "address.town")
     ProductResponseDto.GetList productToProductResponseGetListDto(Product product);
 
     List<ProductResponseDto.GetList> productListToProductResponseGetListsDto(List<Product> productList);

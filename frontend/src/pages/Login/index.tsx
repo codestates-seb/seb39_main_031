@@ -7,14 +7,16 @@ import UsefulForm from "../../components/Login/UsefulForm";
 const PageContainer = styled.div`
   width: 100%;
   height: 100%;
+  padding-top: 4em;
+  display: flex;
+  justify-content: center;
 `;
 
 const Container = styled.div`
   width: 100%;
-  height: 90%;
-  padding: 105px 0;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const LoginContainer = styled.div`
@@ -46,19 +48,21 @@ const UsefulContent = styled.div`
 
 const Login = () => {
   return (
-    <PageContainer>
+    <>
       <UserFormHeader />
-      <Container>
-        <LoginContainer>
-          <LoginContent>
-            <LoginForm />
-          </LoginContent>
-          <UsefulContent>
-            <UsefulForm />
-          </UsefulContent>
-        </LoginContainer>
-      </Container>
-    </PageContainer>
+      <PageContainer>
+        <Container>
+          <LoginContainer>
+            <LoginContent>
+              <LoginForm />
+            </LoginContent>
+            <UsefulContent>
+              <UsefulForm />
+            </UsefulContent>
+          </LoginContainer>
+        </Container>
+      </PageContainer>
+    </>
   );
 };
 

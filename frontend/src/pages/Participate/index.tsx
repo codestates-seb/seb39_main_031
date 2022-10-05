@@ -1,15 +1,11 @@
 /* eslint-disable prettier/prettier */
 import axios from "axios";
-import { useState } from "react";
 import { useQuery } from "react-query";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import ProductModal from "../../common/Modal/ProductModal/ProductModal";
 import ParticipateInfo from "../../components/Participate/ParticipateInfo";
 import ProductDetail from "../../components/Participate/ProductDetail";
-import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
-import { modalActions } from "../../redux/modalSlice";
 import { DetailType } from "../../types/post";
 
 const Container = styled.div`
@@ -38,10 +34,6 @@ const Participate = () => {
 
   // console.log(data);
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const isVisible = useAppSelector(state => state.modal.modalVisible);
-
   const location = useLocation();
   const state = location.state as DetailType;
   const {
@@ -49,7 +41,6 @@ const Participate = () => {
     title,
     goal_num,
     state_num,
-    state_price,
     ended_time,
     unit,
     base_price,
@@ -57,35 +48,8 @@ const Participate = () => {
 
   console.log(state);
 
-  const [quantity, setQuantity] = useState(0);
-
-  const openModalHandler = () => {
-    console.log("삭제 모달");
-    dispatch(modalActions.modal());
-  };
-
-  const checkButtonHandler = () => {
-    console.log("확인 버튼");
-    navigate(-1);
-  };
-
-  const cancelButtonHandler = () => {
-    console.log("취소 버튼");
-    dispatch(modalActions.modal());
-  };
-
   return (
     <Container>
-      {/* <ProductModal
-        modalTitle="해당 공동 구매에 참여하시겠습니까?"
-        visible={isVisible}
-        onCheck={checkButtonHandler}
-        onCancel={cancelButtonHandler}
-        image_uri={image_uri}
-        title={title}
-        state_price={state_price}
-        quantity={quantity}
-      /> */}
       <ParticipateContainer>
         {/* {data && (
           <ProductDetail
@@ -111,15 +75,7 @@ const Participate = () => {
           ended_time={ended_time}
           unit={unit}
         />
-        <ParticipateInfo
-          // onOpenModal={openModalHandler}
-          // quantity={quantity}
-          // setUserNickname={setUserNickname}
-          // unit={unit}
-          // setQuantity={setQuantity}
-          base_price={base_price}
-          goal_num={goal_num}
-        />
+        <ParticipateInfo base_price={base_price} goal_num={goal_num} />
       </ParticipateContainer>
     </Container>
   );

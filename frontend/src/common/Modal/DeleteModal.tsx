@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { DeleteModalType } from "../../types/Modal";
+import { useAppDispatch } from "../../hooks/Redux";
+import { closeModal } from "../../redux/modalSlice";
 import { BlueButton, GrayButton } from "../Button/BorderButton";
 import Modal from "./Modal";
 
@@ -19,13 +21,27 @@ const ButtonBox = styled.section`
   column-gap: 2em;
 `;
 
-const DeleteModal = ({ visible, onDelete, onCancel }: DeleteModalType) => {
+const DeleteModal = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const deleteButtonHandler = () => {
+    console.log("삭제 버튼");
+    dispatch(closeModal());
+    navigate(-1);
+  };
+
+  const cancelButtonHandler = () => {
+    console.log("삭제 취소 버튼");
+    dispatch(closeModal());
+  };
+
   return (
-    <Modal visible={visible} customModalStyle={customModalStyle}>
+    <Modal customModalStyle={customModalStyle}>
       <div>작성하신 글을 삭제하시겠습니까?</div>
       <ButtonBox>
-        <BlueButton onClick={onDelete}>삭제</BlueButton>
-        <GrayButton onClick={onCancel}>취소</GrayButton>
+        <BlueButton onClick={deleteButtonHandler}>삭제</BlueButton>
+        <GrayButton onClick={cancelButtonHandler}>취소</GrayButton>
       </ButtonBox>
     </Modal>
   );
