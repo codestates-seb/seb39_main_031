@@ -24,6 +24,8 @@ public interface ProductMapper {
     @Mapping(target = "town", source = "address.town")
     ProductResponseDto.GetDetail productToProductResponseGetDetailDto(Product product);
 
+    @Mapping(target = "region", source = "address.region")
+    @Mapping(target = "town", source = "address.town")
     ProductResponseDto.GetList productToProductResponseGetListDto(Product product);
 
     List<ProductResponseDto.GetList> productListToProductResponseGetListsDto(List<Product> productList);
