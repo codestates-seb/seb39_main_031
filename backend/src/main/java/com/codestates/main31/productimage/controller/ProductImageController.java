@@ -1,4 +1,4 @@
-package com.codestates.main31.productimage.Controller;
+package com.codestates.main31.productimage.controller;
 
 import com.codestates.main31.dto.SingleResponseDto;
 import com.codestates.main31.productimage.handler.S3Handler;
