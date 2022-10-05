@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ProductResponseDto {
 
@@ -34,6 +35,8 @@ public class ProductResponseDto {
         private String region;
 
         private String town;
+
+        private List<String> productImg;
 
     }
 
@@ -66,6 +69,8 @@ public class ProductResponseDto {
         private String town;
 
         private String category;
+
+        private List<String> productImg;
 
     }
 
