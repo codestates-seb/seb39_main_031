@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
-import { ModalType } from "../../types/Modal";
-
-const ModalWrapper = styled.div<{ visible?: boolean }>`
+const ModalWrapper = styled.div`
   width: 100%;
   height: 100%;
-  display: ${({ visible }) => (visible ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -53,9 +50,9 @@ const ModalContainer = styled.div<{ width?: string; height?: string }>`
   }
 `;
 
-const PasswordModal = (props: ModalType) => {
+const PasswordModal = () => {
   return (
-    <ModalWrapper visible={props.visible}>
+    <ModalWrapper>
       <ModalContainer>
         <div>
           <div className="top">

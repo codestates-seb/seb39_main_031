@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { categories } from "../../assets/Selector/SeletorOptions";
@@ -24,11 +25,23 @@ const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  column-gap: 50px;
 `;
 
 const WriteForm = () => {
+  const navigate = useNavigate();
+
   const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(event.target.value);
+  };
+
+  const writeButtonHandler = () => {
+    console.log("작성 버튼");
+  };
+
+  const cancelButtonHandler = () => {
+    console.log("취소 버튼");
+    navigate(-1);
   };
 
   return (
@@ -50,8 +63,17 @@ const WriteForm = () => {
       <SelectForm label1="지역" label2="동네" />
       <TextEditor />
       <ButtonContent>
-        <Button width="50%" height="2.5rem">
-          작성하기
+        <Button onClick={writeButtonHandler} width="150px" height="2.5rem">
+          작성
+        </Button>
+        <Button
+          backgroundColor="#BDBDBD"
+          hoverBackground="#9E9E9E"
+          onClick={cancelButtonHandler}
+          width="150px"
+          height="2.5rem"
+        >
+          취소
         </Button>
       </ButtonContent>
     </EditForm>
