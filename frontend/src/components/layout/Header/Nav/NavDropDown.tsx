@@ -10,11 +10,22 @@ import { removeCookie } from "../../../../config/Cookie";
 import { useAppDispatch } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import { loginActions } from "../../../../redux/loginSlice";
+import { Image } from "../../../../types/post";
 import LogoutBtn from "./LogoutBtn";
 import NavItem from "./NavItem";
 
 const Container = styled.div`
   position: relative;
+`;
+
+const ProfileImage = styled.div<Image>`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid ${(props) => props.theme.colors.cyan400};
+  background: url(${(props) => props.image});
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const DropDownBtn = styled.button`
@@ -45,6 +56,7 @@ const MenuBox = styled.div`
   background-color: ${(props) => props.theme.colors.white000};
   border: 1px solid ${(props) => props.theme.colors.black300};
   border-radius: 4px;
+  z-index: 999;
 `;
 
 const navs = [
@@ -67,6 +79,9 @@ const NavDropDown = ({ className }: Props) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isActive, setIsActive] = useOutsideClick(dropDownRef, btnRef, false);
 
+  //임시 프로필 이미지
+  const image_uri = "https://source.unsplash.com/80x80/?cat";
+
   const dispatch = useAppDispatch();
 
   const logoutHandler = () => {
@@ -82,7 +97,11 @@ const NavDropDown = ({ className }: Props) => {
   return (
     <Container>
       <DropDownBtn ref={btnRef} onClick={navClickHandler}>
-        <FaUserCircle className={className} />
+        {image_uri ? (
+          <ProfileImage image={image_uri} />
+        ) : (
+          <FaUserCircle className={className} />
+        )}
       </DropDownBtn>
       {isActive && (
         <MenuBox ref={dropDownRef}>
