@@ -46,7 +46,7 @@ export const MenuLink = styled(NavLink)`
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 22px;
 
   &.main {
     color: white !important;
