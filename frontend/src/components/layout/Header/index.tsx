@@ -2,8 +2,8 @@
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
 
-import logo from "../../../assets/Image/logo2.png";
-import logoW from "../../../assets/Image/logo2-w.png";
+import logo from "../../../assets/Image/logo/logo.png";
+import logoB from "../../../assets/Image/logo/logo-b.png";
 import { useAppSelector } from "../../../hooks/Redux";
 import Notification from "../../Notification";
 import NavDropDown from "./Nav/NavDropDown";
@@ -24,7 +24,7 @@ const Header = () => {
             <S.LeftBox>
               <S.Logo>
                 <Link to="/">
-                  <S.LogoImage src={logoW} />
+                  <S.LogoImage src={logo} />
                 </Link>
               </S.Logo>
               <S.MenuBox>
@@ -67,7 +67,7 @@ const Header = () => {
           <S.LeftBox>
             <S.Logo>
               <Link to="/">
-                <S.LogoImage src={logo} />
+                <S.LogoImage src={logoB} />
               </Link>
             </S.Logo>
             <S.MenuBox>

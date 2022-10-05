@@ -46,7 +46,7 @@ export const MenuLink = styled(NavLink)`
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 22px;
 
   &.main {
     color: white !important;
@@ -77,11 +77,12 @@ export const RightBox = styled.nav`
   margin: 0 10px;
 
   .icon {
-    font-size: 30px;
+    font-size: 28px;
     color: ${(props) => props.theme.colors.black900};
   }
 
   .main {
+    font-size: 30px;
     color: ${(props) => props.theme.colors.white000};
   }
 `;

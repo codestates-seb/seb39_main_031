@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import DeleteModal from "../../../common/Modal/DeleteModal";
 import CloseDisplay from "../../../components/Detail/CloseDisplay";
 import { PublisherContent } from "../../../components/Detail/DetailContent";
 import DetailStats from "../../../components/Detail/DetailStat";
@@ -10,8 +9,8 @@ import CloseButton from "../../../components/Detail/Publisher/CloseButton";
 import DeleteButton from "../../../components/Detail/Publisher/DeleteButton";
 import ModifyButton from "../../../components/Detail/Publisher/ModifyButton";
 import ParticipantList from "../../../components/Detail/Publisher/ParticipantList";
-import { useAppDispatch, useAppSelector } from "../../../hooks/Redux";
-import { modalActions } from "../../../redux/modalSlice";
+import { useAppDispatch } from "../../../hooks/Redux";
+import { deleteModal } from "../../../redux/modalSlice";
 import { DetailType, Image } from "../../../types/post";
 
 const Title = styled.h1`
@@ -78,30 +77,14 @@ const Publisher = ({
   status,
 }: DetailType) => {
   const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
-  const isVisible = useAppSelector((state) => state.modal.modalVisible);
-
   const deleteModalHandler = () => {
-    console.log("삭제 모달");
-    dispatch(modalActions.modal());
-  };
-
-  const deleteButtonHandler = () => {
-    console.log("삭제 버튼");
-  };
-
-  const cancelButtonHandler = () => {
-    console.log("삭제 취소 버튼");
-    dispatch(modalActions.modal());
+    dispatch(deleteModal({ modalType: "deleteModal", isVisible: true }));
   };
 
   return (
     <>
-      <DeleteModal
-        visible={isVisible}
-        onDelete={deleteButtonHandler}
-        onCancel={cancelButtonHandler}
-      />
       <Title>{title}</Title>
       <Main>
         <Aside>
