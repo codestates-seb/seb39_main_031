@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ProductModalInfo } from "../../../types/Modal";
+import { useAppSelector } from "../../../hooks/Redux";
 import { Image } from "../../../types/post";
 
 const Container = styled.main`
@@ -65,23 +65,16 @@ const Content = styled.section`
   }
 `;
 
-const ProductInfo = ({
-  image_uri,
-  title,
-  state_price,
-  userNickname,
-  quantity,
-}: ProductModalInfo) => {
+const ProductInfo = () => {
+  const info = useAppSelector((state) => state.modal.notjoinProps);
+  const { image_uri, title, state_price, quantity } = info;
+
   return (
     <Container>
       <ImageBox image={image_uri} />
       <InfoBox>
         <Title>{title}</Title>
         <Content>
-          <div>
-            <span className="label">닉네임</span>
-            <span className="value">{userNickname}</span>
-          </div>
           <div>
             <span className="label">수량</span>
             <span className="value">{quantity}</span>

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import CloseDisplay from "../../../components/Detail/CloseDisplay";
@@ -38,7 +38,7 @@ const Section = styled.section`
 const ImageBox = styled.div<Image>`
   width: 100%;
   height: 400px;
-  background: url(${props => props.image});
+  background: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;
@@ -66,7 +66,7 @@ const Participant = ({
   base_price,
 }: DetailType) => {
   const navigate = useNavigate();
-  const { isLogin } = useAppSelector(state => state.login);
+  const { isLogin } = useAppSelector((state) => state.login);
 
   const onClickHandler = () => {
     // TODO: 단위, 단위 가격(임의로 state_price 사용) 필요

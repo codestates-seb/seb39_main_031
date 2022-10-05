@@ -1,10 +1,7 @@
 import { GrayButton } from "../../../common/Button/BorderButton";
+import { ButtonType } from "../../../types/Button";
 
-interface Props {
-  onClick: () => void;
-}
-
-const DeleteButton = ({ onClick }: Props) => {
+const DeleteButton = ({ onClick }: ButtonType) => {
   return (
     <GrayButton width="50%" height="2.5em" onClick={onClick}>
       삭제

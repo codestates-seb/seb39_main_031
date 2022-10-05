@@ -6,10 +6,9 @@ import { FaRegHandshake, FaUserCircle } from "react-icons/fa";
 import { HiOutlineHeart } from "react-icons/hi";
 import styled from "styled-components";
 
-import { removeCookie } from "../../../../config/Cookie";
 import { useAppDispatch } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
-import { loginActions } from "../../../../redux/loginSlice";
+import { openModal } from "../../../../redux/modalSlice";
 import { Image } from "../../../../types/post";
 import LogoutBtn from "./LogoutBtn";
 import NavItem from "./NavItem";
@@ -67,7 +66,7 @@ const navs = [
     className: "edit",
   },
   { label: "회원정보", path: "/user", icon: <AiOutlineUser /> },
-  { label: "참여현황", path: "/participate", icon: <FaRegHandshake /> },
+  { label: "참여현황", path: "/current", icon: <FaRegHandshake /> },
   { label: "관심목록", path: "/favorite", icon: <HiOutlineHeart /> },
 ];
 
@@ -84,10 +83,8 @@ const NavDropDown = ({ className }: Props) => {
 
   const dispatch = useAppDispatch();
 
-  const logoutHandler = () => {
-    dispatch(loginActions.logout());
-    removeCookie("userInfo");
-    window.location.replace("/");
+  const logoutModalHandler = () => {
+    dispatch(openModal({ modalType: "logoutModal", isVisible: true }));
   };
 
   const navClickHandler = () => {
@@ -120,7 +117,7 @@ const NavDropDown = ({ className }: Props) => {
           <LogoutBtn
             onClick={() => {
               navClickHandler();
-              logoutHandler();
+              logoutModalHandler();
             }}
           />
         </MenuBox>

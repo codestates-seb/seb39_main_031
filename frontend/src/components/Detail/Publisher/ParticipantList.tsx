@@ -27,13 +27,13 @@ const List = styled.li`
 
   &.title {
     font-weight: 900;
-    border-top: 2px solid ${(props) => props.theme.colors.black300};
-    border-bottom: 2px solid ${(props) => props.theme.colors.black300};
+    border-top: 1px solid ${(props) => props.theme.colors.black300};
+    border-bottom: 1px solid ${(props) => props.theme.colors.black300};
   }
 
   &.total {
     font-weight: 900;
-    border-top: 2px solid ${(props) => props.theme.colors.black300};
+    border-top: 1px solid ${(props) => props.theme.colors.black300};
   }
 
   & > .name {

@@ -15,11 +15,14 @@ const Fill = styled.div<FilledBar>`
 `;
 
 const ProgressBar = ({ state_num, goal_num }: Progress) => {
-  const percentage = `${Math.round((state_num / goal_num) * 100)}%`;
+  const percentage =
+    Math.round((state_num / goal_num) * 100) > 100
+      ? 100
+      : Math.round((state_num / goal_num) * 100);
 
   return (
     <Container>
-      <Fill width={percentage} />
+      <Fill width={`${percentage}%`} />
     </Container>
   );
 };
