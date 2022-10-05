@@ -8,7 +8,7 @@ import { useAppDispatch } from "../../hooks/Redux";
 import { joinModal } from "../../redux/modalSlice";
 import { participate_Info } from "../../types/participate";
 
-const InfoContainer = styled.div`
+const InfoContainer = styled.form`
   width: 100%;
   padding: 24px;
 `;
@@ -75,7 +75,6 @@ const ParticipateInfo = (props: participate_Info) => {
     //   return alert("수량을 입력해주세요");
     // }
 
-    //TODO: 버튼 onClick 이벤트 수정
     dispatch(joinModal({ modalType: "joinModal", isVisible: true }));
   };
 
@@ -146,13 +145,7 @@ const ParticipateInfo = (props: participate_Info) => {
         </TotalPrice>
 
         <ButtonContent>
-          <Button
-            width="50%"
-            height="2.5rem"
-            onClick={() =>
-              dispatch(joinModal({ modalType: "joinModal", isVisible: true }))
-            }
-          >
+          <Button width="50%" height="2.5rem">
             참여하기
           </Button>
         </ButtonContent>
