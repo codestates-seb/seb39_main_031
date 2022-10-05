@@ -7,16 +7,21 @@ import com.codestates.main31.product.entity.Product;
 import com.codestates.main31.product.mapper.ProductMapper;
 import com.codestates.main31.product.repository.ProductSpecification;
 import com.codestates.main31.product.service.ProductService;
+import com.codestates.main31.user.auth.filter.entity.PrincipalDetails;
+import com.codestates.main31.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+
+import static com.amazonaws.services.ec2.model.PrincipalType.User;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,9 +34,11 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductResponseDto.GetDetail> createProduct(
+            @AuthenticationPrincipal PrincipalDetails principalDetails,
             @RequestPart ProductRequestDto.Post postDto,
             @RequestPart("file") List<MultipartFile> file) throws IOException {
-        Product savedProduct = productService.createProduct(productMapper.productRequestPostDtoToProduct(postDto), file);
+        com.codestates.main31.user.entity.User user = principalDetails.getUser();
+        Product savedProduct = productService.createProduct(productMapper.productRequestPostDtoToProduct(postDto),user,file);
         return new ResponseEntity<>(productMapper.productToProductResponseGetDetailDto(savedProduct), HttpStatus.CREATED);
     }
 

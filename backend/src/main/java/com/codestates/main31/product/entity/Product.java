@@ -3,6 +3,7 @@ package com.codestates.main31.product.entity;
 import com.codestates.main31.address.Address;
 import com.codestates.main31.category.entity.Category;
 import com.codestates.main31.productimage.entity.ProductImage;
+import com.codestates.main31.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -69,12 +70,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<ProductImage> productImg;
 
-    /**
-     * Todo: Security 후 적용 예정
-     */
-//    @ManyToOne
-//    @JoinColumn(name = "userId")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
     public Product addProductImage(List<ProductImage> productImageList) {
         this.productImg = productImageList;

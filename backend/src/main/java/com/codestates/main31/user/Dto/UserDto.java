@@ -1,6 +1,7 @@
 package com.codestates.main31.user.Dto;
 
 import com.codestates.main31.address.Address;
+import com.codestates.main31.product.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -29,6 +30,8 @@ public class UserDto {
 
         private String password;
 
-        private long addressId;
+        private String region;
+
+        private String town;
     }
 }

@@ -11,6 +11,7 @@ import com.codestates.main31.product.repository.ProductRepository;
 import com.codestates.main31.productimage.entity.ProductImage;
 import com.codestates.main31.productimage.handler.ImageHandler;
 import com.codestates.main31.productimage.handler.S3Handler;
+import com.codestates.main31.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -42,10 +43,10 @@ public class ProductService {
 
     private final S3Handler s3Handler;
 
-    public Product createProduct(Product product, List<MultipartFile> file) throws IOException {
+    public Product createProduct(Product product, User user, List<MultipartFile> file) throws IOException {
         product.setCategory(findCategory(product.getCategory().getCategory()));
         product.setAddress(findAddress(product));
-
+        product.setUser(user);
         Product parseProduct = parseContextAndSaveImage(product);
         Product savedProduct = productRepository.save(parseProduct);
         List<ProductImage> productImageList = imageHandler.parseImage(file);

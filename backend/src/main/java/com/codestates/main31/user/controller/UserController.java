@@ -46,8 +46,8 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity getUserByEmail(@AuthenticationPrincipal UserDetails userdetails) {
-        User result = userService.findByEmail(userdetails.getUsername());
+    public ResponseEntity getUserByEmail(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        User result = principalDetails.getUser();
         Map<String, Object> map = new HashMap<>();
         map.put("result",result);
         return new ResponseEntity<Map>(map, HttpStatus.OK);
@@ -57,14 +57,14 @@ public class UserController {
     public ResponseEntity<UserDto.Response> postUser(@RequestBody UserDto.Post postUser) {
         User user = mapper.userPostDtoToUser(postUser);
         user.setGeneratedTime(Timestamp.valueOf(LocalDateTime.now()));
-        Address address = addressService.findAddress(postUser.getAddressId());
+        Address address = addressService.findAddressByRegionAndTown(postUser.getRegion(), postUser.getTown());
         user.setAddress(address);
         User savedUser = userService.postUser(user);
         return new ResponseEntity<>(mapper.userToUserResponseDto(savedUser), HttpStatus.CREATED);
     }
 
     @PostMapping("/{email}/find")
-    public ResponseEntity<UserDto.Response> postUser(@PathVariable("email") String email) {
+    public ResponseEntity<UserDto.Response> findUser(@PathVariable("email") String email) {
         User resetUser = userService.findPassword(email);
         return new ResponseEntity<>(mapper.userToUserResponseDto(resetUser), HttpStatus.CREATED);
     }

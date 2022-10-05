@@ -5,12 +5,16 @@ import com.codestates.main31.exception.ExceptionCode;
 import com.codestates.main31.product.entity.Product;
 import com.codestates.main31.product.entity.ProductState;
 import com.codestates.main31.product.repository.ProductRepository;
+import com.codestates.main31.scoredBoard.ScoreBoardService;
 import com.codestates.main31.user.entity.User;
 import com.codestates.main31.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -22,14 +26,20 @@ public class EnteredUserService {
 
     ProductRepository productRepository;
 
+    ScoreBoardService scoreUser;
 
 
 
-    public EnteredUser newEnterUser(String user_Email, long product_id, int amount) {
+    public EnteredUser newEnterUser(long user_id, long product_id, int amount) {
 
-        User user = userRepository.findByEmail(user_Email).orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+        User user = userRepository.findById(user_id).orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
         Product product = productRepository.findById(product_id).orElseThrow(() -> new BusinessLogicException(ExceptionCode.PRODUCT_NOT_FOUND));
-        // RiskAssessment data = RiskAssessment.builder(
+//        if(product.getGoalQuantity() < product.getStateQuantity()+amount){
+//            throw new BusinessLogicException(ExceptionCode.MORE_THAN_GOAL_QUANTITY);
+//        }
+        if(product.getState()!=ProductState.PROCEED){
+            throw new BusinessLogicException(ExceptionCode.NOT_APPROPRIATE_STATE);
+        }
         EnteredUser event = EnteredUser.builder()
                 .user(user)
                 .product(product)
@@ -43,13 +53,13 @@ public class EnteredUserService {
         return event;
     }
 
-    public List<EnteredUser> findAllByProductEmail (String email) {
-            User user = userRepository.findByEmail(email).orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+    public List<EnteredUser> findAllByProductEmail (long user_id) {
+            User user = userRepository.findById(user_id).orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
             return repository.findAllByEnteredId(user.getUserId());
         }
 
-    public List<EnteredUser> findAllByEmail(String email){
-            User user = userRepository.findByEmail(email).orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+    public List<EnteredUser> findAllByEmail(long user_id){
+            User user = userRepository.findById(user_id).orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
             return repository.findAllByEnteredId(user.getUserId());
         }
 
@@ -83,15 +93,35 @@ public class EnteredUserService {
         return event;
     }
 
-    public EnteredUser rateEvent(long event_id, int Score){
+    public Map<String, Object> rateEvent(long event_id, int score){
         EnteredUser event = repository.findById(event_id).orElseThrow(() -> new BusinessLogicException(ExceptionCode.EVENT_NOT_FOUND));
-        event.setScore(Score);
+        event.setScore(score);
         event.setStatus(EnteredStatus.평가완료);
-        return event;
+        repository.save(event);
+        User postUser = event.getProduct().getUser();
+        float finalScore = scoreUser.avgScore(postUser, event.getUser(), event.getProduct(),score);
+        postUser.setAvgScore(finalScore);
+        userRepository.save(postUser);
+        Map<String, Object> result = new HashMap<>();
+        result.put("rate", event);
+        result.put("rated_user", postUser);
+        return result;
     }
+
 
     public List<EnteredUser> findAllByProductId(long product_id){
         return repository.findAllByProductId(product_id);
+    }
+
+    public EnteredUser cancelEvent(long event_id) {
+        EnteredUser enteredUser = repository.findById(event_id).orElseThrow( ()-> new BusinessLogicException(ExceptionCode.EVENT_NOT_FOUND));
+        Product product = enteredUser.getProduct();
+        enteredUser.setDeleteState(true);
+        repository.save(enteredUser);
+        product.setStateQuantity(product.getStateQuantity()-enteredUser.getAmount());
+        productRepository.save(product);
+
+        return enteredUser;
     }
 
 
