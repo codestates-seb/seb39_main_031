@@ -6,10 +6,9 @@ import { FaRegHandshake, FaUserCircle } from "react-icons/fa";
 import { HiOutlineHeart } from "react-icons/hi";
 import styled from "styled-components";
 
-import { removeCookie } from "../../../../config/Cookie";
 import { useAppDispatch } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
-import { loginActions } from "../../../../redux/loginSlice";
+import { openModal } from "../../../../redux/modalSlice";
 import LogoutBtn from "./LogoutBtn";
 import NavItem from "./NavItem";
 
@@ -69,10 +68,11 @@ const NavDropDown = ({ className }: Props) => {
 
   const dispatch = useAppDispatch();
 
-  const logoutHandler = () => {
-    dispatch(loginActions.logout());
-    removeCookie("userInfo");
-    window.location.replace("/");
+  const logoutModalHandler = () => {
+    dispatch(openModal({ modalType: "logoutModal", isVisible: true }));
+    // dispatch(loginActions.logout());
+    // removeCookie("userInfo");
+    // window.location.replace("/");
   };
 
   const navClickHandler = () => {
@@ -101,7 +101,7 @@ const NavDropDown = ({ className }: Props) => {
           <LogoutBtn
             onClick={() => {
               navClickHandler();
-              logoutHandler();
+              logoutModalHandler();
             }}
           />
         </MenuBox>

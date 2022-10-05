@@ -16,7 +16,7 @@ const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
-    passwordModal: (state, actions) => {
+    openModal: (state, actions) => {
       const { modalType } = actions.payload;
       state.modalType = modalType;
       state.isVisible = true;
@@ -63,7 +63,7 @@ const modalSlice = createSlice({
 });
 
 export const {
-  passwordModal,
+  openModal,
   notjoinModal,
   joinModal,
   deleteModal,

@@ -5,6 +5,7 @@ import { closeModal } from "../../redux/modalSlice";
 import DeleteModal from "./DeleteModal";
 import EndModal from "./EndModal";
 import JoinModal from "./JoinModal";
+import LogoutModal from "./LogoutModal";
 import NotjoinModal from "./NotJoinModal/NotjoinModal";
 import PasswordModal from "./PasswordModal";
 import RatingModal from "./RatingModal";
@@ -30,6 +31,7 @@ const MODAL_COMPONENTS = [
   { type: "deleteModal", component: <DeleteModal /> },
   { type: "ratingModal", component: <RatingModal /> },
   { type: "joinModal", component: <JoinModal /> },
+  { type: "logoutModal", component: <LogoutModal /> },
 ];
 
 const GlobalModal = () => {

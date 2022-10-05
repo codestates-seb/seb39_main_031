@@ -7,7 +7,7 @@ import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
 import UserFormHeader from "../../components/layout/Header/userFormHeader";
 import { useAppDispatch } from "../../hooks/Redux";
-import { closeModal, passwordModal } from "../../redux/modalSlice";
+import { closeModal, openModal } from "../../redux/modalSlice";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -62,7 +62,7 @@ const Password = () => {
       return alert("이메일을 입력해주세요");
     }
 
-    dispatch(passwordModal({ modalType: "passwordModal", isVisible: true }));
+    dispatch(openModal({ modalType: "passwordModal", isVisible: true }));
 
     setTimeout(() => {
       navigation("/login");
