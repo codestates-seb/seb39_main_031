@@ -18,6 +18,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,7 +61,7 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public Page<Product> readProductsList(int page, int size, Specification<Product> spec) {
-        return productRepository.findAll(spec, PageRequest.of(page-1, size));
+        return productRepository.findAll(spec, PageRequest.of(page-1, size, Sort.Direction.DESC, "productId"));
     }
 
     // Todo: 작성자를 제외한 인원은 수정 불가능
