@@ -44,15 +44,16 @@ public class ProductService {
 
     private final S3Handler s3Handler;
 
-    public Product createProduct(Product product, User user, List<MultipartFile> file) throws IOException {
+    public Product createProduct(Product product, ProductImage productImage, User user) throws IOException {
         product.setCategory(findCategory(product.getCategory().getCategory()));
         product.setAddress(findAddress(product));
         product.setUser(user);
+        product.addProductImage(productImage);
         Product parseProduct = parseContextAndSaveImage(product);
         Product savedProduct = productRepository.save(parseProduct);
-        List<ProductImage> productImageList = imageHandler.parseImage(file);
+//        List<ProductImage> productImageList = imageHandler.parseImage(file);
 
-        return savedProduct.addProductImage(productImageList);
+        return savedProduct;
     }
 
     @Transactional(readOnly = true)

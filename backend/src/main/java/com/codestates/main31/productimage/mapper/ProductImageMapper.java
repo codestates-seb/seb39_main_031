@@ -2,6 +2,7 @@ package com.codestates.main31.productimage.mapper;
 
 import com.codestates.main31.productimage.entity.ProductImage;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -15,4 +16,7 @@ public interface ProductImageMapper {
     default String productImageResponseDtoTosavePathString(ProductImage productImage){
         return productImage.getSavedPath();
     }
+    @Mapping(source = "savedPath", target = "savedPath")
+    ProductImage savedPathStringToProductImage(String savedPath);
+
 }

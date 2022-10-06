@@ -20,9 +20,14 @@ public class ProductImageController {
     @Value("${cloud.aws.s3.tempPath}")
     private String tempPath;
 
+    @Value("${cloud.aws.s3.titlePath}")
+    private String titlePath;
+
     @PostMapping("/image/upload")
-    public ResponseEntity<SingleResponseDto<String>> uploadImage(@RequestParam("file") MultipartFile multipartFile) throws Exception {
-        return new ResponseEntity<>(new SingleResponseDto<>(s3Handler.uploadImage(multipartFile, tempPath)), HttpStatus.CREATED);
+    public ResponseEntity<SingleResponseDto<String>> uploadImage(@RequestParam String type,
+                                                                 @RequestParam("file") MultipartFile multipartFile) throws Exception {
+        String path = type.equals("editor") ? tempPath : type.equals("title") ? titlePath : null;
+        return new ResponseEntity<>(new SingleResponseDto<>(s3Handler.uploadImage(multipartFile, path)), HttpStatus.CREATED);
     }
 
 }

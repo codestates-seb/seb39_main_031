@@ -32,6 +32,8 @@ public class ProductRequestDto {
 
         private LocalDateTime endedTime;
 
+        private String productImage;
+
     }
 
 
