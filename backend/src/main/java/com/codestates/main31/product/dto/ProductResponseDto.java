@@ -23,6 +23,8 @@ public class ProductResponseDto {
 
         private LocalDateTime endedTime;
 
+        private LocalDateTime generatedTime;
+
         private Integer goalQuantity;
 
         private int stateQuantity;
@@ -43,6 +45,8 @@ public class ProductResponseDto {
 
         private String username;
 
+        private String profileUrl;
+
     }
 
     @Getter
@@ -58,6 +62,8 @@ public class ProductResponseDto {
         private String body;
 
         private LocalDateTime endedTime;
+
+        private LocalDateTime generatedTime;
 
         private Integer goalQuantity;
 
@@ -80,6 +86,8 @@ public class ProductResponseDto {
         private long userId;
 
         private String username;
+
+        private String profileUrl;
 
         private List<ProductEnteredUserDTO> enteredUser;
 
