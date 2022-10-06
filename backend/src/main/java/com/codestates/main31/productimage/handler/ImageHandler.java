@@ -31,7 +31,6 @@ public class ImageHandler {
                 String savedPath = s3Handler.uploadImage(multipartFile, titlePath);
 
                 ProductImage productImage = ProductImage.builder()
-                        .originName(originName)
                         .savedPath(savedPath)
                         .build();
                 productImageList.add(productImage);

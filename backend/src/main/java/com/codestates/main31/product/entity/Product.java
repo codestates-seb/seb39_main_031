@@ -14,6 +14,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -69,7 +70,7 @@ public class Product {
     private Category category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<ProductImage> productImg;
+    private List<ProductImage> productImg = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "userId")
@@ -83,6 +84,11 @@ public class Product {
         productImageList.forEach(productImage -> productImage.setProduct(this));
 
         return this;
+    }
+
+    public void addProductImage(ProductImage productImage) {
+        productImage.setProduct(this);
+        this.productImg.add(productImage);
     }
 
     public void addEnteredUser(EnteredUser enteredUser) {
