@@ -19,6 +19,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @RestController
 @RequiredArgsConstructor
@@ -46,6 +47,15 @@ public class ProductController {
         ProductResponseDto.GetDetail getDetail = productMapper.productToProductResponseGetDetailDto(readProduct);
         getDetail.getEnteredUser().forEach(enteredUser -> enteredUser.setTotalPrice(enteredUser.getAmount() * getDetail.getUnitPerPrice()));
         return new ResponseEntity<>(getDetail, HttpStatus.OK);
+    }
+
+    @GetMapping("/deadline")
+    public MultiResponseDto<ProductResponseDto.GetList> readProductsListWithinDeadline(@RequestParam int page,
+                                                                         @RequestParam(defaultValue = "9", required = false) int size) {
+
+        Specification<Product> spec = (root, query, builder) -> builder.greaterThan(root.get("endedTime"), LocalDateTime.now());
+        Page<Product> readProductsList = productService.readProductsListWithinDeadline(page, size, spec);
+        return productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);
     }
 
     @GetMapping

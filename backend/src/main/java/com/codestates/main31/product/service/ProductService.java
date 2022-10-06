@@ -66,6 +66,11 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page-1, size, Sort.Direction.DESC, "productId"));
     }
 
+    @Transactional(readOnly = true)
+    public Page<Product> readProductsListWithinDeadline(int page, int size, Specification<Product> spec) {
+        return productRepository.findAll(spec, PageRequest.of(page-1, size, Sort.Direction.ASC, "endedTime"));
+    }
+
     // Todo: 작성자를 제외한 인원은 수정 불가능
     public Product updateProduct(Long productId, Product newProduct) {
         Product curProduct = findProduct(productId);
