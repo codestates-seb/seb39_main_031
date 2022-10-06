@@ -2,6 +2,7 @@ package com.codestates.main31.product.entity;
 
 import com.codestates.main31.address.Address;
 import com.codestates.main31.category.entity.Category;
+import com.codestates.main31.entereduser.EnteredUser;
 import com.codestates.main31.productimage.entity.ProductImage;
 import com.codestates.main31.user.entity.User;
 import lombok.AllArgsConstructor;
@@ -74,11 +75,18 @@ public class Product {
     @JoinColumn(name = "userId")
     private User user;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<EnteredUser> enteredUser;
+
     public Product addProductImage(List<ProductImage> productImageList) {
         this.productImg = productImageList;
         productImageList.forEach(productImage -> productImage.setProduct(this));
 
         return this;
+    }
+
+    public void addEnteredUser(EnteredUser enteredUser) {
+        this.enteredUser.add(enteredUser);
     }
 
 }

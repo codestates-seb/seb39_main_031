@@ -49,6 +49,7 @@ public class EnteredUserService {
                 .build();
         repository.save(event);
         product.setStateQuantity(product.getStateQuantity()+amount);
+        product.addEnteredUser(event);
         productRepository.save(product);
         return event;
     }
