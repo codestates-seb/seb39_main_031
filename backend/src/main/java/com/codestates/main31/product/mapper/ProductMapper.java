@@ -1,6 +1,8 @@
 package com.codestates.main31.product.mapper;
 
 import com.codestates.main31.dto.MultiResponseDto;
+import com.codestates.main31.entereduser.EnteredUser;
+import com.codestates.main31.entereduser.ProductEnteredUserDTO;
 import com.codestates.main31.product.dto.ProductRequestDto;
 import com.codestates.main31.product.dto.ProductResponseDto;
 import com.codestates.main31.product.entity.Product;
@@ -39,4 +41,7 @@ public interface ProductMapper {
         List<ProductResponseDto.GetList> getDatas = productListToProductResponseGetListsDto(productPage.getContent());
         return new MultiResponseDto<>(getDatas, productPage);
     }
+
+    @Mapping(source = "user.username", target = "username")
+    ProductEnteredUserDTO enteredUserToProductEnteredUserDTO(EnteredUser enteredUser);
 }

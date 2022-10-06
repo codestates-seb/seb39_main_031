@@ -1,5 +1,6 @@
 package com.codestates.main31.product.dto;
 
+import com.codestates.main31.entereduser.ProductEnteredUserDTO;
 import com.codestates.main31.product.entity.ProductState;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -79,6 +80,8 @@ public class ProductResponseDto {
         private long userId;
 
         private String username;
+
+        private List<ProductEnteredUserDTO> enteredUser;
 
     }
 
