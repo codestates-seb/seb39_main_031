@@ -1,4 +1,4 @@
-package com.codestates.main31.notice.service;
+package com.codestates.main31.notice.repository.service;
 
 import com.codestates.main31.exception.BusinessLogicException;
 import com.codestates.main31.exception.ExceptionCode;

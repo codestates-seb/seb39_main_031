@@ -2,14 +2,14 @@ package com.codestates.main31.entereduser;
 
 import com.codestates.main31.product.entity.Product;
 import com.codestates.main31.user.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
 @Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class PostEnteredUserDTO {
 

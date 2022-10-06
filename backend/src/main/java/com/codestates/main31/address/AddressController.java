@@ -10,13 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/address")
 public class AddressController {
-    private AddressService addressService;
+    private final AddressService addressService;
 
-    public AddressController(AddressService addressService) {
-        this.addressService = addressService;
-    }
+//    public AddressController(AddressService addressService) {
+//        this.addressService = addressService;
+//    }
 
 
     @GetMapping("/reg/{region}")

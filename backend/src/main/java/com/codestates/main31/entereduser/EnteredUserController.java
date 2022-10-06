@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -16,17 +15,16 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/EnteredUser")
 @RequiredArgsConstructor
+@RequestMapping("/EnteredUser")
 public class EnteredUserController {
 
-    private EnteredUserService service;
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
-
+    private final EnteredUserService service;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
     // 새 공구 참여
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity postEnteredUser(@AuthenticationPrincipal PrincipalDetails principalDetails ,@RequestBody PostEnteredUserDTO dto) {
         EnteredUser result = service.newEnterUser(principalDetails.getUser().getUserId(), dto.getProduct_id(), dto.getAmount());
         Map<String, Object> map = new HashMap<>();
@@ -51,7 +49,6 @@ public class EnteredUserController {
         map.put("result",result);
         return new ResponseEntity<Map>(map, HttpStatus.OK);
     }
-
 
     //모집 종료하기
     @PatchMapping("/close/{product_id}")

@@ -9,7 +9,6 @@ import com.codestates.main31.scoredBoard.ScoreBoardService;
 import com.codestates.main31.user.entity.User;
 import com.codestates.main31.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -20,26 +19,34 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class EnteredUserService {
 
-    EnteredUserRepository repository;
+    private final EnteredUserRepository repository;
 
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    ScoreBoardService scoreUser;
+    private final ScoreBoardService scoreUser;
 
 
 
     public EnteredUser newEnterUser(long user_id, long product_id, int amount) {
 
+        List<EnteredUser> checkEvent = repository.findByProductIdAndUserId(user_id,product_id);
+        if(checkEvent.size()!=0){
+            throw new BusinessLogicException(ExceptionCode.EVENT_EXIST);
+        }
         User user = userRepository.findById(user_id).orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+        System.out.println(user.getEmail());
         Product product = productRepository.findById(product_id).orElseThrow(() -> new BusinessLogicException(ExceptionCode.PRODUCT_NOT_FOUND));
+        System.out.println(product.getAddress().getTown() + "--" + product.getBody());
 //        if(product.getGoalQuantity() < product.getStateQuantity()+amount){
 //            throw new BusinessLogicException(ExceptionCode.MORE_THAN_GOAL_QUANTITY);
 //        }
+
         if(product.getState()!=ProductState.PROCEED){
             throw new BusinessLogicException(ExceptionCode.NOT_APPROPRIATE_STATE);
         }
+
         EnteredUser event = EnteredUser.builder()
                 .user(user)
                 .product(product)
