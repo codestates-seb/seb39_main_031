@@ -38,6 +38,10 @@ public class ProductResponseDto {
 
         private List<String> productImg;
 
+        private long userId;
+
+        private String username;
+
     }
 
     @Getter
@@ -71,6 +75,10 @@ public class ProductResponseDto {
         private String category;
 
         private List<String> productImg;
+
+        private long userId;
+
+        private String username;
 
     }
 

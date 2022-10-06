@@ -23,10 +23,14 @@ public interface ProductMapper {
     @Mapping(target = "category", source = "category.category")
     @Mapping(target = "region", source = "address.region")
     @Mapping(target = "town", source = "address.town")
+    @Mapping(target = "userId", source = "user.userId")
+    @Mapping(target = "username", source = "user.username")
     ProductResponseDto.GetDetail productToProductResponseGetDetailDto(Product product);
 
     @Mapping(target = "region", source = "address.region")
     @Mapping(target = "town", source = "address.town")
+    @Mapping(target = "userId", source = "user.userId")
+    @Mapping(target = "username", source = "user.username")
     ProductResponseDto.GetList productToProductResponseGetListDto(Product product);
 
     List<ProductResponseDto.GetList> productListToProductResponseGetListsDto(List<Product> productList);
