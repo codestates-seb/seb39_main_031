@@ -11,7 +11,7 @@ public class ProductEnteredUserDTO {
 
     private int amount;
 
-    private int score;
+    private long totalPrice;
 
     private String username;
 

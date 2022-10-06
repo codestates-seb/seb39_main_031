@@ -43,7 +43,9 @@ public class ProductController {
     @GetMapping("/{productId}")
     public ResponseEntity<ProductResponseDto.GetDetail> readProduct(@PathVariable Long productId) {
         Product readProduct = productService.readProduct(productId);
-        return new ResponseEntity<>(productMapper.productToProductResponseGetDetailDto(readProduct), HttpStatus.OK);
+        ProductResponseDto.GetDetail getDetail = productMapper.productToProductResponseGetDetailDto(readProduct);
+        getDetail.getEnteredUser().forEach(enteredUser -> enteredUser.setTotalPrice(enteredUser.getAmount() * getDetail.getUnitPerPrice()));
+        return new ResponseEntity<>(getDetail, HttpStatus.OK);
     }
 
     @GetMapping
