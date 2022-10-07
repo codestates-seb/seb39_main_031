@@ -49,7 +49,6 @@ const Participate = () => {
     title,
     goal_num,
     state_num,
-    state_price,
     ended_time,
     unit,
     base_price,

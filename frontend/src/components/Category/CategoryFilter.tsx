@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useRef } from "react";
 import styled from "styled-components";
 
@@ -13,7 +14,7 @@ const Container = styled.div`
   z-index: 1;
   padding: 15px 0 35px 0;
   margin: 15px 0 100px 0;
-  border-bottom: 1px solid ${(props) => props.theme.colors.black300};
+  border-bottom: 1px solid ${props => props.theme.colors.black300};
 `;
 
 const CategoryList = styled.div`
@@ -52,8 +53,8 @@ const RightBtnBox = styled.div`
 `;
 
 interface Props {
-  selected: number;
-  setSelected: React.Dispatch<React.SetStateAction<number>>;
+  selected: string;
+  setSelected: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CategoryFilter = ({ selected, setSelected }: Props) => {
@@ -95,8 +96,8 @@ const CategoryFilter = ({ selected, setSelected }: Props) => {
           return (
             <CategoryButton
               key={index}
-              className={selected === index ? "active" : ""}
-              onClick={() => setSelected(index)}
+              className={selected === item.label ? "active" : ""}
+              onClick={() => setSelected(item.label)}
               label={item.label}
               icon={item.icon}
             />

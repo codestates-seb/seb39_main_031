@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Editor } from "@toast-ui/react-editor";
 import { FormEvent, useRef, useState } from "react";
 import styled from "styled-components";
@@ -76,7 +77,7 @@ const EditForm = ({
       <CategorySelector
         lableText="카테고리"
         options={categories}
-        onChangeHandler={(e) => setECategory(e.target.value)}
+        onChangeHandler={e => setECategory(e.target.value)}
         selected={category}
       />
       <InputForm
@@ -84,7 +85,7 @@ const EditForm = ({
         lableText="상품명"
         type="text"
         marginBottom="2rem"
-        onChange={(e) => setETitle(e.target.value)}
+        onChange={e => setETitle(e.target.value)}
       />
       <EditImage image_uri={image_uri} setImageURI={setImageURI} />
       <InputForm lableText="단위" type="text" marginBottom="2rem" />
@@ -94,7 +95,7 @@ const EditForm = ({
         lableText="총수량"
         type="number"
         marginBottom="2rem"
-        onChange={(e) => setGoalNum(e.target.value)}
+        onChange={e => setGoalNum(e.target.value)}
       />
       <DateComponent>
         <InputForm
@@ -102,14 +103,14 @@ const EditForm = ({
           lableText="시작 날짜"
           type="date"
           width="48%"
-          onChange={(e) => setGeneratedTime(e.target.value)}
+          onChange={e => setGeneratedTime(e.target.value)}
         />
         <InputForm
           defaultValue={endedTime}
           lableText="종료 날짜"
           type="date"
           width="48%"
-          onChange={(e) => setEndedTime(e.target.value)}
+          onChange={e => setEndedTime(e.target.value)}
         />
       </DateComponent>
       <SelectForm

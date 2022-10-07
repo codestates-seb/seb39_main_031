@@ -10,10 +10,10 @@ import GlobalStyle from "./assets/style/GlobalStyle";
 import { theme } from "./assets/style/Theme";
 import store from "./redux/store";
 
-if (process.env.NODE_ENV === "development") {
-  const { worker } = require("./mocks/browser");
-  worker.start();
-}
+// if (process.env.NODE_ENV === "development") {
+//   const { worker } = require("./mocks/browser");
+//   worker.start();
+// }
 
 const queryClient = new QueryClient();
 

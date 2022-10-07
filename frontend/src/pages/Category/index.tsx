@@ -21,14 +21,15 @@ const Container = styled.div`
 const ProductListContent = styled.div``;
 
 const Category = () => {
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState("");
+  console.log(selected);
 
   return (
     <Page>
       <Container>
         <CategoryFilter selected={selected} setSelected={setSelected} />
         <ProductListContent>
-          <PreviewList />
+          <PreviewList selected={selected} />
         </ProductListContent>
       </Container>
     </Page>

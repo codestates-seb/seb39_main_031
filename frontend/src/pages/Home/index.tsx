@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import styled from "styled-components";
 
-import PreviewList from "../../components/Preview/PreviewList";
+import EndedProduct from "../../components/Home/EndedProduct";
 
 const Container = styled.div`
   width: 65%;
@@ -26,11 +26,11 @@ const Home = () => {
     <Container>
       <ListBlock className="favorite">
         <Title>인기 공구</Title>
-        <PreviewList />
+        <EndedProduct />
       </ListBlock>
       <ListBlock>
         <Title>마감임박 공구</Title>
-        <PreviewList />
+        <EndedProduct />
       </ListBlock>
     </Container>
   );

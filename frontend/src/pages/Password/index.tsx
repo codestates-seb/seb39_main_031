@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,6 +8,7 @@ import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
 import PasswordModal from "../../common/Modal/PasswordModal.tsx";
 import UserFormHeader from "../../components/layout/Header/userFormHeader";
+import { userPassword } from "../../config/API/api";
 import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { modalActions } from "../../redux/modalSlice";
 
@@ -56,6 +58,7 @@ const Password = () => {
 
   const [userEmail, setUserEmail] = useState<string>("");
   const isVible = useAppSelector(state => state.modal.modalVisible);
+  const { mutate } = useMutation((email: string) => userPassword(email));
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,12 +67,15 @@ const Password = () => {
       return alert("이메일을 입력해주세요");
     }
 
-    dispatch(modalActions.modal());
-
-    setTimeout(() => {
-      navigation("/login");
-      dispatch(modalActions.modal());
-    }, 3000);
+    mutate(userEmail, {
+      onSuccess: () => {
+        dispatch(modalActions.modal());
+        setTimeout(() => {
+          navigation("/login");
+          dispatch(modalActions.modal());
+        }, 3000);
+      },
+    });
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

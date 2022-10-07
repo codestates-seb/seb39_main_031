@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -51,7 +52,7 @@ const Section = styled.section`
 const ImageBox = styled.div<Image>`
   width: 100%;
   height: 400px;
-  background: url(${(props) => props.image});
+  background: url(${props => props.image});
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;
@@ -69,17 +70,18 @@ const Publisher = ({
   goal_num,
   state_num,
   image_uri,
-  goal_price,
-  state_price,
   title,
   body,
   generated_time,
   ended_time,
   status,
+  base_price,
+  enteredUser,
 }: DetailType) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isVisible = useAppSelector((state) => state.modal.modalVisible);
+  const isVisible = useAppSelector(state => state.modal.modalVisible);
+  const goal_price = goal_num * base_price;
 
   const deleteModalHandler = () => {
     console.log("삭제 모달");
@@ -109,7 +111,6 @@ const Publisher = ({
             ended_time={ended_time}
             goal_num={goal_num}
             state_num={state_num}
-            state_price={state_price}
             goal_price={goal_price}
             generated_time={generated_time}
           />
@@ -139,15 +140,15 @@ const Publisher = ({
             </DetailButton>
           </ButtonBlock>
           <DetailUserInfo
-            profileImage_uri={profileImage_uri}
+            profileImage_uri={image_uri}
             user_name={user_name}
             town={town}
             score={score}
           />
         </Aside>
         <Section>
-          <ImageBox image={image_uri} />
-          <ParticipantList />
+          <ImageBox image={profileImage_uri} />
+          {/* {enteredUser && <ParticipantList enteredUser={enteredUser} />} */}
           <PublisherContent body={body} />
         </Section>
       </Main>
