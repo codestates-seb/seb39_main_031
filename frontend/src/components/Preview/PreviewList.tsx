@@ -7,15 +7,26 @@ import { Data } from "../../mocks/data";
 import PreviewItem from "./PreviewItem";
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const Grid = styled.div`
-  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 30%);
+  grid-template-columns: repeat(1, 1fr);
   grid-row-gap: 40px;
-  grid-column-gap: 5%;
+  grid-column-gap: 20px;
+  padding: 0 1em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.mobile}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 40px;
+  }
 `;
 
 const PreviewList = () => {
@@ -24,7 +35,7 @@ const PreviewList = () => {
   return (
     <Container>
       <Grid>
-        {data.map(el => (
+        {data.map((el) => (
           <PreviewItem
             key={el.product_id}
             product_id={el.product_id}

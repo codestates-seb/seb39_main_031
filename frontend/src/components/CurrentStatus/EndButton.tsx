@@ -1,4 +1,4 @@
-import { GrayButton } from "../../common/Button/BorderButton";
+import { GrayButton } from "../../common/Button/ColorButton";
 import { ButtonType } from "../../types/Button";
 
 const EndButton = ({ onClick }: ButtonType) => {

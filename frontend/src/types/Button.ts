@@ -10,6 +10,7 @@ export type ButtonType = {
   width?: string;
   height?: string;
   backgroundColor?: string;
+  border?: string;
   borderRadius?: string;
   color?: string;
   fontSize?: string;

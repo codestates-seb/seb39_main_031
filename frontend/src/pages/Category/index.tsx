@@ -6,16 +6,21 @@ import PreviewList from "../../components/Preview/PreviewList";
 
 const Page = styled.div`
   width: 100%;
-  padding: 70px 0;
+  padding: 50px 0;
   display: flex;
   justify-content: center;
 `;
 
 const Container = styled.div`
-  width: 900px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 70%;
+    max-width: 900px;
+  }
 `;
 
 const ProductListContent = styled.div``;

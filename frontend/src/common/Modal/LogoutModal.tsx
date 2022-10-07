@@ -5,12 +5,13 @@ import { removeCookie } from "../../config/Cookie";
 import { useAppDispatch } from "../../hooks/Redux";
 import { loginActions } from "../../redux/loginSlice";
 import { closeModal } from "../../redux/modalSlice";
-import { BlueButton, GrayButton } from "../Button/BorderButton";
+import { BlueButton, GrayButton } from "../Button/ColorButton";
 import Modal from "./Modal";
 
 const customModalStyle = css`
   width: 400px;
-  height: 200px;
+  height: auto;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,13 +19,14 @@ const customModalStyle = css`
   row-gap: 2em;
 `;
 
-const Title = styled.header`
+const Header = styled.header`
   font-size: 18px;
+  font-weight: 700;
 `;
 
 const ButtonBox = styled.section`
   display: flex;
-  column-gap: 2em;
+  column-gap: 1em;
 `;
 
 const LogoutModal = () => {
@@ -37,7 +39,7 @@ const LogoutModal = () => {
     dispatch(loginActions.logout());
     removeCookie("userInfo");
     // window.location.replace("/");
-    navigate(-1);
+    navigate("/");
   };
 
   const cancelButtonHandler = () => {
@@ -47,10 +49,10 @@ const LogoutModal = () => {
 
   return (
     <Modal customModalStyle={customModalStyle}>
-      <Title>로그아웃 하시겠습니까?</Title>
+      <Header>로그아웃 하시겠습니까?</Header>
       <ButtonBox>
-        <BlueButton onClick={logoutButtonHandler}>로그아웃</BlueButton>
         <GrayButton onClick={cancelButtonHandler}>취소</GrayButton>
+        <BlueButton onClick={logoutButtonHandler}>로그아웃</BlueButton>
       </ButtonBox>
     </Modal>
   );

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import TopButton from "../../common/Button/TopButton";
 import GroupPageHeader from "../../components/GroupBuying/GroupPageHeader";
 import ProductList from "../../components/GroupBuying/ProductList";
 
@@ -10,8 +11,7 @@ const PageContainer = styled.div`
 
 const Container = styled.div`
   margin: 0 auto;
-  border: 1px solid red;
-  width: 65%;
+  width: 900px;
 `;
 
 const GroupBuying = () => {
@@ -20,6 +20,7 @@ const GroupBuying = () => {
       <Container>
         <GroupPageHeader />
         <ProductList />
+        <TopButton />
       </Container>
     </PageContainer>
   );

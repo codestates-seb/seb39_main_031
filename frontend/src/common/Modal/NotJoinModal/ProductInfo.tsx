@@ -4,7 +4,7 @@ import { useAppSelector } from "../../../hooks/Redux";
 import { Image } from "../../../types/post";
 
 const Container = styled.main`
-  width: 500px;
+  width: auto;
   height: auto;
   display: flex;
   border: 2px solid ${(props) => props.theme.colors.black200};
@@ -14,14 +14,14 @@ const Container = styled.main`
 `;
 
 const ImageBox = styled.div<Image>`
-  width: 40%;
+  width: 30%;
   background-image: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-size: cover;
 `;
 
 const InfoBox = styled.div`
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
@@ -29,8 +29,9 @@ const InfoBox = styled.div`
 `;
 
 const Title = styled.header`
+  color: ${(props) => props.theme.colors.black900};
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 500;
   padding-bottom: 20px;
   margin-bottom: 10px;
   border-bottom: 0.5px solid ${(props) => props.theme.colors.black400};
