@@ -4,8 +4,8 @@ export type participate_product = {
   state_num: number;
   title: string;
   image_uri: string;
-  base_price: number;
-  unit: string;
+  base_price?: number;
+  unit: number;
 };
 
 export type participate_Info = {

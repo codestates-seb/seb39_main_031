@@ -54,13 +54,13 @@ const Section = styled.section`
   }
 `;
 
-// const TitleImg = styled.div`
-//   width: 100%;
-//   height: 400px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;
+const TitleImg = styled.div`
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const ImageBox = styled.div<Image>`
   width: 300px;
@@ -129,7 +129,7 @@ const Participant = ({
   return (
     <Container>
       <Title>{title}</Title>
-      <ImageBox image={image_uri} className="tablet" />
+      <ImageBox image={profileImage_uri} className="tablet" />
       <Main>
         <Aside>
           <DetailStats
@@ -153,7 +153,9 @@ const Participant = ({
           />
         </Aside>
         <Section>
-          <ImageBox image={profileImage_uri} className="desktop" />
+          <TitleImg>
+            <ImageBox image={profileImage_uri} className="desktop" />
+          </TitleImg>
           <ParticipantContent body={body} />
         </Section>
       </Main>

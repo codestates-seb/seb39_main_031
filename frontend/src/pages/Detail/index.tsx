@@ -49,7 +49,7 @@ const Detail = () => {
         <Container>
           {data && (
             <Participant
-              user_id={data.user_id}
+              user_id={data.userId}
               user_name={data.username}
               score={data.score}
               profileImage_uri={data.productImg[0]}
@@ -84,7 +84,7 @@ const Detail = () => {
       <Container>
         {data && parseInt(user.userId) === data.userId ? (
           <Publisher
-            user_id={data.user_id}
+            user_id={data.userId}
             user_name={data.username}
             score={data.score}
             profileImage_uri={data.productImg[0]}
@@ -106,7 +106,7 @@ const Detail = () => {
         ) : (
           data && (
             <Participant
-              user_id={data.user_id}
+              user_id={data.userId}
               user_name={data.username}
               score={data.score}
               profileImage_uri={data.productImg[0]}

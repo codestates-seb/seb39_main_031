@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import ParticipateInfo from "../../components/Participate/ParticipateInfo";
 import ProductDetail from "../../components/Participate/ProductDetail";
+import { detailProduct } from "../../config/API/api";
 import { DetailType } from "../../types/post";
 
 const Container = styled.div`
@@ -22,60 +23,41 @@ const ParticipateContainer = styled.div`
 `;
 
 const Participate = () => {
-  // const { user_id, product_id } = useParams();
+  const { user_id, product_id } = useParams();
 
-  // const { data } = useQuery(
-  //   ["participate", user_id, product_id],
-  //   async () =>
-  //     await axios
-  //       .get(`/participate/${user_id}/${product_id}`)
-  //       .then(({ data }) => data)
-  // );
+  const { data } = useQuery(
+    [product_id],
+    () =>
+      product_id &&
+      detailProduct(product_id).then(({ data }) => {
+        console.log({
+          returnedData: data,
+        });
+        return data;
+      })
+  );
 
-  // console.log(data);
-
-  const location = useLocation();
-  const state = location.state as DetailType;
-  const {
-    image_uri,
-    title,
-    goal_num,
-    state_num,
-    ended_time,
-    unit,
-    base_price,
-  } = state;
-
-  console.log(state);
+  console.log(data);
 
   return (
     <Container>
       <ParticipateContainer>
-        {/* {data && (
+        {data && (
           <ProductDetail
-            ended_time={data.ended_time}
-            goal_num={data.goal_num}
-            state_num={data.state_num}
+            ended_time={data.endedTime}
+            goal_num={data.goalQuantity}
+            state_num={data.stateQuantity}
             title={data.title}
-            image_uri={data.image_uri}
+            image_uri={data.productImg[0]}
+            unit={data.unit}
           />
         )}
         {data && (
           <ParticipateInfo
-            base_price={data.base_price}
-            goal_num={data.goal_num}
+            base_price={data.unitPerPrice}
+            goal_num={data.goalQuantity}
           />
-        )} */}
-        <ProductDetail
-          image_uri={image_uri}
-          title={title}
-          goal_num={goal_num}
-          state_num={state_num}
-          base_price={base_price}
-          ended_time={ended_time}
-          unit={unit}
-        />
-        <ParticipateInfo base_price={base_price} goal_num={goal_num} />
+        )}
       </ParticipateContainer>
     </Container>
   );
