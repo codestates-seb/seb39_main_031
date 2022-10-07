@@ -3,13 +3,13 @@ import styled, { css } from "styled-components";
 
 import { useAppDispatch } from "../../hooks/Redux";
 import { closeModal } from "../../redux/modalSlice";
-import { BlueButton, GrayButton } from "../Button/BorderButton";
+import { BlueButton, GrayButton } from "../Button/ColorButton";
 import Modal from "./Modal";
 
 const customModalStyle = css`
-  width: auto;
+  width: 400px;
   height: auto;
-  padding: 50px 70px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,9 +17,14 @@ const customModalStyle = css`
   row-gap: 2em;
 `;
 
+const Header = styled.header`
+  font-size: 18px;
+  font-weight: 700;
+`;
+
 const ButtonBox = styled.section`
   display: flex;
-  column-gap: 2em;
+  column-gap: 1em;
 `;
 
 const JoinModal = () => {
@@ -38,12 +43,10 @@ const JoinModal = () => {
 
   return (
     <Modal customModalStyle={customModalStyle}>
-      <header>
-        <h3>해당 공동 구매에 참여하시겠습니까?</h3>
-      </header>
+      <Header>해당 공동 구매에 참여하시겠습니까?</Header>
       <ButtonBox>
-        <BlueButton onClick={JoinButtonHandler}>확인</BlueButton>
         <GrayButton onClick={cancelButtonHandler}>취소</GrayButton>
+        <BlueButton onClick={JoinButtonHandler}>참여</BlueButton>
       </ButtonBox>
     </Modal>
   );

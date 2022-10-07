@@ -5,7 +5,7 @@ import UserInfo from "../../components/User/UserInfo";
 
 const Page = styled.div`
   width: 100%;
-  padding: 70px 0;
+  padding: 50px 0;
   display: flex;
   justify-content: center;
 `;

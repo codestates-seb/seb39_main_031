@@ -15,13 +15,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   position: fixed;
-  inset: 0;
   z-index: 1;
 `;
 const Overlay = styled.div`
   position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
 `;
 
 const MODAL_COMPONENTS = [

@@ -12,18 +12,19 @@ import {
 } from "../../assets/FormCheck/LoginCheckFuc";
 import Button from "../../common/Button/ButtonForm";
 import InputForm from "../../common/Input/InputForm";
+import LabelInput from "../../common/Input/LabelInput";
 import { setCookie } from "../../config/Cookie";
 
 const Form = styled.form`
   width: 100%;
+  padding: 1em;
 `;
 
-const Validation = styled.span`
+const Validation = styled.div`
   display: block;
   margin-top: 5px;
-  color: red;
-  padding-left: 10px;
-  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.colors.red700};
+  margin-bottom: 2rem;
   font-size: ${({ theme }) => theme.fontSize.size12};
 `;
 
@@ -31,7 +32,7 @@ const LinkContent = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 
   > a {
     > span {
@@ -68,7 +69,7 @@ const LoginForm = () => {
     e.preventDefault();
     const userLogin: loginInfo = { userEmail, userPassword };
     mutate(userLogin, {
-      onSuccess: data => {
+      onSuccess: (data) => {
         setCookie("userInfo", data, {
           path: "/",
           maxAge: 6000,
@@ -100,14 +101,14 @@ const LoginForm = () => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      <InputForm
+      <LabelInput
         id="userEmail"
         type="email"
         lableText="이메일"
         onChange={onChangeEmail}
       />
       <Validation>{validEmail}</Validation>
-      <InputForm
+      <LabelInput
         id="userNickname"
         type="password"
         lableText="비밀번호"
@@ -121,7 +122,7 @@ const LoginForm = () => {
       </LinkContent>
       <ButtoneContent>
         <Button width="100%" height="3rem">
-          Login
+          로그인
         </Button>
       </ButtoneContent>
     </Form>

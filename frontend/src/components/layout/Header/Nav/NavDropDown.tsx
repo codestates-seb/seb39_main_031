@@ -31,7 +31,6 @@ const DropDownBtn = styled.button`
   border: 1px solid transparent;
   background: transparent;
   padding: 0;
-  margin-left: -0.5em;
 
   .icon {
     font-size: 30px;

@@ -5,7 +5,7 @@ import CurrentList from "../../components/CurrentStatus/CurrentList";
 
 const Page = styled.div`
   width: 100%;
-  padding: 70px 0;
+  padding: 50px 0;
   display: flex;
   justify-content: center;
 `;
@@ -19,6 +19,8 @@ const Container = styled.div`
 
 const Title = styled.h1`
   margin: 2em 0;
+  text-decoration: underline ${(props) => props.theme.colors.cyan400} 10px;
+  text-underline-offset: -3px;
 `;
 
 const CurrentStatus = () => {

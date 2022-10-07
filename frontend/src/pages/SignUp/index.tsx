@@ -19,13 +19,12 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const SignupContainer = styled.div`
-  margin: auto 0;
-  width: 30%;
+  width: 400px;
   padding: 25px 35px 25px;
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 25%) 0px 0px 7px 0px;
-  max-width: 450px;
 `;
 const UsefulContent = styled.div`
   width: 100%;

@@ -20,11 +20,11 @@ const Container = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  width: 25%;
+  width: 400px;
   margin: auto 0;
   padding: 34px 28px 32px;
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 25%) 0px 0px 7px 0px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 0px 4px 0px;
 `;
 
 const LoginContent = styled.div`

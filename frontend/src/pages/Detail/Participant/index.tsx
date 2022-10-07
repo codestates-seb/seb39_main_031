@@ -11,8 +11,13 @@ import SubButtons from "../../../components/Detail/Participant/SubButtons";
 import { useAppSelector } from "../../../hooks/Redux";
 import { DetailType, Image } from "../../../types/post";
 
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  row-gap: 2em;
+`;
+
 const Title = styled.h1`
-  padding-bottom: 1em;
   text-align: center;
   font-size: 40px;
   font-weight: 700;
@@ -20,19 +25,33 @@ const Title = styled.h1`
 
 const Main = styled.main`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   column-gap: 60px;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    flex-direction: row-reverse;
+  }
 `;
 
 const Aside = styled.aside`
-  width: 30%;
+  width: 100%;
+  padding: 0 1em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 30%;
+  }
 `;
 
 const Section = styled.section`
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 3em;
+  width: 100%;
+  margin-top: 2em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3em;
+  }
 `;
 
 const ImageBox = styled.div<Image>`
@@ -42,6 +61,18 @@ const ImageBox = styled.div<Image>`
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;
+
+  &.desktop {
+    @media (max-width: ${(props) => props.theme.breakPoints.tablet}) {
+      display: none;
+    }
+  }
+
+  &.tablet {
+    @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+      display: none;
+    }
+  }
 `;
 
 const Participant = ({
@@ -88,8 +119,9 @@ const Participant = ({
   };
 
   return (
-    <>
+    <Container>
       <Title>{title}</Title>
+      <ImageBox image={image_uri} className="tablet" />
       <Main>
         <Aside>
           <DetailStats
@@ -114,11 +146,11 @@ const Participant = ({
           />
         </Aside>
         <Section>
-          <ImageBox image={image_uri} />
+          <ImageBox image={image_uri} className="desktop" />
           <ParticipantContent body={body} />
         </Section>
       </Main>
-    </>
+    </Container>
   );
 };
 

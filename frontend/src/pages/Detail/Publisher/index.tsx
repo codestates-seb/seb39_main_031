@@ -13,6 +13,12 @@ import { useAppDispatch } from "../../../hooks/Redux";
 import { deleteModal } from "../../../redux/modalSlice";
 import { DetailType, Image } from "../../../types/post";
 
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  row-gap: 2em;
+`;
+
 const Title = styled.h1`
   padding-bottom: 1em;
   text-align: center;
@@ -22,13 +28,23 @@ const Title = styled.h1`
 
 const Main = styled.main`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   column-gap: 60px;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    flex-direction: row-reverse;
+  }
 `;
 
 const Aside = styled.aside`
-  width: 30%;
+  width: 100%;
+  padding: 0 1em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 30%;
+  }
 `;
+
 const ButtonBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,10 +57,15 @@ const DetailButton = styled.div`
 `;
 
 const Section = styled.section`
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 3em;
+  width: 100%;
+  margin-top: 2em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3em;
+  }
 `;
 
 const ImageBox = styled.div<Image>`
@@ -54,6 +75,18 @@ const ImageBox = styled.div<Image>`
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;
+
+  &.desktop {
+    @media (max-width: ${(props) => props.theme.breakPoints.tablet}) {
+      display: none;
+    }
+  }
+
+  &.tablet {
+    @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+      display: none;
+    }
+  }
 `;
 
 const Publisher = ({
@@ -84,8 +117,9 @@ const Publisher = ({
   };
 
   return (
-    <>
+    <Container>
       <Title>{title}</Title>
+      <ImageBox image={image_uri} className="tablet" />
       <Main>
         <Aside>
           <DetailStats
@@ -129,12 +163,12 @@ const Publisher = ({
           />
         </Aside>
         <Section>
-          <ImageBox image={image_uri} />
+          <ImageBox image={image_uri} className="desktop" />
           <ParticipantList />
           <PublisherContent body={body} />
         </Section>
       </Main>
-    </>
+    </Container>
   );
 };
 

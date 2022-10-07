@@ -7,21 +7,24 @@ export const Container = styled.header`
 export const HeaderBox = styled.div`
   width: 100%;
   height: 70px;
-  padding: 1em 0;
+  padding: 1em 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: absolute;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    padding: 1em 3em;
+  }
 `;
 
 export const LeftBox = styled.div`
-  width: 30%;
   display: flex;
+  column-gap: 10px;
 `;
 
 export const Logo = styled.div`
   display: flex;
-  width: 50%;
   align-items: center;
   justify-content: center;
   font-size: ${(props) => {
@@ -35,10 +38,16 @@ export const LogoImage = styled.img`
 `;
 
 export const MenuBox = styled.nav`
-  display: flex;
-  justify-content: flex-start;
-  width: 50%;
-  column-gap: 35px;
+  display: none;
+  column-gap: 10px;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    display: flex;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    margin-left: 2em;
+  }
 `;
 
 export const MenuLink = styled(NavLink)`
@@ -47,6 +56,7 @@ export const MenuLink = styled(NavLink)`
   align-items: center;
   font-weight: 700;
   font-size: 22px;
+  width: 100px;
 
   &.main {
     color: white !important;
@@ -72,9 +82,10 @@ export const RightBox = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 16%;
-  column-gap: 30px;
-  margin: 0 10px;
+
+  &.iconBox {
+    column-gap: 20px;
+  }
 
   .icon {
     font-size: 28px;
@@ -82,7 +93,6 @@ export const RightBox = styled.nav`
   }
 
   .main {
-    font-size: 30px;
     color: ${(props) => props.theme.colors.white000};
   }
 `;
