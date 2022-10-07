@@ -49,7 +49,7 @@ public class Product {
     private int stateQuantity;
 
     @Column(nullable = false)
-    private Long unit;
+    private String unit;
 
     @Column
     private Long unitPerPrice;
