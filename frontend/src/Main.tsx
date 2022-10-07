@@ -1,16 +1,23 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import styled from "styled-components";
 
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 
+const Page = styled.div`
+  height: auto;
+  min-height: 100%;
+  padding-top: 50px;
+  padding-bottom: 100px;
+`;
+
 const Main = () => {
-  const location = useLocation();
-  console.log(location.pathname);
-  // url에 따라 홈 and 나머지 header 부분이 달라짐
   return (
     <>
       <Header />
-      <Outlet />
+      <Page>
+        <Outlet />
+      </Page>
       <Footer />
     </>
   );

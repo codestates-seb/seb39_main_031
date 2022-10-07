@@ -37,4 +37,6 @@ out/
 .vscode/
 
 ### properties ###
-**/application.yml
+
+### MacOS ###
+**/.DS_Store

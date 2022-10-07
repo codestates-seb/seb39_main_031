@@ -2,16 +2,25 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    breakPoints: {
+      mobile: string;
+      tablet: string;
+      desktop: string;
+    };
     colors: {
+      cyan50: string;
       cyan100: string;
       cyan200: string;
       cyan400: string;
+      cyan500: string;
+      cyan600: string;
       cyan700: string;
 
       black100: string;
       black200: string;
       black300: string;
       black400: string;
+      black500: string;
       black900: string;
       black000: string;
 
@@ -20,6 +29,8 @@ declare module "styled-components" {
       red700: string;
 
       white000: string;
+
+      blue: string;
     };
     fontSize: {
       size08: string;
