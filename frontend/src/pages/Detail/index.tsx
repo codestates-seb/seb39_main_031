@@ -25,7 +25,7 @@ const Container = styled.div`
 `;
 
 const Detail = () => {
-  const { user_id, product_id } = useParams();
+  const { product_id } = useParams();
 
   //TODO Detail page Data 받아오기
 

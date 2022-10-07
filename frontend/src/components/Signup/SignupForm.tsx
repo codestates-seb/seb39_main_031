@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-import axios from "axios";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";

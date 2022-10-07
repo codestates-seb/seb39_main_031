@@ -1,6 +1,7 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import SelectForm from "../../common/Select/SelectForm";
@@ -15,7 +16,7 @@ const PageHeader = styled.div`
 
   > h1 {
     margin: 0;
-    text-decoration: underline ${(props) => props.theme.colors.cyan400} 10px;
+    text-decoration: underline ${props => props.theme.colors.cyan400} 10px;
     text-underline-offset: -3px;
   }
 `;

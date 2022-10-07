@@ -1,13 +1,11 @@
 /* eslint-disable prettier/prettier */
-import axios from "axios";
 import { useQuery } from "react-query";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import ParticipateInfo from "../../components/Participate/ParticipateInfo";
 import ProductDetail from "../../components/Participate/ProductDetail";
 import { detailProduct } from "../../config/API/api";
-import { DetailType } from "../../types/post";
 
 const Container = styled.div`
   width: 100%;
@@ -23,7 +21,7 @@ const ParticipateContainer = styled.div`
 `;
 
 const Participate = () => {
-  const { user_id, product_id } = useParams();
+  const { product_id } = useParams();
 
   const { data } = useQuery(
     [product_id],

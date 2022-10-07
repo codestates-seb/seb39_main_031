@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from "axios";
 import { useCallback, useState } from "react";
 import { useMutation } from "react-query";
 import { Link, useLocation } from "react-router-dom";

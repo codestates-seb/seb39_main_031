@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
-import { Editor } from "@toast-ui/react-editor";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -14,7 +13,7 @@ import SelectForm from "../../common/Select/SelectForm";
 import { createProduct, productCreate } from "../../config/API/api";
 import { getCookie } from "../../config/Cookie";
 import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
-import { newProduct, newProductActions } from "../../redux/newProductSlice";
+import { newProductActions } from "../../redux/newProductSlice";
 import ImgUpload from "./ImgUpload";
 import TextEditor from "./TextEditor";
 

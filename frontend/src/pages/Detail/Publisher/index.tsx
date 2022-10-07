@@ -9,7 +9,6 @@ import DetailUserInfo from "../../../components/Detail/DetailUserInfo";
 import CloseButton from "../../../components/Detail/Publisher/CloseButton";
 import DeleteButton from "../../../components/Detail/Publisher/DeleteButton";
 import ModifyButton from "../../../components/Detail/Publisher/ModifyButton";
-import ParticipantList from "../../../components/Detail/Publisher/ParticipantList";
 import { useAppDispatch } from "../../../hooks/Redux";
 import { deleteModal } from "../../../redux/modalSlice";
 import { DetailType, Image } from "../../../types/post";
