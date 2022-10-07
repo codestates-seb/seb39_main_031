@@ -63,7 +63,7 @@ const TitleImg = styled.div`
 `;
 
 const ImageBox = styled.div<Image>`
-  width: 300px;
+  width: 400px;
   height: 400px;
 
   background: url(${props => props.image});

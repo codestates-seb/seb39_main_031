@@ -87,7 +87,7 @@ const Detail = () => {
             user_id={data.userId}
             user_name={data.username}
             score={data.score}
-            profileImage_uri={data.productImg[0]}
+            profileImage_uri="https://source.unsplash.com/80x80/?cat"
             product_id={data.productId}
             region={data.region}
             unit={data.unit}
@@ -95,7 +95,7 @@ const Detail = () => {
             goal_num={data.goalQuantity}
             category={data.category}
             state_num={data.stateQuantity}
-            image_uri="https://source.unsplash.com/80x80/?cat"
+            image_uri={data.productImg[0]}
             title={data.title}
             body={data.body}
             generated_time={data.generatedTime}

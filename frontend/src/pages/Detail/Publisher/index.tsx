@@ -70,7 +70,7 @@ const Section = styled.section`
 `;
 
 const ImageBox = styled.div<Image>`
-  width: 100%;
+  width: 400px;
   height: 400px;
   background: url(${props => props.image});
   background-repeat: no-repeat;
@@ -157,7 +157,7 @@ const Publisher = ({
             </DetailButton>
           </ButtonBlock>
           <DetailUserInfo
-            profileImage_uri={image_uri}
+            profileImage_uri={profileImage_uri}
             user_name={user_name}
             town={town}
             score={score}

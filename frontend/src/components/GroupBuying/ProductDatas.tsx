@@ -32,11 +32,11 @@ const ProductDatas = () => {
       ["product", regions, towns],
       async ({ pageParam = 1 }) => {
         let url = "";
-        if (towns && regions) {
-          url = `&region=${regions}&&twon=${towns}`;
-        }
         if (regions) {
           url = `&region=${regions}`;
+        }
+        if (towns && regions) {
+          url = `&region=${regions}&&town=${towns}`;
         }
         return await axios
           .get(
