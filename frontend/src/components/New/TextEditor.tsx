@@ -1,7 +1,12 @@
+/* eslint-disable prettier/prettier */
 import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { Editor } from "@toast-ui/react-editor";
+import { useRef } from "react";
+import { useMutation } from "react-query";
 import styled from "styled-components";
+
+import { imageUpload } from "../../config/API/api";
 
 const TextContent = styled.div`
   width: 100%;
@@ -19,15 +24,38 @@ const EditorComponent = styled.div`
 interface Props {
   value?: string;
   editorRef?: React.RefObject<Editor>;
+  setEditor?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const TextEditor = ({ value, editorRef }: Props) => {
+const TextEditor = ({ value, setEditor }: Props) => {
+  const formData = new FormData();
+  const editorRef = useRef<Editor>(null);
+
+  const { mutate } = useMutation((formData: FormData) =>
+    imageUpload(formData, "editor")
+  );
+
   const onUploadImage = async (
     blob: Blob | File,
     callback: (url: string, text?: string) => void
   ) => {
-    // const url = await uploadImage(blob) // DB에 저장하기
-    // callback(url, 'alt text') // 사진 화면에 보여주기
+    formData.append("file", blob);
+    mutate(formData, {
+      onSuccess: data => {
+        const url = data.data.data;
+        callback(url, `${url}`); // 사진 화면에 보여주기
+      },
+      onError: error => {
+        console.log(error);
+      },
+    });
+
+    return false;
+  };
+
+  const onChangeHandler = () => {
+    const data = editorRef.current?.getInstance().getHTML();
+    setEditor && data && setEditor(data);
   };
 
   return (
@@ -41,13 +69,16 @@ const TextEditor = ({ value, editorRef }: Props) => {
           initialEditType="wysiwyg"
           hideModeSwitch={true}
           language="ko-KR"
+          onChange={onChangeHandler}
           toolbarItems={[
             ["heading", "bold", "italic", "strike"],
             ["hr", "quote"],
             ["ul", "ol", "task", "indent", "outdent"],
             ["table", "image", "link"],
           ]}
-          hooks={{ addImageBlobHook: onUploadImage }}
+          hooks={{
+            addImageBlobHook: onUploadImage,
+          }}
         ></Editor>
       </EditorComponent>
     </TextContent>

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import CloseDisplay from "../../../components/Detail/CloseDisplay";
@@ -28,7 +28,7 @@ const Main = styled.main`
   flex-direction: column;
   column-gap: 60px;
 
-  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
     flex-direction: row-reverse;
   }
 `;
@@ -37,7 +37,7 @@ const Aside = styled.aside`
   width: 100%;
   padding: 0 1em;
 
-  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
     width: 30%;
   }
 `;
@@ -46,7 +46,7 @@ const Section = styled.section`
   width: 100%;
   margin-top: 2em;
 
-  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -54,22 +54,31 @@ const Section = styled.section`
   }
 `;
 
+// const TitleImg = styled.div`
+//   width: 100%;
+//   height: 400px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;
+
 const ImageBox = styled.div<Image>`
-  width: 100%;
+  width: 300px;
   height: 400px;
-  background: url(${(props) => props.image});
+
+  background: url(${props => props.image});
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   transition: all 0.2s linear;
 
   &.desktop {
-    @media (max-width: ${(props) => props.theme.breakPoints.tablet}) {
+    @media (max-width: ${props => props.theme.breakPoints.tablet}) {
       display: none;
     }
   }
 
   &.tablet {
-    @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    @media (min-width: ${props => props.theme.breakPoints.tablet}) {
       display: none;
     }
   }
@@ -87,8 +96,6 @@ const Participant = ({
   goal_num,
   state_num,
   image_uri,
-  goal_price,
-  state_price,
   title,
   body,
   generated_time,
@@ -96,8 +103,10 @@ const Participant = ({
   status,
   base_price,
 }: DetailType) => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { isLogin } = useAppSelector((state) => state.login);
+  const { isLogin } = useAppSelector(state => state.login);
+  const goal_price = goal_num * base_price;
 
   const onClickHandler = () => {
     // TODO: 단위, 단위 가격(임의로 state_price 사용) 필요
@@ -105,19 +114,18 @@ const Participant = ({
     isLogin
       ? navigate(`/participate/${user_id}/${product_id}`, {
           state: {
-            image_uri,
+            profileImage_uri,
             title,
             goal_num,
             state_num,
-            state_price,
             status,
             ended_time,
             base_price,
           },
         })
-      : navigate("/login");
+      : navigate("/login", { state: { from: pathname } });
   };
-
+  console.log(status);
   return (
     <Container>
       <Title>{title}</Title>
@@ -128,25 +136,24 @@ const Participant = ({
             ended_time={ended_time}
             goal_num={goal_num}
             state_num={state_num}
-            state_price={state_price}
             goal_price={goal_price}
             generated_time={generated_time}
           />
-          {status === "proceeding" ? (
+          {status === "PROCEED" ? (
             <JoinButton onClick={onClickHandler} />
           ) : (
             <CloseDisplay />
           )}
           <SubButtons />
           <DetailUserInfo
-            profileImage_uri={profileImage_uri}
+            profileImage_uri={image_uri}
             user_name={user_name}
             town={town}
             score={score}
           />
         </Aside>
         <Section>
-          <ImageBox image={image_uri} className="desktop" />
+          <ImageBox image={profileImage_uri} className="desktop" />
           <ParticipantContent body={body} />
         </Section>
       </Main>

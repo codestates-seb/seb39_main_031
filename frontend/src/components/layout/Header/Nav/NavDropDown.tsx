@@ -34,11 +34,11 @@ const DropDownBtn = styled.button`
 
   .icon {
     font-size: 30px;
-    color: ${(props) => props.theme.colors.black900};
+    color: ${props => props.theme.colors.black900};
   }
 
   .main {
-    color: ${(props) => props.theme.colors.white000};
+    color: ${props => props.theme.colors.white000};
   }
 `;
 
@@ -51,8 +51,8 @@ const MenuBox = styled.div`
   left: -11em;
   top: 2.5em;
   margin-right: 2em;
-  background-color: ${(props) => props.theme.colors.white000};
-  border: 1px solid ${(props) => props.theme.colors.black300};
+  background-color: ${props => props.theme.colors.white000};
+  border: 1px solid ${props => props.theme.colors.black300};
   border-radius: 4px;
   z-index: 999;
 `;

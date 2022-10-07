@@ -1,17 +1,18 @@
+/* eslint-disable prettier/prettier */
 import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
   padding: 0 1em;
 
-  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
     padding: 0;
   }
 `;
 
 const Title = styled.div`
-  font-size: ${(props) => props.theme.fontSize.size15};
-  color: ${(props) => props.theme.colors.black400};
+  font-size: ${props => props.theme.fontSize.size15};
+  color: ${props => props.theme.colors.black400};
   margin-bottom: 0.5em;
 `;
 
@@ -27,18 +28,18 @@ const List = styled.li`
   width: 100%;
   height: 50px;
   text-align: center;
-  color: ${(props) => props.theme.colors.black900};
-  border-top: 1px solid ${(props) => props.theme.colors.black200};
+  color: ${props => props.theme.colors.black900};
+  border-top: 1px solid ${props => props.theme.colors.black200};
 
   &.title {
     font-weight: 900;
-    border-top: 1px solid ${(props) => props.theme.colors.black300};
-    border-bottom: 1px solid ${(props) => props.theme.colors.black300};
+    border-top: 1px solid ${props => props.theme.colors.black300};
+    border-bottom: 1px solid ${props => props.theme.colors.black300};
   }
 
   &.total {
     font-weight: 900;
-    border-top: 1px solid ${(props) => props.theme.colors.black300};
+    border-top: 1px solid ${props => props.theme.colors.black300};
   }
 
   & > .name {
@@ -54,12 +55,18 @@ const List = styled.li`
   }
 `;
 
+type entered = {
+  amount?: number;
+  totalPrice?: number;
+  username?: string;
+}[];
+
 const data = [
   { user_name: "김유저", num: 1, price: 50000 },
   { user_name: "박유저", num: 1, price: 50000 },
 ];
 
-const ParticipantList = () => {
+const ParticipantList = (props: entered) => {
   return (
     <Container>
       <Title>참여자 정보</Title>

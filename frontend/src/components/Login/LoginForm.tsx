@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { useMutation } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import {
@@ -11,8 +11,8 @@ import {
   loginPasswordCheck,
 } from "../../assets/FormCheck/LoginCheckFuc";
 import Button from "../../common/Button/ButtonForm";
-import InputForm from "../../common/Input/InputForm";
 import LabelInput from "../../common/Input/LabelInput";
+import { loginUser, userLogin } from "../../config/API/api";
 import { setCookie } from "../../config/Cookie";
 
 const Form = styled.form`
@@ -48,9 +48,8 @@ const ButtoneContent = styled.div`
   justify-content: center;
 `;
 
-interface loginInfo {
-  userEmail: string;
-  userPassword: string;
+interface stateType {
+  from: string;
 }
 
 const LoginForm = () => {
@@ -60,21 +59,33 @@ const LoginForm = () => {
   const [validEmail, setValidEmail] = useState<string>("");
   const [validPassword, setValidPssword] = useState<string>("");
 
-  const { mutate } = useMutation(
-    async (loginInfo: loginInfo) =>
-      await axios.post("/login", loginInfo).then(({ data }) => data)
-  );
+  const { mutate } = useMutation(async (body: loginUser) => userLogin(body));
+
+  const location = useLocation();
+  const { from } = location.state || ({ from: "/" } as stateType);
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const userLogin: loginInfo = { userEmail, userPassword };
-    mutate(userLogin, {
-      onSuccess: (data) => {
-        setCookie("userInfo", data, {
+    const userInfo: loginUser = { email: userEmail, password: userPassword };
+
+    mutate(userInfo, {
+      onSuccess: data => {
+        const userData = {
+          userId: data.data.userId,
+          username: data.data.username,
+          authorization: data.headers.authorization,
+          profileUrl: data.data.profileUrl,
+        };
+
+        setCookie("userInfo", userData, {
           path: "/",
           maxAge: 6000,
         });
-        window.location.replace("/");
+
+        window.location.replace(from);
+      },
+      onError: error => {
+        console.log(error);
       },
     });
 

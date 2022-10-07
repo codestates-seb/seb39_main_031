@@ -3,11 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type loginState = {
   email: string;
-  nickname: string;
+  username: string;
   password: string;
   passwordCheck: string;
   region: string;
   town: string;
+  profileUrl?: string;
 };
 
 export type state = {
@@ -16,11 +17,12 @@ export type state = {
 
 const initialState: loginState = {
   email: "",
-  nickname: "",
+  username: "",
   password: "",
   passwordCheck: "",
   region: "",
   town: "",
+  profileUrl: "https://source.unsplash.com/80x80/?cat",
 };
 
 const signupSlice = createSlice({
@@ -31,7 +33,7 @@ const signupSlice = createSlice({
       state.email = action.payload.email;
     },
     nicknameHandler(state, action: PayloadAction<state>) {
-      state.nickname = action.payload.nickname;
+      state.username = action.payload.username;
     },
     passwordHandler(state, action: PayloadAction<state>) {
       state.password = action.payload.password;

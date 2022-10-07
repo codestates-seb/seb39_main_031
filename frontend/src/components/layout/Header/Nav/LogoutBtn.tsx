@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { FiLogOut } from "react-icons/fi";
 import styled from "styled-components";
 
@@ -7,14 +8,15 @@ const Button = styled.div`
   align-items: center;
   padding-left: 2.5em;
   height: 50px;
-  border-top: 1px solid ${(props) => props.theme.colors.black200};
+  border-top: 1px solid ${props => props.theme.colors.black200};
+  cursor: pointer;
 
   .icon {
     margin-right: 10px;
   }
 
   &:hover {
-    background: ${(props) => props.theme.colors.black100};
+    background: ${props => props.theme.colors.black100};
   }
 `;
 

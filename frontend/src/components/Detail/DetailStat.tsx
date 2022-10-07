@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from "styled-components";
 
 import ProgressBar from "../../common/ProgressBar/ProgressBar";
@@ -12,26 +13,26 @@ const SubInfo = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
     flex-direction: column;
   }
 `;
 
 const Block = styled.div`
   margin-bottom: 3em;
-  font-size: ${(props) => props.theme.fontSize.size15};
+  font-size: ${props => props.theme.fontSize.size15};
 `;
 
 const Title = styled.div`
   font-size: 12px;
-  color: ${(props) => props.theme.colors.black400};
+  color: ${props => props.theme.colors.black400};
 `;
 
 const Contents = styled.div`
   padding: 0.5em 0;
 
   .strong {
-    font-size: ${(props) => props.theme.fontSize.size32};
+    font-size: ${props => props.theme.fontSize.size32};
   }
 `;
 
@@ -48,7 +49,6 @@ interface Props {
   ended_time: string;
   goal_num: number;
   state_num: number;
-  state_price: number;
   goal_price: number;
   generated_time: string;
 }
@@ -57,9 +57,8 @@ const DetailStats = ({
   ended_time,
   goal_num,
   state_num,
-  state_price,
   goal_price,
-  generated_time,
+  generated_time, // 안들어옴
 }: Props) => {
   const generatedDate = new Date(+new Date(generated_time) + 3240 * 10000)
     .toISOString()

@@ -1,7 +1,11 @@
+/* eslint-disable prettier/prettier */
 import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { Editor } from "@toast-ui/react-editor";
+import axios from "axios";
 import { useRef, useState } from "react";
+import { useMutation } from "react-query";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { BlueButton, GrayButton } from "../../../common/Button/BorderButton";
@@ -25,11 +29,21 @@ const ButtonBlock = styled.div`
 interface Props {
   setIsShow: (value: React.SetStateAction<boolean>) => void;
 }
+interface notice {
+  title: string;
+  body: string;
+}
 
 const NoticeEditor = ({ setIsShow }: Props) => {
   const [title, setTitle] = useState("");
   const [value, setValue] = useState("");
   const editorRef = useRef<Editor>(null);
+  const { product_id } = useParams();
+
+  const { mutate } = useMutation(
+    async (notice: notice) =>
+      await axios.post(`/products/${product_id}/notices`, notice)
+  );
 
   const registerHandler = () => {
     if (editorRef.current) {
@@ -37,6 +51,7 @@ const NoticeEditor = ({ setIsShow }: Props) => {
     }
     console.log(title);
     console.log(value);
+    mutate({ title, body: value });
   };
 
   return (
@@ -44,7 +59,7 @@ const NoticeEditor = ({ setIsShow }: Props) => {
       <Card padding="1em" margin="0 0 2em 0">
         <NoticeInput
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={event => setTitle(event.target.value)}
         ></NoticeInput>
         <DefaultEditor ref={editorRef} height="250px" />
         <ButtonBlock>

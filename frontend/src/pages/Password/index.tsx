@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
 import LabelInput from "../../common/Input/LabelInput";
 import UserFormHeader from "../../components/layout/Header/userFormHeader";
+import { userPassword } from "../../config/API/api";
 import { useAppDispatch } from "../../hooks/Redux";
 import { closeModal, openModal } from "../../redux/modalSlice";
 
@@ -54,6 +56,7 @@ const Password = () => {
   const navigation = useNavigate();
 
   const [userEmail, setUserEmail] = useState<string>("");
+  const { mutate } = useMutation((email: string) => userPassword(email));
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,12 +65,16 @@ const Password = () => {
       return alert("이메일을 입력해주세요");
     }
 
-    dispatch(openModal({ modalType: "passwordModal", isVisible: true }));
+    mutate(userEmail, {
+      onSuccess: () => {
+        dispatch(openModal({ modalType: "passwordModal", isVisible: true }));
 
-    setTimeout(() => {
-      navigation("/login");
-      dispatch(closeModal());
-    }, 3000);
+        setTimeout(() => {
+          navigation("/login");
+          dispatch(closeModal());
+        }, 3000);
+      },
+    });
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

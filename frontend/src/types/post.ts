@@ -35,11 +35,9 @@ export interface DetailType {
   product_id: number;
   region: string;
   town: string;
-  category?: string;
+  category: string;
   goal_num: number;
   state_num: number;
-  goal_price: number;
-  state_price: number;
   image_uri: string;
   title: string;
   body: string;
@@ -48,6 +46,11 @@ export interface DetailType {
   status: string;
   unit: string;
   base_price: number;
+  enteredUser?: {
+    amount: number;
+    totalPrice: number;
+    username: string;
+  }[];
 }
 
 // Edit Post
