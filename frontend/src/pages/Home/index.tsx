@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import styled from "styled-components";
 
-import logo from "../../assets/Image/logo/smallLogo.png";
+import logo from "../../assets/Image/logo/smallLogo.PNG";
 import EndedProduct from "../../components/Home/EndedProduct";
 
 const Container = styled.main`
