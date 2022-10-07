@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import { Editor } from "@toast-ui/react-editor";
-import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -35,6 +34,7 @@ const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  column-gap: 50px;
 `;
 
 const WriteForm = () => {
@@ -124,6 +124,15 @@ const WriteForm = () => {
     console.log(productImage);
   };
 
+  const writeButtonHandler = () => {
+    console.log("작성 버튼");
+  };
+
+  const cancelButtonHandler = () => {
+    console.log("취소 버튼");
+    navigate(-1);
+  };
+
   return (
     <EditForm onSubmit={newProductHandler}>
       <CategorySelector
@@ -206,8 +215,17 @@ const WriteForm = () => {
       />
       <TextEditor setEditor={setEditor} />
       <ButtonContent>
-        <Button width="50%" height="2.5rem">
-          작성하기
+        <Button onClick={writeButtonHandler} width="150px" height="2.5rem">
+          작성
+        </Button>
+        <Button
+          backgroundColor="#BDBDBD"
+          hoverBackground="#9E9E9E"
+          onClick={cancelButtonHandler}
+          width="150px"
+          height="2.5rem"
+        >
+          취소
         </Button>
       </ButtonContent>
     </EditForm>

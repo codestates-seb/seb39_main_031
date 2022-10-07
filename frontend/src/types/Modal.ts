@@ -1,31 +1,40 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 // eslint-disable-next-line import/named
 import { CSSProp } from "styled-components";
 
+// modal component
 export interface StyledModalProps {
   customModalStyle?: CSSProp;
 }
 
 export interface ModalType extends StyledModalProps {
-  visible?: boolean;
   onClick?: () => void;
+  onClose?: () => void;
   children?: React.ReactNode;
 }
 
-export interface DeleteModalType extends ModalType {
-  onDelete?: () => void;
-  onCancel?: () => void;
-}
-
-export interface ProductModalInfo {
+// modal redux
+interface NotJoinProps {
   image_uri: string;
   title: string;
   state_price: number;
-  userNickname: string;
   quantity: number;
 }
 
-export interface ProductModalType extends ModalType, ProductModalInfo {
-  modalTitle?: string;
-  onCheck?: () => void;
-  onCancel?: () => void;
+interface DeleteProps {}
+
+interface EndProps {}
+
+interface JoinProps {}
+
+interface RatingProps {}
+
+export interface ModalState {
+  modalType: string;
+  isVisible: boolean;
+  notjoinProps: NotJoinProps;
+  deleteProps: DeleteProps;
+  endProps: EndProps;
+  joinProps: JoinProps;
+  ratingProps: RatingProps;
 }

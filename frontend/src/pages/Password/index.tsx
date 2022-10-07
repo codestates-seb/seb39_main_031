@@ -5,12 +5,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "../../common/Button/ButtonForm";
-import InputForm from "../../common/Input/InputForm";
-import PasswordModal from "../../common/Modal/PasswordModal.tsx";
+import LabelInput from "../../common/Input/LabelInput";
 import UserFormHeader from "../../components/layout/Header/userFormHeader";
 import { userPassword } from "../../config/API/api";
-import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
-import { modalActions } from "../../redux/modalSlice";
+import { useAppDispatch } from "../../hooks/Redux";
+import { closeModal, openModal } from "../../redux/modalSlice";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -28,18 +27,18 @@ const Container = styled.div`
 const PasswordContainer = styled.div`
   width: 40%;
   max-width: 560px;
-  padding: 35px 35px 40px;
+  padding: 50px 30px;
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 25%) 0px 0px 7px 0px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 0px 4px 0px;
 `;
 
-const PasswordTitle = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
-  font-size: ${({ theme }) => theme.fontSize.size20};
-`;
+// const PasswordTitle = styled.div`
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   margin-bottom: 3rem;
+//   font-size: ${({ theme }) => theme.fontSize.size20};
+// `;
 
 const PasswordForm = styled.form`
   width: 100%;
@@ -49,7 +48,7 @@ const FormButton = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
 `;
 
 const Password = () => {
@@ -57,7 +56,6 @@ const Password = () => {
   const navigation = useNavigate();
 
   const [userEmail, setUserEmail] = useState<string>("");
-  const isVible = useAppSelector(state => state.modal.modalVisible);
   const { mutate } = useMutation((email: string) => userPassword(email));
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -69,10 +67,11 @@ const Password = () => {
 
     mutate(userEmail, {
       onSuccess: () => {
-        dispatch(modalActions.modal());
+        dispatch(openModal({ modalType: "passwordModal", isVisible: true }));
+
         setTimeout(() => {
           navigation("/login");
-          dispatch(modalActions.modal());
+          dispatch(closeModal());
         }, 3000);
       },
     });
@@ -84,17 +83,21 @@ const Password = () => {
 
   return (
     <PageContainer>
-      <PasswordModal visible={isVible} />
       <UserFormHeader />
       <Container>
         <PasswordContainer>
-          <PasswordTitle>
+          {/* <PasswordTitle>
             <span>가입한 이메일 주소를 입력해주세요.</span>
-          </PasswordTitle>
+          </PasswordTitle> */}
           <PasswordForm onSubmit={onSubmitHandler}>
-            <InputForm type="email" onChange={onChangeHandler} />
+            <LabelInput
+              type="email"
+              onChange={onChangeHandler}
+              lableText="가입한 이메일을 입력해주세요"
+              left="-15px"
+            />
             <FormButton>
-              <Button width="50%" height="2.5rem">
+              <Button width="200px" height="2.5rem">
                 임시 비밀번호 받기
               </Button>
             </FormButton>

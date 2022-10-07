@@ -7,16 +7,19 @@ import com.codestates.main31.product.entity.Product;
 import com.codestates.main31.product.mapper.ProductMapper;
 import com.codestates.main31.product.repository.ProductSpecification;
 import com.codestates.main31.product.service.ProductService;
+import com.codestates.main31.productimage.mapper.ProductImageMapper;
+import com.codestates.main31.productimage.mapper.ProductImageMapperImpl;
+import com.codestates.main31.user.auth.filter.entity.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,18 +30,32 @@ public class ProductController {
 
     private final ProductMapper productMapper;
 
+    private final ProductImageMapper productImageMapper;
+
     @PostMapping
     public ResponseEntity<ProductResponseDto.GetDetail> createProduct(
-            @RequestPart ProductRequestDto.Post postDto,
-            @RequestPart("file") List<MultipartFile> file) throws IOException {
-        Product savedProduct = productService.createProduct(productMapper.productRequestPostDtoToProduct(postDto), file);
+            @AuthenticationPrincipal PrincipalDetails principalDetails,
+            @RequestBody ProductRequestDto.Post postDto) throws IOException {
+        com.codestates.main31.user.entity.User user = principalDetails.getUser();
+        Product savedProduct = productService.createProduct(productMapper.productRequestPostDtoToProduct(postDto), productImageMapper.savedPathStringToProductImage(postDto.getProductImage()), user);
         return new ResponseEntity<>(productMapper.productToProductResponseGetDetailDto(savedProduct), HttpStatus.CREATED);
     }
 
     @GetMapping("/{productId}")
     public ResponseEntity<ProductResponseDto.GetDetail> readProduct(@PathVariable Long productId) {
         Product readProduct = productService.readProduct(productId);
-        return new ResponseEntity<>(productMapper.productToProductResponseGetDetailDto(readProduct), HttpStatus.OK);
+        ProductResponseDto.GetDetail getDetail = productMapper.productToProductResponseGetDetailDto(readProduct);
+        getDetail.getEnteredUser().forEach(enteredUser -> enteredUser.setTotalPrice(enteredUser.getAmount() * getDetail.getUnitPerPrice()));
+        return new ResponseEntity<>(getDetail, HttpStatus.OK);
+    }
+
+    @GetMapping("/deadline")
+    public MultiResponseDto<ProductResponseDto.GetList> readProductsListWithinDeadline(@RequestParam int page,
+                                                                         @RequestParam(defaultValue = "9", required = false) int size) {
+
+        Specification<Product> spec = (root, query, builder) -> builder.greaterThan(root.get("endedTime"), LocalDateTime.now());
+        Page<Product> readProductsList = productService.readProductsListWithinDeadline(page, size, spec);
+        return productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);
     }
 
     @GetMapping
@@ -47,9 +64,12 @@ public class ProductController {
                                                                          @ModelAttribute ProductSpecification.ProductCriteria criteria) {
         Specification<Product> spec = (root, query, builder) -> null;
 
-        if (criteria.getCategory() != null) spec = spec.and((root, query, builder) -> builder.equal(root.get("category"), criteria.getCategory()));
-        if (criteria.getRegion() != null) spec = spec.and((root, query, builder) -> builder.equal(root.get("region"), criteria.getRegion()));
-        if (criteria.getTown() != null) spec = spec.and((root, query, builder) -> builder.equal(root.get("town"), criteria.getTown()));
+        if (criteria.getCategory() != null)
+            spec = spec.and((root, query, builder) -> builder.equal(root.join("category").get("category"), criteria.getCategory()));
+        if (criteria.getRegion() != null)
+            spec = spec.and((root, query, builder) -> builder.equal(root.join("address").get("region"), criteria.getRegion()));
+        if (criteria.getTown() != null)
+            spec = spec.and((root, query, builder) -> builder.equal(root.join("address").get("town"), criteria.getTown()));
 
         Page<Product> readProductsList = productService.readProductsList(page, size, spec);
         return productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);

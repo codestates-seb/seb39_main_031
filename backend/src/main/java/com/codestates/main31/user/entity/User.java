@@ -51,11 +51,15 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
+    @Column(name = "profile_url")
+    private String profileUrl;
+
     @Builder
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, String profileUrl) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = RoleType.USER;
+        this.profileUrl = profileUrl;
     }
 }

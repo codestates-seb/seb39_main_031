@@ -3,6 +3,11 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
+  padding: 0 1em;
+
+  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+    padding: 0;
+  }
 `;
 
 const Title = styled.div`
@@ -28,13 +33,13 @@ const List = styled.li`
 
   &.title {
     font-weight: 900;
-    border-top: 2px solid ${props => props.theme.colors.black300};
-    border-bottom: 2px solid ${props => props.theme.colors.black300};
+    border-top: 1px solid ${props => props.theme.colors.black300};
+    border-bottom: 1px solid ${props => props.theme.colors.black300};
   }
 
   &.total {
     font-weight: 900;
-    border-top: 2px solid ${props => props.theme.colors.black300};
+    border-top: 1px solid ${props => props.theme.colors.black300};
   }
 
   & > .name {

@@ -11,8 +11,13 @@ import SubButtons from "../../../components/Detail/Participant/SubButtons";
 import { useAppSelector } from "../../../hooks/Redux";
 import { DetailType, Image } from "../../../types/post";
 
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  row-gap: 2em;
+`;
+
 const Title = styled.h1`
-  padding-bottom: 1em;
   text-align: center;
   font-size: 40px;
   font-weight: 700;
@@ -20,28 +25,42 @@ const Title = styled.h1`
 
 const Main = styled.main`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   column-gap: 60px;
+
+  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+    flex-direction: row-reverse;
+  }
 `;
 
 const Aside = styled.aside`
-  width: 30%;
+  width: 100%;
+  padding: 0 1em;
+
+  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+    width: 30%;
+  }
 `;
 
 const Section = styled.section`
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 3em;
+  width: 100%;
+  margin-top: 2em;
+
+  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3em;
+  }
 `;
 
-const TitleImg = styled.div`
-  width: 100%;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+// const TitleImg = styled.div`
+//   width: 100%;
+//   height: 400px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;
 
 const ImageBox = styled.div<Image>`
   width: 300px;
@@ -51,6 +70,18 @@ const ImageBox = styled.div<Image>`
   background-repeat: no-repeat;
   background-size: contain;
   transition: all 0.2s linear;
+
+  &.desktop {
+    @media (max-width: ${props => props.theme.breakPoints.tablet}) {
+      display: none;
+    }
+  }
+
+  &.tablet {
+    @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+      display: none;
+    }
+  }
 `;
 
 const Participant = ({
@@ -96,8 +127,9 @@ const Participant = ({
   };
   console.log(status);
   return (
-    <>
+    <Container>
       <Title>{title}</Title>
+      <ImageBox image={image_uri} className="tablet" />
       <Main>
         <Aside>
           <DetailStats
@@ -121,13 +153,11 @@ const Participant = ({
           />
         </Aside>
         <Section>
-          <TitleImg>
-            <ImageBox image={profileImage_uri} />
-          </TitleImg>
+          <ImageBox image={profileImage_uri} className="desktop" />
           <ParticipantContent body={body} />
         </Section>
       </Main>
-    </>
+    </Container>
   );
 };
 

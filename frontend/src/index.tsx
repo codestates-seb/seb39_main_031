@@ -8,6 +8,7 @@ import { ThemeProvider } from "styled-components";
 import App from "./App";
 import GlobalStyle from "./assets/style/GlobalStyle";
 import { theme } from "./assets/style/Theme";
+import GlobalModal from "./common/Modal/GlobalModal";
 import store from "./redux/store";
 
 // if (process.env.NODE_ENV === "development") {
@@ -26,6 +27,7 @@ root.render(
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
+          <GlobalModal />
           <App />
         </ThemeProvider>
       </Provider>

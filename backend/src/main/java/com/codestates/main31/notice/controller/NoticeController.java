@@ -5,7 +5,7 @@ import com.codestates.main31.notice.dto.NoticeRequestDto;
 import com.codestates.main31.notice.dto.NoticeResponseDto;
 import com.codestates.main31.notice.entity.Notice;
 import com.codestates.main31.notice.mapper.NoticeMapper;
-import com.codestates.main31.notice.service.NoticeService;
+import com.codestates.main31.notice.repository.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

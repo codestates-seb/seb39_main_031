@@ -1,5 +1,6 @@
 package com.codestates.main31.product.dto;
 
+import com.codestates.main31.entereduser.ProductEnteredUserDTO;
 import com.codestates.main31.product.entity.ProductState;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ProductResponseDto {
 
@@ -21,11 +23,13 @@ public class ProductResponseDto {
 
         private LocalDateTime endedTime;
 
+        private LocalDateTime generatedTime;
+
         private Integer goalQuantity;
 
         private int stateQuantity;
 
-        private Long unit;
+        private String unit;
 
         private Long unitPerPrice;
 
@@ -34,6 +38,14 @@ public class ProductResponseDto {
         private String region;
 
         private String town;
+
+        private List<String> productImg;
+
+        private long userId;
+
+        private String username;
+
+        private String profileUrl;
 
     }
 
@@ -51,11 +63,13 @@ public class ProductResponseDto {
 
         private LocalDateTime endedTime;
 
+        private LocalDateTime generatedTime;
+
         private Integer goalQuantity;
 
         private int stateQuantity;
 
-        private Long unit;
+        private String unit;
 
         private Long unitPerPrice;
 
@@ -64,6 +78,18 @@ public class ProductResponseDto {
         private String region;
 
         private String town;
+
+        private String category;
+
+        private List<String> productImg;
+
+        private long userId;
+
+        private String username;
+
+        private String profileUrl;
+
+        private List<ProductEnteredUserDTO> enteredUser;
 
     }
 

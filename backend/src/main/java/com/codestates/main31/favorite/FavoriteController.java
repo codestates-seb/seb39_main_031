@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.codestates.main31.exception.BusinessLogicException;
 import com.codestates.main31.exception.ExceptionCode;
 import com.codestates.main31.user.Dto.UserDto;
+import com.codestates.main31.user.auth.filter.entity.PrincipalDetails;
 import com.codestates.main31.user.entity.User;
 import com.codestates.main31.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,9 +26,8 @@ public class FavoriteController {
     FavoriteService favoriteService;
     // 즐겨찾기 Or 취소
     @PostMapping("/{product-id}")
-    public ResponseEntity favoriteThis(@PathVariable("product-id") Long productId, @AuthenticationPrincipal UserDetails userdetails) {
-        User user = userRepository.findByEmail(userdetails.getUsername()).orElseThrow(()-> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
-        Favorite result = favoriteService.changeState(productId,user.getUserId());
+    public ResponseEntity favoriteThis(@PathVariable("product-id") Long productId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        Favorite result = favoriteService.changeState(productId,principalDetails.getUser().getUserId());
 
         Map<String, Object> map = new HashMap<>();
         map.put("result",result);
@@ -37,18 +37,16 @@ public class FavoriteController {
     }
     // 즐겨찾기 id로 확인
     @GetMapping("/{product-id}")
-    public ResponseEntity findByFavoriteId(@PathVariable("product-id") Long productId,@AuthenticationPrincipal UserDetails userdetails) {
-        User user = userRepository.findByEmail(userdetails.getUsername()).orElseThrow(()-> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
-        Favorite result = favoriteService.findByProductId(productId,user.getUserId());
+    public ResponseEntity findByFavoriteId(@PathVariable("product-id") Long productId,@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        Favorite result = favoriteService.findByProductId(productId,principalDetails.getUser().getUserId());
         Map<String, Object> map = new HashMap<>();
         map.put("result",result);
         return new ResponseEntity<Map>(map, HttpStatus.OK);
     }
     // 내 즐겨찾기 확인하기
     @GetMapping("/mine")
-    public ResponseEntity myFavoriteList(@AuthenticationPrincipal UserDetails userdetails) {
-        User user = userRepository.findByEmail(userdetails.getUsername()).orElseThrow(()-> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
-        List<Favorite> result = favoriteService.findMyFavorites(user.getUserId());
+    public ResponseEntity myFavoriteList(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        List<Favorite> result = favoriteService.findMyFavorites(principalDetails.getUser().getUserId());
         Map<String, Object> map = new HashMap<>();
         map.put("result",result);
         return new ResponseEntity<Map>(map, HttpStatus.OK);

@@ -46,6 +46,7 @@ public class UserService {
                 throw new BusinessLogicException(ExceptionCode.USER_EMAIL_EXIST);
             }
         }
+        newUser.setProfileUrl("https://source.unsplash.com/80x80/?cat");
         user = newUser;
         return userRepository.save(user);
     }

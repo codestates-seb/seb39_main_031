@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
-import { ModalType } from "../../types/Modal";
-
-const ModalWrapper = styled.div<{ visible?: boolean }>`
+const ModalWrapper = styled.section`
   width: 100%;
   height: 100%;
-  display: ${({ visible }) => (visible ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -20,11 +17,11 @@ const ModalContainer = styled.div<{ width?: string; height?: string }>`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: ${({ width }) => (width ? width : "60%")};
-  height: ${({ height }) => (height ? height : "40%")};
+  width: 500px;
+  height: auto;
   max-width: 560px;
   max-height: 280px;
-  padding: 16px;
+  padding: 3rem;
   background: white;
   border-radius: 10px;
   text-align: center;
@@ -34,28 +31,27 @@ const ModalContainer = styled.div<{ width?: string; height?: string }>`
   align-items: center;
 
   .top {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
   .first-message {
-    font-size: ${({ theme }) => theme.fontSize.size24};
-    font-weight: 900;
+    font-size: ${({ theme }) => theme.fontSize.size20};
+    font-weight: 700;
   }
   .second-message {
     font-size: ${({ theme }) => theme.fontSize.size15};
-    font-weight: 800;
   }
 
   .login {
-    font-size: ${({ theme }) => theme.fontSize.size18};
-    font-weight: 900;
+    font-size: ${({ theme }) => theme.fontSize.size15};
     color: ${({ theme }) => theme.colors.cyan700};
+    font-weight: 600;
   }
 `;
 
-const PasswordModal = (props: ModalType) => {
+const PasswordModal = () => {
   return (
-    <ModalWrapper visible={props.visible}>
+    <ModalWrapper>
       <ModalContainer>
         <div>
           <div className="top">

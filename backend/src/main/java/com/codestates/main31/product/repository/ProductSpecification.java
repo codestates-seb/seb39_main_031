@@ -1,5 +1,6 @@
 package com.codestates.main31.product.repository;
 
+import com.codestates.main31.address.Region;
 import com.codestates.main31.product.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class ProductSpecification {
     @NoArgsConstructor
     public static class ProductCriteria{
         private String category;
-        private String region;
+        private Region region;
         private String town;
     }
 

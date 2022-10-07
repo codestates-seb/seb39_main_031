@@ -22,19 +22,14 @@ public class ProductImage {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String originName;
-
-    @Column(nullable = false)
-    private String savedName;
 
     @Column(nullable = false)
     private String savedPath;
 
     @Builder
-    public ProductImage(Product product, String originName, String savedName, String savedPath) {
-        this.originName = originName;
-        this.savedName = savedName;
+    public ProductImage(Product product, String savedPath) {
         this.savedPath = savedPath;
     }
 }

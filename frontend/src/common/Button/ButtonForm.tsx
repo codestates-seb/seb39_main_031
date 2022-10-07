@@ -7,11 +7,12 @@ const NewButton = styled.button<ButtonType>`
   height: ${({ height }) => (height ? height : "")};
   background-color: ${({ backgroundColor }) =>
     backgroundColor ? backgroundColor : ({ theme }) => theme.colors.cyan500};
-  border: none;
+  border: ${({ border }) => (border ? border : "none")};
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : "5px")};
   color: ${({ color }) => (color ? color : "white")};
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : "18px")};
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : "15px")};
   text-align: center;
+  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   cursor: pointer;
 
   &:hover {

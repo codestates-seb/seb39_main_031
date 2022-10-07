@@ -20,8 +20,7 @@ import java.util.Date;
 @Slf4j
 public class UserPasswordEventListener {
 
-    @Value("${mail.subject.member.registration}")
-    private String subject;
+
     private final EmailSender emailSender;
     private final UserService memberService;
 
@@ -36,12 +35,12 @@ public class UserPasswordEventListener {
         try {
             String randomPassword = getRandomPassword(8);
             memberService.changePassword(event.getUser(), randomPassword);
-
+            System.out.println("[USEREMAIL]=======>"+ event.getUser().getEmail());
             String[] to = new String[]{event.getUser().getEmail()};
             String message = event.getUser().getUsername() + "님의 비밀번호가 재설정되었습니다.\n"
                     + "임시 비밀번호 : "+randomPassword;
 
-            emailSender.sendEmail(to, subject, message);
+            emailSender.sendEmail(to, "[여기붙어라] 비밀번호 재설정 메일", message);
         } catch (MailSendException e) {
             e.printStackTrace();
             log.error("MailSendException: rollback for Member Registration:");

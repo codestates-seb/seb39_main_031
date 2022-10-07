@@ -12,7 +12,7 @@ public class SimpleEmailSender implements EmailSendable{
     public void send(String[] to, String subject, String message) throws InterruptedException {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(to);
-        mailMessage.setFrom("StackOverflow <"+mailMessage.getFrom()+">");
+        mailMessage.setFrom("여기붙어라 <"+mailMessage.getFrom()+">");
         mailMessage.setSubject(subject);
         mailMessage.setText(message);
         javaMailSender.send(mailMessage);

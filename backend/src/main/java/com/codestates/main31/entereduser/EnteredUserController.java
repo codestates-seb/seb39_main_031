@@ -2,12 +2,12 @@ package com.codestates.main31.entereduser;
 
 
 import com.codestates.main31.product.repository.ProductRepository;
+import com.codestates.main31.user.auth.filter.entity.PrincipalDetails;
 import com.codestates.main31.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -15,19 +15,18 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/EnteredUser")
 @RequiredArgsConstructor
+@RequestMapping("/EnteredUser")
 public class EnteredUserController {
 
-    private EnteredUserService service;
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
-
+    private final EnteredUserService service;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
     // 새 공구 참여
-    @PostMapping("/")
-    public ResponseEntity postEnteredUser(@AuthenticationPrincipal UserDetails userdetails ,@RequestBody PostEnteredUserDTO dto) {
-        EnteredUser result = service.newEnterUser(userdetails.getUsername(), dto.getProduct_id(), dto.getAmount());
+    @PostMapping
+    public ResponseEntity postEnteredUser(@AuthenticationPrincipal PrincipalDetails principalDetails ,@RequestBody PostEnteredUserDTO dto) {
+        EnteredUser result = service.newEnterUser(principalDetails.getUser().getUserId(), dto.getProduct_id(), dto.getAmount());
         Map<String, Object> map = new HashMap<>();
         map.put("result",result);
         return new ResponseEntity<Map>(map, HttpStatus.OK);
@@ -35,10 +34,8 @@ public class EnteredUserController {
 
     //내가 참여한 공구
     @GetMapping("/entered")
-    public ResponseEntity getMyEnteredList(@AuthenticationPrincipal UserDetails userdetails) {
-
-        System.out.println(userdetails.getUsername());
-        List<EnteredUser> result = service.findAllByEmail(userdetails.getUsername());
+    public ResponseEntity getMyEnteredList(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        List<EnteredUser> result = service.findAllByEmail(principalDetails.getUser().getUserId());
         Map<String, Object> map = new HashMap<>();
         map.put("result",result);
         return new ResponseEntity<Map>(map, HttpStatus.OK);
@@ -53,7 +50,6 @@ public class EnteredUserController {
         return new ResponseEntity<Map>(map, HttpStatus.OK);
     }
 
-
     //모집 종료하기
     @PatchMapping("/close/{product_id}")
     public ResponseEntity closeProduct(@PathVariable("product_id")  long product_id) {
@@ -65,7 +61,7 @@ public class EnteredUserController {
 
     // 공구 종료 하기
     @PatchMapping("/exit/{event_id}")
-    public ResponseEntity exitEvent(@AuthenticationPrincipal UserDetails userdetails, @PathVariable("event_id")  long event_id) {
+    public ResponseEntity exitEvent(@PathVariable("event_id")  long event_id) {
         EnteredUser result = service.exitEvent(event_id);
         Map<String, Object> map = new HashMap<>();
         map.put("result",result);
@@ -74,17 +70,15 @@ public class EnteredUserController {
 
     //평가하기
     @PatchMapping("/rate/{event_id}")
-    public ResponseEntity rateEvent(@AuthenticationPrincipal UserDetails userdetails, @PathVariable("event_id")  long event_id,@RequestBody int score) {
-        EnteredUser result = service.rateEvent(event_id, score);
-        Map<String, Object> map = new HashMap<>();
-        map.put("result",result);
-        return new ResponseEntity<Map>(map, HttpStatus.OK);
+    public ResponseEntity rateEvent(@PathVariable("event_id")  long event_id,@RequestBody int score) {
+        Map<String, Object> result = service.rateEvent(event_id, score);
+        return new ResponseEntity<Map>(result, HttpStatus.OK);
     }
 
     //공구 취소하기
-    @PatchMapping("/rate/{event_id}/{score}")
-    public ResponseEntity getMyOpenedList(@AuthenticationPrincipal UserDetails userdetails) {
-        List<EnteredUser> result = service.findAllByProductEmail(userdetails.getUsername());
+    @PatchMapping("/cancel/{event_id}/")
+    public ResponseEntity cancelEvent(@PathVariable("event_id")  long event_id) {
+        EnteredUser result = service.cancelEvent(event_id);
         Map<String, Object> map = new HashMap<>();
         map.put("result",result);
         return new ResponseEntity<Map>(map, HttpStatus.OK);

@@ -16,7 +16,7 @@ const UsefulTitle = styled.div`
   > span {
     display: block;
     width: 100%;
-    font-size: ${({ theme }) => theme.fontSize.size15};
+    font-size: 14px;
   }
 `;
 
@@ -29,7 +29,7 @@ const OauthComponent = styled.div`
 const SignupLink = styled.div`
   width: 100%;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
 
   > span {
     font-size: ${({ theme }) => theme.fontSize.size12};

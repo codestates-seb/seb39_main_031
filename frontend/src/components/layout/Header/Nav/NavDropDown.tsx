@@ -6,10 +6,10 @@ import { FaRegHandshake, FaUserCircle } from "react-icons/fa";
 import { HiOutlineHeart } from "react-icons/hi";
 import styled from "styled-components";
 
-import { removeCookie } from "../../../../config/Cookie";
 import { useAppDispatch } from "../../../../hooks/Redux/index";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
-import { loginActions } from "../../../../redux/loginSlice";
+import { openModal } from "../../../../redux/modalSlice";
+import { Image } from "../../../../types/post";
 import LogoutBtn from "./LogoutBtn";
 import NavItem from "./NavItem";
 
@@ -17,11 +17,20 @@ const Container = styled.div`
   position: relative;
 `;
 
+const ProfileImage = styled.div<Image>`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid ${(props) => props.theme.colors.cyan400};
+  background: url(${(props) => props.image});
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
 const DropDownBtn = styled.button`
   border: 1px solid transparent;
   background: transparent;
   padding: 0;
-  margin-left: -0.5em;
 
   .icon {
     font-size: 30px;
@@ -45,6 +54,7 @@ const MenuBox = styled.div`
   background-color: ${props => props.theme.colors.white000};
   border: 1px solid ${props => props.theme.colors.black300};
   border-radius: 4px;
+  z-index: 999;
 `;
 
 const navs = [
@@ -55,7 +65,7 @@ const navs = [
     className: "edit",
   },
   { label: "회원정보", path: "/user", icon: <AiOutlineUser /> },
-  { label: "참여현황", path: "/participate", icon: <FaRegHandshake /> },
+  { label: "참여현황", path: "/current", icon: <FaRegHandshake /> },
   { label: "관심목록", path: "/favorite", icon: <HiOutlineHeart /> },
 ];
 
@@ -67,12 +77,13 @@ const NavDropDown = ({ className }: Props) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isActive, setIsActive] = useOutsideClick(dropDownRef, btnRef, false);
 
+  //임시 프로필 이미지
+  const image_uri = "https://source.unsplash.com/80x80/?cat";
+
   const dispatch = useAppDispatch();
 
-  const logoutHandler = () => {
-    dispatch(loginActions.logout());
-    removeCookie("userInfo");
-    window.location.replace("/");
+  const logoutModalHandler = () => {
+    dispatch(openModal({ modalType: "logoutModal", isVisible: true }));
   };
 
   const navClickHandler = () => {
@@ -82,7 +93,11 @@ const NavDropDown = ({ className }: Props) => {
   return (
     <Container>
       <DropDownBtn ref={btnRef} onClick={navClickHandler}>
-        <FaUserCircle className={className} />
+        {image_uri ? (
+          <ProfileImage image={image_uri} />
+        ) : (
+          <FaUserCircle className={className} />
+        )}
       </DropDownBtn>
       {isActive && (
         <MenuBox ref={dropDownRef}>
@@ -101,7 +116,7 @@ const NavDropDown = ({ className }: Props) => {
           <LogoutBtn
             onClick={() => {
               navClickHandler();
-              logoutHandler();
+              logoutModalHandler();
             }}
           />
         </MenuBox>

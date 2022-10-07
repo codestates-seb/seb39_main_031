@@ -2,10 +2,10 @@ package com.codestates.main31.entereduser;
 
 import com.codestates.main31.product.entity.Product;
 import com.codestates.main31.user.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-
 
 @Getter
 @Setter
@@ -21,11 +21,11 @@ public class EnteredUser {
     @Column(name="entered_event_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long enteredEventId;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "entered_id")
     private User user;

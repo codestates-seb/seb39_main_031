@@ -10,10 +10,10 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  top: 35px;
+  top: 30px;
   z-index: 1;
-  padding: 15px 0 35px 0;
-  margin: 15px 0 100px 0;
+  padding-bottom: 1em;
+  margin: 0 2em 6em 2em;
   border-bottom: 1px solid ${props => props.theme.colors.black300};
 `;
 

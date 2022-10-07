@@ -1,4 +1,4 @@
-package com.codestates.main31.notice.service;
+package com.codestates.main31.notice.repository.service;
 
 import com.codestates.main31.exception.BusinessLogicException;
 import com.codestates.main31.exception.ExceptionCode;
@@ -9,6 +9,7 @@ import com.codestates.main31.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,7 +38,7 @@ public class NoticeService {
     @Transactional(readOnly = true)
     public Page<Notice> readNoticeList(Long productId, int page, int size) {
         Product product = productService.findProduct(productId);
-        return noticeRepository.findAllByProduct(product, PageRequest.of(page-1, size));
+        return noticeRepository.findAllByProduct(product, PageRequest.of(page-1, size, Sort.Direction.DESC, "noticeId"));
     }
 
     public Notice updateNotice(Long productId, Long noticeId, Notice newNotice) {
