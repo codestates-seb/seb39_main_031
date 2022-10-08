@@ -17,13 +17,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
     width: 70%;
     max-width: 900px;
   }
 `;
-
-const ProductListContent = styled.div``;
 
 const Category = () => {
   const [selected, setSelected] = useState("");
@@ -33,9 +31,7 @@ const Category = () => {
     <Page>
       <Container>
         <CategoryFilter selected={selected} setSelected={setSelected} />
-        <ProductListContent>
-          <PreviewList selected={selected} />
-        </ProductListContent>
+        <PreviewList selected={selected} />
       </Container>
     </Page>
   );

@@ -13,8 +13,8 @@ const Container = styled.div`
   top: 30px;
   z-index: 1;
   padding-bottom: 1em;
-  margin: 0 2em 6em 2em;
-  border-bottom: 1px solid ${props => props.theme.colors.black300};
+  margin-bottom: 6em;
+  border-bottom: 1px solid ${(props) => props.theme.colors.black300};
 `;
 
 const CategoryList = styled.div`
@@ -36,7 +36,7 @@ const LeftBtnBox = styled.div`
   justify-content: center;
   position: absolute;
   top: 0;
-  right: calc(100% - 30px);
+  right: -100;
   z-index: 2;
   height: 100%;
 `;
@@ -70,7 +70,7 @@ const CategoryFilter = ({ selected, setSelected }: Props) => {
       slider.scrollLeft = slider.scrollWidth - slider.clientWidth;
       return;
     }
-    slider.scrollLeft -= 200;
+    slider.scrollLeft -= 300;
   };
 
   const rightHandler = () => {
@@ -83,7 +83,7 @@ const CategoryFilter = ({ selected, setSelected }: Props) => {
       slider.scrollLeft = 0;
       return;
     }
-    slider.scrollLeft += 200;
+    slider.scrollLeft += 300;
   };
 
   return (
@@ -91,6 +91,9 @@ const CategoryFilter = ({ selected, setSelected }: Props) => {
       <LeftBtnBox>
         <CategorySlideButton direction="left" onClick={leftHandler} />
       </LeftBtnBox>
+      <RightBtnBox>
+        <CategorySlideButton direction="right" onClick={rightHandler} />
+      </RightBtnBox>
       <CategoryList ref={slideRef}>
         {categories.map((item, index) => {
           return (
@@ -104,9 +107,6 @@ const CategoryFilter = ({ selected, setSelected }: Props) => {
           );
         })}
       </CategoryList>
-      <RightBtnBox>
-        <CategorySlideButton direction="right" onClick={rightHandler} />
-      </RightBtnBox>
     </Container>
   );
 };
