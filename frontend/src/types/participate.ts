@@ -11,4 +11,8 @@ export type participate_product = {
 export type participate_Info = {
   base_price: number;
   goal_num: number;
+  product_id: number;
+  state_num: number;
 };
+
+export type participateProduct = { [i: string]: number };

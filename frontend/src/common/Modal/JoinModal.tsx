@@ -1,8 +1,13 @@
+/* eslint-disable prettier/prettier */
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { useAppDispatch } from "../../hooks/Redux";
+import { enteredProduct } from "../../config/API/api";
+import { getCookie } from "../../config/Cookie";
+import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { closeModal } from "../../redux/modalSlice";
+import { participateProduct } from "../../types/participate";
 import { BlueButton, GrayButton } from "../Button/ColorButton";
 import Modal from "./Modal";
 
@@ -30,11 +35,29 @@ const ButtonBox = styled.section`
 const JoinModal = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { authorization } = getCookie("userInfo");
+
+  const { product_id, amount } = useAppSelector(state => state.participate);
+  const { mutate } = useMutation((body: participateProduct) =>
+    enteredProduct(body, authorization)
+  );
 
   const JoinButtonHandler = () => {
     console.log("공구 참여하기");
-    dispatch(closeModal());
-    navigate(-1);
+    console.log(product_id, amount);
+    mutate(
+      { product_id, amount },
+      {
+        onSuccess: () => {
+          console.log("신청됬습니다");
+          dispatch(closeModal());
+          navigate(-1);
+        },
+        onError: error => {
+          console.log(error);
+        },
+      }
+    );
   };
 
   const cancelButtonHandler = () => {

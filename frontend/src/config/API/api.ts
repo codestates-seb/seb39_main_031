@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { participateProduct } from "../../types/participate";
 import Axios from "./axios";
 
 // 로그인
@@ -27,7 +28,7 @@ export const categoryProductList = async (page: string, category: string) => {
 
 // 공동구매 게시글 상세 조회
 export const detailProduct = async (productId: string) => {
-  const url = `products/${productId}`;
+  const url = `/products/${productId}`;
   return Axios.get(url);
 };
 
@@ -101,6 +102,30 @@ export const imageUpload = async (body: any, type: string) => {
   return await Axios.post(url, body, {
     headers: {
       "Content-Type": `multipart/form-data`,
+    },
+  });
+};
+
+// 공동구매 참여
+export const enteredProduct = async (
+  body: participateProduct,
+  token: string
+) => {
+  const url = "/EnteredUser";
+  return Axios.post(url, body, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+//! userInfo
+// 내가 참여한 공구
+export const myParticipateList = async (token: string) => {
+  const url = "/EnteredUser/entered";
+  return Axios.get(url, {
+    headers: {
+      Authorization: token,
     },
   });
 };

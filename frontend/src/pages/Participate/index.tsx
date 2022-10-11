@@ -54,6 +54,8 @@ const Participate = () => {
           <ParticipateInfo
             base_price={data.unitPerPrice}
             goal_num={data.goalQuantity}
+            product_id={data.productId}
+            state_num={data.stateQuantity}
           />
         )}
       </ParticipateContainer>
