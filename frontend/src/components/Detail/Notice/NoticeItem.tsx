@@ -42,7 +42,8 @@ interface Props {
   generated_time: string;
 }
 
-const NoticeItem = ({ title, body, generated_time }: Props) => {
+//TODO: 게시자 공지 Item
+export const NoticeItem = ({ title, body, generated_time }: Props) => {
   return (
     <Container>
       <Header>
@@ -59,4 +60,21 @@ const NoticeItem = ({ title, body, generated_time }: Props) => {
   );
 };
 
-export default NoticeItem;
+//TODO: 참가자 공지 Item
+export const ParticipantNoticeItem = ({
+  title,
+  body,
+  generated_time,
+}: Props) => {
+  return (
+    <Container>
+      <Header>
+        <Title>{title}</Title>
+        <Block>
+          <div className="date">{generated_time}</div>
+        </Block>
+      </Header>
+      <Content>{body}</Content>
+    </Container>
+  );
+};

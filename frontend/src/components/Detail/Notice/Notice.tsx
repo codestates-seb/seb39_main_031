@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import NoticeButton from "./NoticeButton";
 import NoticeEditor from "./NoticeEditor";
-import NoticeList from "./NoticeList";
+import { NoticeList, ParticipantNoticeList } from "./NoticeList";
 
 const Container = styled.div`
   width: 100%;
@@ -35,7 +35,7 @@ export const PublisherNotice = () => {
 export const ParticipantNotice = () => {
   return (
     <Container>
-      <NoticeList />
+      <ParticipantNoticeList />
     </Container>
   );
 };
