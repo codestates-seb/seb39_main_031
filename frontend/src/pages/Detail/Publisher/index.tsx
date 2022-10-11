@@ -29,9 +29,9 @@ const Title = styled.h1`
 const Main = styled.main`
   display: flex;
   flex-direction: column;
-  column-gap: 60px;
+  column-gap: 3em;
 
-  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     flex-direction: row-reverse;
   }
 `;
@@ -40,8 +40,9 @@ const Aside = styled.aside`
   width: 100%;
   padding: 0 1em;
 
-  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     width: 30%;
+    padding: 0;
   }
 `;
 
@@ -60,30 +61,32 @@ const Section = styled.section`
   width: 100%;
   margin-top: 2em;
 
-  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     width: 70%;
     display: flex;
     flex-direction: column;
     row-gap: 3em;
+    margin-top: 0;
   }
 `;
 
 const ImageBox = styled.div<Image>`
-  width: 400px;
+  width: 100%;
   height: 400px;
-  background: url(${props => props.image});
+
+  background: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;
 
   &.desktop {
-    @media (max-width: ${props => props.theme.breakPoints.tablet}) {
+    @media (max-width: ${(props) => props.theme.breakPoints.tablet}) {
       display: none;
     }
   }
 
   &.tablet {
-    @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+    @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
       display: none;
     }
   }

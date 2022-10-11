@@ -16,7 +16,7 @@ const Header = styled.header`
 `;
 
 const Title = styled.div`
-  width: 20em;
+  width: 100%;
   font-size: 20px;
   font-weight: 700;
 `;
