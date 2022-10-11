@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
-import axios from "axios";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import TopButton from "../../common/Button/TopButton";
+import { detailProduct } from "../../config/API/api";
 import { getCookie } from "../../config/Cookie";
-import { DetailType } from "../../types/post";
 import Participant from "./Participant";
 import Publisher from "./Publisher";
 
@@ -26,18 +26,20 @@ const Container = styled.div`
 `;
 
 const Detail = () => {
-  const { user_id, product_id } = useParams();
+  const { product_id } = useParams();
 
   //TODO Detail page Data 받아오기
 
-  // const axiosData = async (user_id: string, product_id: string) => {
-  //   return await axios.get(`/product/${user_id}/${product_id}`);
-  // };
-
-  const { data } = useQuery(["productInfo", user_id, product_id], () =>
-    axios
-      .get<DetailType>(`/product/${user_id}/${product_id}`)
-      .then(({ data }) => data)
+  const { data } = useQuery(
+    [product_id],
+    () =>
+      product_id &&
+      detailProduct(product_id).then(({ data }) => {
+        console.log({
+          returnedData: data,
+        });
+        return data;
+      })
   );
 
   const user = getCookie("userInfo");
@@ -48,34 +50,32 @@ const Detail = () => {
         <Container>
           {data && (
             <Participant
-              user_id={data.user_id}
-              user_name={data.user_name}
+              user_id={data.userId}
+              user_name={data.username}
               score={data.score}
-              profileImage_uri={data.profileImage_uri}
-              product_id={data.product_id}
+              profileImage_uri={data.productImg[0]}
+              product_id={data.productId}
               region={data.region}
               unit={data.unit}
               town={data.town}
-              goal_num={data.goal_num}
+              goal_num={data.goalQuantity}
               category={data.category}
-              state_num={data.state_num}
-              image_uri={data.image_uri}
-              goal_price={data.goal_price}
-              state_price={data.state_price}
+              state_num={data.stateQuantity}
+              image_uri="https://source.unsplash.com/80x80/?cat"
               title={data.title}
               body={data.body}
-              generated_time={data.generated_time}
-              ended_time={data.ended_time}
-              status={data.status}
-              base_price={data.base_price}
+              generated_time={data.generatedTime}
+              ended_time={data.endedTime}
+              status={data.state}
+              base_price={data.unitPerPrice}
             />
           )}
+          <TopButton />
         </Container>
       </Page>
     );
   }
-
-  data && data.user_id === parseInt(user.userId)
+  data && data.userId === parseInt(user.userId)
     ? console.log("good")
     : console.log("fasle");
 
@@ -84,55 +84,52 @@ const Detail = () => {
 
     <Page>
       <Container>
-        {data && parseInt(user.userId) === data.user_id ? (
+        {data && parseInt(user.userId) === data.userId ? (
           <Publisher
-            user_id={data.user_id}
-            user_name={data.user_name}
+            user_id={data.userId}
+            user_name={data.username}
             score={data.score}
-            profileImage_uri={data.profileImage_uri}
-            product_id={data.product_id}
+            profileImage_uri="https://source.unsplash.com/80x80/?cat"
+            product_id={data.productId}
             region={data.region}
+            unit={data.unit}
             town={data.town}
-            goal_num={data.goal_num}
-            state_num={data.state_num}
+            goal_num={data.goalQuantity}
             category={data.category}
-            image_uri={data.image_uri}
-            goal_price={data.goal_price}
-            state_price={data.state_price}
+            state_num={data.stateQuantity}
+            image_uri={data.productImg[0]}
             title={data.title}
             body={data.body}
-            generated_time={data.generated_time}
-            ended_time={data.ended_time}
-            status={data.status}
-            base_price={data.base_price}
-            unit={data.unit}
+            generated_time={data.generatedTime}
+            ended_time={data.endedTime}
+            status={data.state}
+            base_price={data.unitPerPrice}
           />
         ) : (
           data && (
             <Participant
-              user_id={data.user_id}
-              user_name={data.user_name}
+              user_id={data.userId}
+              user_name={data.username}
               score={data.score}
-              profileImage_uri={data.profileImage_uri}
-              product_id={data.product_id}
+              profileImage_uri={data.productImg[0]}
+              product_id={data.productId}
               region={data.region}
               unit={data.unit}
               town={data.town}
-              goal_num={data.goal_num}
+              goal_num={data.goalQuantity}
               category={data.category}
-              state_num={data.state_num}
-              image_uri={data.image_uri}
-              goal_price={data.goal_price}
-              state_price={data.state_price}
+              state_num={data.stateQuantity}
+              image_uri="https://source.unsplash.com/80x80/?cat"
               title={data.title}
               body={data.body}
-              generated_time={data.generated_time}
-              ended_time={data.ended_time}
-              status={data.status}
-              base_price={data.base_price}
+              generated_time={data.generatedTime}
+              ended_time={data.endedTime}
+              status={data.state}
+              base_price={data.unitPerPrice}
             />
           )
         )}
+        <TopButton />
       </Container>
     </Page>
   );

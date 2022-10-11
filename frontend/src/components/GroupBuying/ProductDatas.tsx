@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import PreviewItem from "./PreviewItem";
+import PreviewItem from "../Preview/PreviewItem";
 
 const Container = styled.section`
   @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
@@ -35,30 +38,29 @@ const Grid = styled.div`
   }
 `;
 
-type Props = {
-  selected?: string;
-};
+const ProductDatas = () => {
+  //! page url이 바뀔 때 마다 api url을 바꿔서 쏘기
+  const { regions, towns } = useParams();
 
-const PreviewList = ({ selected }: Props) => {
   const { data, fetchNextPage, hasNextPage, isLoading, isFetching } =
     useInfiniteQuery(
-      ["category", selected],
+      ["product", regions, towns],
       async ({ pageParam = 1 }) => {
         let url = "";
-        if (selected) {
-          url = `&category=${selected}`;
+        if (regions) {
+          url = `&region=${regions}`;
         }
-        if (selected === "전체") {
-          url = "";
+        if (towns && regions) {
+          url = `&region=${regions}&&town=${towns}`;
         }
-        return axios
+        return await axios
           .get(
             `${process.env.REACT_APP_API_URL}/products?page=${pageParam}` +
               `${url}`
           )
           .then(({ data }) => {
             console.log({
-              selected,
+              region: regions,
               returnedData: data,
             });
             return data;
@@ -112,4 +114,4 @@ const PreviewList = ({ selected }: Props) => {
   );
 };
 
-export default PreviewList;
+export default ProductDatas;

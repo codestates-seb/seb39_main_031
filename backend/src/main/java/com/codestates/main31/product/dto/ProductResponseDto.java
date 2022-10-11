@@ -29,7 +29,7 @@ public class ProductResponseDto {
 
         private int stateQuantity;
 
-        private Long unit;
+        private String unit;
 
         private Long unitPerPrice;
 
@@ -69,7 +69,7 @@ public class ProductResponseDto {
 
         private int stateQuantity;
 
-        private Long unit;
+        private String unit;
 
         private Long unitPerPrice;
 

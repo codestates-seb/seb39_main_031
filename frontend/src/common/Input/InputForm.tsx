@@ -9,6 +9,7 @@ const InputBox = styled.div<{ width?: string; marginBottom?: string }>`
     font-weight: bolder;
     font-size: ${({ theme }) => theme.fontSize.size15};
   }
+
   > input {
     margin-top: 1rem;
     display: block;
@@ -19,6 +20,11 @@ const InputBox = styled.div<{ width?: string; marginBottom?: string }>`
     font-size: ${({ theme }) => theme.fontSize.size15};
     padding: 5px 12px;
     cursor: pointer;
+  }
+  > input::-webkit-outer-spin-button,
+  > input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 

@@ -23,6 +23,8 @@ interface Select {
   label2?: string;
   onSelectRegion?: React.Dispatch<React.SetStateAction<string>>;
   onSelectTown?: React.Dispatch<React.SetStateAction<string>>;
+  onChangeRegion?: () => void;
+  onChangeTown?: () => void;
   selectRegion?: string;
   selectTown?: string;
 }
@@ -57,13 +59,13 @@ const SelectForm = ({
     }
 
     if (userRegion === "서울특별시") {
-      const town = townOptions.filter((reg) => reg["서울특별시"]);
+      const town = townOptions.filter(reg => reg["서울특별시"]);
       setTownData(town[0]["서울특별시"]);
       setControl(true);
     }
 
     if (userRegion === "경기도") {
-      const town = townOptions.filter((reg) => reg["경기도"]);
+      const town = townOptions.filter(reg => reg["경기도"]);
       setTownData(town[0]["경기도"]);
       setControl(true);
     }

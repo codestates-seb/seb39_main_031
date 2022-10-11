@@ -1,4 +1,4 @@
-import { BlueButton } from "../../common/Button/BorderButton";
+import { BlueButton } from "../../common/Button/ColorButton";
 import { ButtonType } from "../../types/Button";
 
 const RatingButton = ({ onClick }: ButtonType) => {

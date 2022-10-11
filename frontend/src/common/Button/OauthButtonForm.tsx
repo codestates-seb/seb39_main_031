@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { OauthButtonType } from "../../types/Button";
 
 const OauthButton = styled.button<OauthButtonType>`
-  width: ${({ width }) => (width ? width : "75px")};
-  height: ${({ height }) => (height ? height : "75px")};
+  width: ${({ width }) => (width ? width : "50px")};
+  height: ${({ height }) => (height ? height : "50px")};
   background-color: ${({ backgroundColor }) =>
     backgroundColor ? backgroundColor : ({ theme }) => theme.colors.black300};
   border: none;
@@ -12,7 +12,9 @@ const OauthButton = styled.button<OauthButtonType>`
     borderRadius ? borderRadius : "100%"};
   text-align: center;
   cursor: pointer;
-  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const OauthButtonForm: React.FC<OauthButtonType> = ({ ...props }) => {

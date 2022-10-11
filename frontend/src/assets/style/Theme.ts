@@ -2,6 +2,11 @@
 import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
+  breakPoints: {
+    mobile: "481px",
+    tablet: "769px",
+    desktop: "1024px",
+  },
   colors: {
     cyan50: "#E0F7FA",
     cyan100: "#84FFFF",

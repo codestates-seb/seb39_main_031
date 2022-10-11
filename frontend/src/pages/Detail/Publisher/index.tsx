@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,10 +9,15 @@ import DetailUserInfo from "../../../components/Detail/DetailUserInfo";
 import CloseButton from "../../../components/Detail/Publisher/CloseButton";
 import DeleteButton from "../../../components/Detail/Publisher/DeleteButton";
 import ModifyButton from "../../../components/Detail/Publisher/ModifyButton";
-import ParticipantList from "../../../components/Detail/Publisher/ParticipantList";
 import { useAppDispatch } from "../../../hooks/Redux";
 import { deleteModal } from "../../../redux/modalSlice";
 import { DetailType, Image } from "../../../types/post";
+
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  row-gap: 2em;
+`;
 
 const Title = styled.h1`
   padding-bottom: 1em;
@@ -22,13 +28,24 @@ const Title = styled.h1`
 
 const Main = styled.main`
   display: flex;
-  flex-direction: row-reverse;
-  column-gap: 60px;
+  flex-direction: column;
+  column-gap: 3em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    flex-direction: row-reverse;
+  }
 `;
 
 const Aside = styled.aside`
-  width: 30%;
+  width: 100%;
+  padding: 0 1em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 30%;
+    padding: 0;
+  }
 `;
+
 const ButtonBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,19 +58,38 @@ const DetailButton = styled.div`
 `;
 
 const Section = styled.section`
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 3em;
+  width: 100%;
+  margin-top: 2em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3em;
+    margin-top: 0;
+  }
 `;
 
 const ImageBox = styled.div<Image>`
   width: 100%;
   height: 400px;
+
   background: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s linear;
+
+  &.desktop {
+    @media (max-width: ${(props) => props.theme.breakPoints.tablet}) {
+      display: none;
+    }
+  }
+
+  &.tablet {
+    @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+      display: none;
+    }
+  }
 `;
 
 const Publisher = ({
@@ -68,31 +104,32 @@ const Publisher = ({
   goal_num,
   state_num,
   image_uri,
-  goal_price,
-  state_price,
   title,
   body,
   generated_time,
   ended_time,
   status,
+  base_price,
+  enteredUser,
 }: DetailType) => {
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
+  const goal_price = goal_num * base_price;
+
   const deleteModalHandler = () => {
     dispatch(deleteModal({ modalType: "deleteModal", isVisible: true }));
   };
 
   return (
-    <>
+    <Container>
       <Title>{title}</Title>
+      <ImageBox image={image_uri} className="tablet" />
       <Main>
         <Aside>
           <DetailStats
             ended_time={ended_time}
             goal_num={goal_num}
             state_num={state_num}
-            state_price={state_price}
             goal_price={goal_price}
             generated_time={generated_time}
           />
@@ -129,12 +166,12 @@ const Publisher = ({
           />
         </Aside>
         <Section>
-          <ImageBox image={image_uri} />
-          <ParticipantList />
+          <ImageBox image={image_uri} className="desktop" />
+          {/* {enteredUser && <ParticipantList enteredUser={enteredUser} />} */}
           <PublisherContent body={body} />
         </Section>
       </Main>
-    </>
+    </Container>
   );
 };
 

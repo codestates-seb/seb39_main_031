@@ -2,8 +2,10 @@ import { BiSearch } from "react-icons/bi";
 import styled from "styled-components";
 
 const InputTagBox = styled.div<InputProps>`
-  display: flex;
-  width: ${({ width }) => (width ? width : "100%")};
+  display: none;
+  width: 50%;
+  min-width: 150px;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -23,6 +25,17 @@ const InputTagBox = styled.div<InputProps>`
 
   .disable {
     display: none;
+  }
+
+  &.header {
+    @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+      display: flex;
+      width: 40%;
+    }
+  }
+
+  &.main {
+    display: flex;
   }
 `;
 
@@ -57,11 +70,18 @@ interface InputProps {
   path?: string;
   width?: string;
   borderColor?: string;
+  className?: string;
 }
 
-const SearchInput = ({ placeholder, path, width, borderColor }: InputProps) => {
+const SearchInput = ({
+  placeholder,
+  path,
+  width,
+  borderColor,
+  className,
+}: InputProps) => {
   return (
-    <InputTagBox width={width}>
+    <InputTagBox width={width} className={className}>
       <InputTag
         className={path === "/" ? "disable" : ""}
         placeholder={placeholder}

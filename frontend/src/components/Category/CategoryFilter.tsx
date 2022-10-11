@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useRef } from "react";
 import styled from "styled-components";
 
@@ -9,10 +10,10 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  top: 35px;
+  top: 30px;
   z-index: 1;
-  padding: 15px 0 35px 0;
-  margin: 15px 0 100px 0;
+  padding-bottom: 1em;
+  margin-bottom: 6em;
   border-bottom: 1px solid ${(props) => props.theme.colors.black300};
 `;
 
@@ -35,7 +36,7 @@ const LeftBtnBox = styled.div`
   justify-content: center;
   position: absolute;
   top: 0;
-  right: calc(100% - 30px);
+  right: -100;
   z-index: 2;
   height: 100%;
 `;
@@ -52,8 +53,8 @@ const RightBtnBox = styled.div`
 `;
 
 interface Props {
-  selected: number;
-  setSelected: React.Dispatch<React.SetStateAction<number>>;
+  selected: string;
+  setSelected: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CategoryFilter = ({ selected, setSelected }: Props) => {
@@ -69,7 +70,7 @@ const CategoryFilter = ({ selected, setSelected }: Props) => {
       slider.scrollLeft = slider.scrollWidth - slider.clientWidth;
       return;
     }
-    slider.scrollLeft -= 200;
+    slider.scrollLeft -= 300;
   };
 
   const rightHandler = () => {
@@ -82,7 +83,7 @@ const CategoryFilter = ({ selected, setSelected }: Props) => {
       slider.scrollLeft = 0;
       return;
     }
-    slider.scrollLeft += 200;
+    slider.scrollLeft += 300;
   };
 
   return (
@@ -90,22 +91,22 @@ const CategoryFilter = ({ selected, setSelected }: Props) => {
       <LeftBtnBox>
         <CategorySlideButton direction="left" onClick={leftHandler} />
       </LeftBtnBox>
+      <RightBtnBox>
+        <CategorySlideButton direction="right" onClick={rightHandler} />
+      </RightBtnBox>
       <CategoryList ref={slideRef}>
         {categories.map((item, index) => {
           return (
             <CategoryButton
               key={index}
-              className={selected === index ? "active" : ""}
-              onClick={() => setSelected(index)}
+              className={selected === item.label ? "active" : ""}
+              onClick={() => setSelected(item.label)}
               label={item.label}
               icon={item.icon}
             />
           );
         })}
       </CategoryList>
-      <RightBtnBox>
-        <CategorySlideButton direction="right" onClick={rightHandler} />
-      </RightBtnBox>
     </Container>
   );
 };

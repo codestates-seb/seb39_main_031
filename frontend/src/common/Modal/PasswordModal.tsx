@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ModalWrapper = styled.div`
+const ModalWrapper = styled.section`
   width: 100%;
   height: 100%;
   position: fixed;
@@ -17,11 +17,11 @@ const ModalContainer = styled.div<{ width?: string; height?: string }>`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: ${({ width }) => (width ? width : "60%")};
-  height: ${({ height }) => (height ? height : "40%")};
+  width: 80%;
+  height: auto;
   max-width: 560px;
   max-height: 280px;
-  padding: 16px;
+  padding: 3rem;
   background: white;
   border-radius: 10px;
   text-align: center;
@@ -31,22 +31,21 @@ const ModalContainer = styled.div<{ width?: string; height?: string }>`
   align-items: center;
 
   .top {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
   .first-message {
-    font-size: ${({ theme }) => theme.fontSize.size24};
-    font-weight: 900;
+    font-size: ${({ theme }) => theme.fontSize.size20};
+    font-weight: 700;
   }
   .second-message {
     font-size: ${({ theme }) => theme.fontSize.size15};
-    font-weight: 800;
   }
 
   .login {
-    font-size: ${({ theme }) => theme.fontSize.size18};
-    font-weight: 900;
+    font-size: ${({ theme }) => theme.fontSize.size15};
     color: ${({ theme }) => theme.colors.cyan700};
+    font-weight: 600;
   }
 `;
 
