@@ -47,9 +47,7 @@ const Thumbnail = styled.img`
 `;
 
 const ProductInfo = styled.div`
-  @media (min-width: ${(props) => props.theme.breakPoints.mobile}) {
-    width: 100%;
-  }
+  width: 100%;
 `;
 
 const TitleUserBox = styled.div`
