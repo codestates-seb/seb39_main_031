@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import TopButton from "../../common/Button/TopButton";
 import { detailProduct } from "../../config/API/api";
 import { getCookie } from "../../config/Cookie";
 import Participant from "./Participant";
@@ -69,6 +70,7 @@ const Detail = () => {
               base_price={data.unitPerPrice}
             />
           )}
+          <TopButton />
         </Container>
       </Page>
     );
@@ -127,6 +129,7 @@ const Detail = () => {
             />
           )
         )}
+        <TopButton />
       </Container>
     </Page>
   );
