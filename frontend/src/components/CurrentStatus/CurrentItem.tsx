@@ -16,7 +16,7 @@ const Container = styled.section`
 `;
 
 const ImageBox = styled.div<Image>`
-  width: 100px;
+  width: 150px;
   height: 100px;
   background-image: url(${(props) => props.image});
   background-repeat: no-repeat;
@@ -24,12 +24,27 @@ const ImageBox = styled.div<Image>`
   border-radius: 5px;
 `;
 
+const SubContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
 const InfoBox = styled.div`
-  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   row-gap: 10px;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 80%;
+  }
 `;
 
 const Date = styled.div`
@@ -54,9 +69,14 @@ const UserInfo = styled.div`
 
 const ButtonBox = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 10px;
+  column-gap: 10px;
+  justify-content: flex-end;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+  }
 `;
 
 interface Props {
@@ -120,25 +140,27 @@ const CurrentItem = ({
   return (
     <Container>
       <ImageBox image={image_uri} />
-      <InfoBox>
-        <Date>{remainTime}</Date>
-        <Title>{title}</Title>
-        <UserInfo>
-          <span>{category} |</span>
-          <span>{user_name} ·</span>
-          <span>{town}</span>
-        </UserInfo>
-      </InfoBox>
-      <ButtonBox>
-        {status === "proceeding" ? (
-          <CancelButton onClick={cancelModalHandler} />
-        ) : (
-          <>
-            <RatingButton onClick={ratingModalHandlr} />
-            <EndButton onClick={endModalHandler} />
-          </>
-        )}
-      </ButtonBox>
+      <SubContainer>
+        <InfoBox>
+          <Date>{remainTime}</Date>
+          <Title>{title}</Title>
+          <UserInfo>
+            <span>{category} |</span>
+            <span>{user_name} ·</span>
+            <span>{town}</span>
+          </UserInfo>
+        </InfoBox>
+        <ButtonBox>
+          {status === "proceeding" ? (
+            <CancelButton onClick={cancelModalHandler} />
+          ) : (
+            <>
+              <RatingButton onClick={ratingModalHandlr} />
+              <EndButton onClick={endModalHandler} />
+            </>
+          )}
+        </ButtonBox>
+      </SubContainer>
     </Container>
   );
 };

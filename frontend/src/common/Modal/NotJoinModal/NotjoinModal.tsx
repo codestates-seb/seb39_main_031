@@ -7,7 +7,8 @@ import Modal from "../Modal";
 import ProductInfo from "./ProductInfo";
 
 const customModalStyle = css`
-  width: 600px;
+  width: 80%;
+  max-width: 600px;
   height: auto;
   display: flex;
   flex-direction: column;

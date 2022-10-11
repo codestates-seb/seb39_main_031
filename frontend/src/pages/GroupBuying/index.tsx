@@ -2,16 +2,26 @@ import styled from "styled-components";
 
 import TopButton from "../../common/Button/TopButton";
 import GroupPageHeader from "../../components/GroupBuying/GroupPageHeader";
-import ProductList from "../../components/GroupBuying/ProductList";
+import ProductDatas from "../../components/GroupBuying/ProductDatas";
+// import ProductList from "../../components/GroupBuying/ProductList";
 
 const PageContainer = styled.div`
   width: 100%;
-  padding: 70px 0;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
 `;
 
 const Container = styled.div`
-  margin: 0 auto;
-  width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    width: 70%;
+    max-width: 900px;
+  }
 `;
 
 const GroupBuying = () => {
@@ -19,7 +29,7 @@ const GroupBuying = () => {
     <PageContainer>
       <Container>
         <GroupPageHeader />
-        <ProductList />
+        <ProductDatas />
         <TopButton />
       </Container>
     </PageContainer>

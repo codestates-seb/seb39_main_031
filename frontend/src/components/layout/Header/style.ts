@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 export const Container = styled.header`
-  width: 100%;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
 `;
 
 export const HeaderBox = styled.div`
   width: 100%;
+  min-width: 480px;
   height: 70px;
   padding: 1em 1em;
   display: flex;
@@ -39,13 +42,15 @@ export const LogoImage = styled.img`
 
 export const MenuBox = styled.nav`
   display: none;
-  column-gap: 10px;
 
   @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     display: flex;
+    column-gap: 1em;
+    margin-left: 1em;
   }
 
   @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    column-gap: 1.5rem;
     margin-left: 2em;
   }
 `;
@@ -56,7 +61,6 @@ export const MenuLink = styled(NavLink)`
   align-items: center;
   font-weight: 700;
   font-size: 22px;
-  width: 100px;
 
   &.main {
     color: white !important;
@@ -82,6 +86,7 @@ export const RightBox = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 1em;
 
   &.iconBox {
     column-gap: 20px;
@@ -94,5 +99,9 @@ export const RightBox = styled.nav`
 
   .main {
     color: ${(props) => props.theme.colors.white000};
+  }
+
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    column-gap: 1.5rem;
   }
 `;
