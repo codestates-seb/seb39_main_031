@@ -45,6 +45,13 @@ const EditForm = ({
 }: EditType) => {
   const editorRef = useRef<Editor>(null);
 
+  //! 시작 날짜 받아서 날짜에 맞게 input의 value로 만들어서 넣기
+  const date = new Date(generated_time);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
+  const toDay = `${year}-${month}-${day}`;
+
   const [eTitle, setETitle] = useState(title);
   const [eCategory, setECategory] = useState(category);
   const [goalNum, setGoalNum] = useState(String(goal_num));
