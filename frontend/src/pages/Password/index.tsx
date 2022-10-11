@@ -25,7 +25,7 @@ const Container = styled.div`
 `;
 
 const PasswordContainer = styled.div`
-  width: 40%;
+  width: 80%;
   max-width: 560px;
   padding: 50px 30px;
   border-radius: 5px;
