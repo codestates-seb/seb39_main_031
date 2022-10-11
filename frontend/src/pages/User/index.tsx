@@ -11,9 +11,16 @@ const Page = styled.div`
 `;
 
 const Container = styled.div`
-  width: 900px;
+  width: 100%;
+  padding: 0 1em;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    width: 70%;
+    max-width: 900px;
+    padding: 0;
+  }
 `;
 
 const User = () => {

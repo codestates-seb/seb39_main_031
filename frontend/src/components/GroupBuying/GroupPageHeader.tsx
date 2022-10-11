@@ -16,7 +16,8 @@ const PageHeader = styled.div`
 
   > h1 {
     margin: 0;
-    text-decoration: underline ${props => props.theme.colors.cyan400} 10px;
+    margin-left: 0.5rem;
+    text-decoration: underline ${(props) => props.theme.colors.cyan400} 10px;
     text-underline-offset: -3px;
   }
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BgImg from "../../../../assets/Image/background2.jpg";
 import SearchInput from "./SearchInput";
 
-const MainBox = styled.div`
+const MainBox = styled.section`
   height: 300px;
   display: flex;
   flex-direction: column;
@@ -24,25 +24,26 @@ const MainBox = styled.div`
 `;
 
 const Paragraph = styled.div`
-  font-size: 20px;
+  width: 100%;
+  font-size: 1em;
   font-weight: 500;
   display: flex;
   flex-direction: column;
   align-items: center;
   line-height: 1.5em;
   letter-spacing: 2px;
-  margin-bottom: 1em;
+  margin: 1rem 0;
 
   div {
     color: ${(props) => props.theme.colors.white000};
   }
 
   @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
-    font-size: 30px;
+    font-size: 1.5em;
   }
 
   @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
-    font-size: 35px;
+    font-size: 2em;
   }
 `;
 

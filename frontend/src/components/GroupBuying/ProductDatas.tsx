@@ -11,16 +11,31 @@ import styled from "styled-components";
 
 import PreviewItem from "../Preview/PreviewItem";
 
-const Container = styled.div`
-  display: flex;
+const Container = styled.section`
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 const Grid = styled.div`
-  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 30%);
-  grid-row-gap: 40px;
-  grid-column-gap: 5%;
+  grid-template-columns: repeat(1, 1fr);
+  grid-row-gap: 20px;
+  padding: 0 1em;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 25px;
+    grid-row-gap: 40px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0;
+  }
 `;
 
 const ProductDatas = () => {
@@ -52,7 +67,7 @@ const ProductDatas = () => {
           });
       },
       {
-        getNextPageParam: lastPage => {
+        getNextPageParam: (lastPage) => {
           const lastNum = lastPage.pageInfo.totalPages;
           const nextNum = lastPage.pageInfo.page + 1;
           if (nextNum > lastNum) return null;
@@ -75,7 +90,7 @@ const ProductDatas = () => {
       <InfiniteScroll loadMore={fetchNext} hasMore={hasNextPage}>
         <Grid>
           {data &&
-            data.pages.map(pageData => {
+            data.pages.map((pageData) => {
               return pageData.data.map((el: any) => {
                 return (
                   <PreviewItem
