@@ -20,7 +20,7 @@ const Grid = styled.div`
 const JoinedItems = () => {
   const { authorization } = getCookie("userInfo");
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, isError } = useQuery(
     ["endedList"],
     async () => await myParticipateList(authorization).then(({ data }) => data)
   );
@@ -29,12 +29,16 @@ const JoinedItems = () => {
     return <h2>Loading...</h2>;
   }
 
-  console.log(data);
+  if (isError) {
+    return <h2>Error!</h2>;
+  }
+
+  console.log(data.result);
   return (
     <Container>
-      <Grid>
+      {/* <Grid>
         {data &&
-          data.data.map((el: any) => {
+          data.result.map((el: any) => {
             return (
               <PreviewItem
                 key={el.productId}
@@ -50,7 +54,7 @@ const JoinedItems = () => {
               />
             );
           })}
-      </Grid>
+      </Grid> */}
     </Container>
   );
 };

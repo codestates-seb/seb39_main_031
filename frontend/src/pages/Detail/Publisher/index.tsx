@@ -131,7 +131,11 @@ const Publisher = ({
             generated_time={generated_time}
           />
           <ButtonBlock>
-            {status === "proceeding" ? <CloseButton /> : <CloseDisplay />}
+            {status === "PROCEED" ? (
+              <CloseButton product_id={product_id} />
+            ) : (
+              <CloseDisplay />
+            )}
             <DetailButton>
               <ModifyButton
                 onClick={() =>

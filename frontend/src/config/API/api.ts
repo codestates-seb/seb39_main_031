@@ -96,16 +96,6 @@ export const deleteNotice = async (productId: string, noticeId: string) => {
   return await Axios.delete(url);
 };
 
-//! image 업로드
-export const imageUpload = async (body: any, type: string) => {
-  const url = `/image/upload?type=${type}`;
-  return await Axios.post(url, body, {
-    headers: {
-      "Content-Type": `multipart/form-data`,
-    },
-  });
-};
-
 // 공동구매 참여
 export const enteredProduct = async (
   body: participateProduct,
@@ -115,6 +105,26 @@ export const enteredProduct = async (
   return Axios.post(url, body, {
     headers: {
       Authorization: token,
+    },
+  });
+};
+
+// 모집 종료하기
+export const closeProduct = async (product_id: number, token: string) => {
+  const url = `/EnteredUser/close/${product_id}`;
+  return Axios.post(url, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+//! image 업로드
+export const imageUpload = async (body: any, type: string) => {
+  const url = `/image/upload?type=${type}`;
+  return await Axios.post(url, body, {
+    headers: {
+      "Content-Type": `multipart/form-data`,
     },
   });
 };
