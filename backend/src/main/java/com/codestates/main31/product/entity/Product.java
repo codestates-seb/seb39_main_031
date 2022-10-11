@@ -95,4 +95,8 @@ public class Product {
         this.enteredUser.add(enteredUser);
     }
 
+    public void endProduct() {
+        this.state = this.endedTime.isBefore(LocalDateTime.now()) ? ProductState.DEADLINE : this.state;
+    }
+
 }
