@@ -1,14 +1,17 @@
 package com.codestates.main31.product.controller;
 
 import com.codestates.main31.dto.MultiResponseDto;
+import com.codestates.main31.favorite.Favorite;
+import com.codestates.main31.favorite.FavoriteRepository;
+import com.codestates.main31.favorite.FavoriteService;
 import com.codestates.main31.product.dto.ProductRequestDto;
 import com.codestates.main31.product.dto.ProductResponseDto;
 import com.codestates.main31.product.entity.Product;
+import com.codestates.main31.product.entity.ProductState;
 import com.codestates.main31.product.mapper.ProductMapper;
 import com.codestates.main31.product.repository.ProductSpecification;
 import com.codestates.main31.product.service.ProductService;
 import com.codestates.main31.productimage.mapper.ProductImageMapper;
-import com.codestates.main31.productimage.mapper.ProductImageMapperImpl;
 import com.codestates.main31.user.auth.filter.entity.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -27,6 +30,8 @@ import java.time.LocalDateTime;
 public class ProductController {
 
     private final ProductService productService;
+
+    private final FavoriteRepository favoriteRepository;
 
     private final ProductMapper productMapper;
 
@@ -49,11 +54,27 @@ public class ProductController {
         return new ResponseEntity<>(getDetail, HttpStatus.OK);
     }
 
-    @GetMapping("/deadline")
-    public MultiResponseDto<ProductResponseDto.GetList> readProductsListWithinDeadline(@RequestParam int page,
-                                                                         @RequestParam(defaultValue = "9", required = false) int size) {
+    @GetMapping("/favorite")
+    public MultiResponseDto<ProductResponseDto.GetList> readProductsListWithFavoriteCount(@RequestParam int page,
+                                                                                          @RequestParam(defaultValue = "9", required = false) int size) {
 
         Specification<Product> spec = (root, query, builder) -> builder.greaterThan(root.get("endedTime"), LocalDateTime.now());
+        spec = spec.and((root, query, builder) -> builder.equal(root.get("state"), ProductState.PROCEED));
+        Page<Product> readProductsList = productService.readProductsListWithFavoriteCount(page, size, spec);
+        MultiResponseDto<ProductResponseDto.GetList> getListMultiResponseDto = productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);
+        getListMultiResponseDto.getData().forEach(productResponseDto -> {
+            productResponseDto.setFavoriteCount(favoriteRepository.countByProductId(productResponseDto.getProductId()));
+        });
+        getListMultiResponseDto.getData().sort((o1, o2) -> (int) (o1.getFavoriteCount() - o2.getFavoriteCount()));
+        return getListMultiResponseDto;
+    }
+
+    @GetMapping("/deadline")
+    public MultiResponseDto<ProductResponseDto.GetList> readProductsListWithinDeadline(@RequestParam int page,
+                                                                                       @RequestParam(defaultValue = "9", required = false) int size) {
+
+        Specification<Product> spec = (root, query, builder) -> builder.greaterThan(root.get("endedTime"), LocalDateTime.now());
+        spec = spec.and((root, query, builder) -> builder.equal(root.get("state"), ProductState.PROCEED));
         Page<Product> readProductsList = productService.readProductsListWithinDeadline(page, size, spec);
         return productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);
     }
@@ -71,6 +92,7 @@ public class ProductController {
         if (criteria.getTown() != null)
             spec = spec.and((root, query, builder) -> builder.equal(root.join("address").get("town"), criteria.getTown()));
 
+        spec = spec.and((root, query, builder) -> builder.equal(root.get("state"), ProductState.PROCEED));
         Page<Product> readProductsList = productService.readProductsList(page, size, spec);
         return productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);
     }
