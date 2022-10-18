@@ -77,6 +77,13 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page-1, size, Sort.Direction.ASC, "endedTime"));
     }
 
+    public Page<Product> readProductsListWithFavoriteCount(int page, int size, Specification<Product> spec) {
+        Page<Product> productList = productRepository.findAll(spec, PageRequest.of(page - 1, size, Sort.Direction.DESC, "productId"));
+        productList.forEach(Product::endProduct);
+
+        return productList;
+    }
+
     // Todo: 작성자를 제외한 인원은 수정 불가능
     public Product updateProduct(Long productId, Product newProduct) {
         Product curProduct = findProduct(productId);

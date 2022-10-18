@@ -47,6 +47,8 @@ public class ProductResponseDto {
 
         private String profileUrl;
 
+        private long favoriteCount;
+
     }
 
     @Getter
