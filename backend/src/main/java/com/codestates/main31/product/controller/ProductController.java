@@ -4,6 +4,7 @@ import com.codestates.main31.dto.MultiResponseDto;
 import com.codestates.main31.product.dto.ProductRequestDto;
 import com.codestates.main31.product.dto.ProductResponseDto;
 import com.codestates.main31.product.entity.Product;
+import com.codestates.main31.product.entity.ProductState;
 import com.codestates.main31.product.mapper.ProductMapper;
 import com.codestates.main31.product.repository.ProductSpecification;
 import com.codestates.main31.product.service.ProductService;
@@ -54,6 +55,7 @@ public class ProductController {
                                                                          @RequestParam(defaultValue = "9", required = false) int size) {
 
         Specification<Product> spec = (root, query, builder) -> builder.greaterThan(root.get("endedTime"), LocalDateTime.now());
+        spec = spec.and((root, query, builder) -> builder.equal(root.get("state"), ProductState.PROCEED));
         Page<Product> readProductsList = productService.readProductsListWithinDeadline(page, size, spec);
         return productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);
     }
@@ -71,6 +73,7 @@ public class ProductController {
         if (criteria.getTown() != null)
             spec = spec.and((root, query, builder) -> builder.equal(root.join("address").get("town"), criteria.getTown()));
 
+        spec = spec.and((root, query, builder) -> builder.equal(root.get("state"), ProductState.PROCEED));
         Page<Product> readProductsList = productService.readProductsList(page, size, spec);
         return productMapper.productResponseGetListsDtoToMultiResponseDto(readProductsList);
     }
