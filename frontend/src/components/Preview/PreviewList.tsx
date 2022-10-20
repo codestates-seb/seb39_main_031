@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useInfiniteQuery } from "react-query";
 import styled from "styled-components";
 
+import LoadingSpinner from "../../common/Loading/LoadingSpinner";
 import PreviewItem from "./PreviewItem";
 
 const Container = styled.section`
@@ -76,7 +77,7 @@ const PreviewList = ({ selected }: Props) => {
     );
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <LoadingSpinner />;
   }
 
   const fetchNext = () => {
