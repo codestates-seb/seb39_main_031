@@ -9,6 +9,7 @@ import { useInfiniteQuery, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import LoadingSpinner from "../../common/Loading/LoadingSpinner";
 import PreviewItem from "../Preview/PreviewItem";
 
 const Container = styled.section`
@@ -78,7 +79,7 @@ const ProductDatas = () => {
     );
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <LoadingSpinner />;
   }
 
   const fetchNext = () => {
