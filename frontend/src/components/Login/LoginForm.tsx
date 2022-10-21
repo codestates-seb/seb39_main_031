@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from "axios";
 import { useCallback, useState } from "react";
 import { useMutation } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import {
@@ -11,19 +10,20 @@ import {
   loginPasswordCheck,
 } from "../../assets/FormCheck/LoginCheckFuc";
 import Button from "../../common/Button/ButtonForm";
-import InputForm from "../../common/Input/InputForm";
+import LabelInput from "../../common/Input/LabelInput";
+import { loginUser, userLogin } from "../../config/API/api";
 import { setCookie } from "../../config/Cookie";
 
 const Form = styled.form`
   width: 100%;
+  padding: 1em;
 `;
 
-const Validation = styled.span`
+const Validation = styled.div`
   display: block;
   margin-top: 5px;
-  color: red;
-  padding-left: 10px;
-  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.colors.red700};
+  margin-bottom: 2rem;
   font-size: ${({ theme }) => theme.fontSize.size12};
 `;
 
@@ -31,7 +31,7 @@ const LinkContent = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 
   > a {
     > span {
@@ -47,9 +47,8 @@ const ButtoneContent = styled.div`
   justify-content: center;
 `;
 
-interface loginInfo {
-  userEmail: string;
-  userPassword: string;
+interface stateType {
+  from: string;
 }
 
 const LoginForm = () => {
@@ -59,21 +58,33 @@ const LoginForm = () => {
   const [validEmail, setValidEmail] = useState<string>("");
   const [validPassword, setValidPssword] = useState<string>("");
 
-  const { mutate } = useMutation(
-    async (loginInfo: loginInfo) =>
-      await axios.post("/login", loginInfo).then(({ data }) => data)
-  );
+  const { mutate } = useMutation(async (body: loginUser) => userLogin(body));
+
+  const location = useLocation();
+  const { from } = location.state || ({ from: "/" } as stateType);
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const userLogin: loginInfo = { userEmail, userPassword };
-    mutate(userLogin, {
+    const userInfo: loginUser = { email: userEmail, password: userPassword };
+
+    mutate(userInfo, {
       onSuccess: data => {
-        setCookie("userInfo", data, {
+        const userData = {
+          userId: data.data.userId,
+          username: data.data.username,
+          authorization: data.headers.authorization,
+          profileUrl: data.data.profileUrl,
+        };
+
+        setCookie("userInfo", userData, {
           path: "/",
           maxAge: 6000,
         });
-        window.location.replace("/");
+
+        window.location.replace(from);
+      },
+      onError: error => {
+        console.log(error);
       },
     });
 
@@ -100,14 +111,14 @@ const LoginForm = () => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      <InputForm
+      <LabelInput
         id="userEmail"
         type="email"
         lableText="이메일"
         onChange={onChangeEmail}
       />
       <Validation>{validEmail}</Validation>
-      <InputForm
+      <LabelInput
         id="userNickname"
         type="password"
         lableText="비밀번호"
@@ -121,7 +132,7 @@ const LoginForm = () => {
       </LinkContent>
       <ButtoneContent>
         <Button width="100%" height="3rem">
-          Login
+          로그인
         </Button>
       </ButtoneContent>
     </Form>

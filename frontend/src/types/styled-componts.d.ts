@@ -2,6 +2,11 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    breakPoints: {
+      mobile: string;
+      tablet: string;
+      desktop: string;
+    };
     colors: {
       cyan50: string;
       cyan100: string;

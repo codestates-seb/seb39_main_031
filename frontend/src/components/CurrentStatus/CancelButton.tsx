@@ -1,4 +1,4 @@
-import { BlueButton } from "../../common/Button/BorderButton";
+import { BlueButton } from "../../common/Button/ColorButton";
 // import { useAppDispatch } from "../../hooks/Redux";
 // import { openModal } from "../../redux/modalSlice";
 

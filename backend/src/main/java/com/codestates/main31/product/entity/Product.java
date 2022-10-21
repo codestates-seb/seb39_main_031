@@ -49,7 +49,7 @@ public class Product {
     private int stateQuantity;
 
     @Column(nullable = false)
-    private Long unit;
+    private String unit;
 
     @Column
     private Long unitPerPrice;
@@ -93,6 +93,10 @@ public class Product {
 
     public void addEnteredUser(EnteredUser enteredUser) {
         this.enteredUser.add(enteredUser);
+    }
+
+    public void endProduct() {
+        this.state = this.endedTime.isBefore(LocalDateTime.now()) ? ProductState.DEADLINE : this.state;
     }
 
 }

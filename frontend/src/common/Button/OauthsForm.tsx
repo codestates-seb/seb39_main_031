@@ -10,19 +10,20 @@ const OauthContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  column-gap: 10px;
 `;
 
 const OauthsForm = () => {
   return (
     <OauthContent>
       <OauthButtonForm>
-        <FcGoogle size="35" />
+        <FcGoogle size="30" />
       </OauthButtonForm>
       <OauthButtonForm backgroundColor="#03CF5B">
-        <SiNaver size="35" color="white" />
+        <SiNaver size="26" color="white" />
       </OauthButtonForm>
       <OauthButtonForm backgroundColor="#FEE501">
-        <RiKakaoTalkFill size="45" />
+        <RiKakaoTalkFill size="36" />
       </OauthButtonForm>
     </OauthContent>
   );

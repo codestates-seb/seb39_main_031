@@ -73,9 +73,24 @@ const GlobalStyle = createGlobalStyle`
 html, body{
     height: 100%;
     width: 100%;
+    min-width: 480px;
     margin: 0;
     padding: 0;
     font-family: 'Pretendard-Regular';
+}
+
+body{
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #00B8D4;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
 }
 
 #root{

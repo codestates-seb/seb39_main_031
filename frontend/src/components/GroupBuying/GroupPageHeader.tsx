@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -15,6 +16,9 @@ const PageHeader = styled.div`
 
   > h1 {
     margin: 0;
+    margin-left: 0.5rem;
+    text-decoration: underline ${(props) => props.theme.colors.cyan400} 10px;
+    text-underline-offset: -3px;
   }
 `;
 

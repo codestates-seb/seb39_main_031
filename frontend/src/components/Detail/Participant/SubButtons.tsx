@@ -10,6 +10,7 @@ import DetailSubButton from "./SubButton";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  column-gap: 1em;
 `;
 
 const SubButtons = () => {

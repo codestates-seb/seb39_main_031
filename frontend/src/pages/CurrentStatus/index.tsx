@@ -5,20 +5,28 @@ import CurrentList from "../../components/CurrentStatus/CurrentList";
 
 const Page = styled.div`
   width: 100%;
-  padding: 70px 0;
+  padding: 50px 0;
   display: flex;
   justify-content: center;
 `;
 
 const Container = styled.div`
-  width: 900px;
+  width: 100%;
+  padding: 0 1em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.desktop}) {
+    width: 70%;
+    max-width: 900px;
+    padding: 0;
+  }
 `;
 
 const Title = styled.h1`
   margin: 2em 0;
+  text-decoration: underline ${(props) => props.theme.colors.cyan400} 10px;
+  text-underline-offset: -3px;
 `;
 
 const CurrentStatus = () => {

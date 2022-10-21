@@ -42,7 +42,7 @@ const Header = () => {
               width="32%"
             />
             {isLogin ? (
-              <S.RightBox>
+              <S.RightBox className="iconBox">
                 <Notification className="icon main" />
                 <Link to="/chat">
                   <IoChatbubbleEllipsesSharp className="icon main" />
@@ -78,10 +78,10 @@ const Header = () => {
           <SearchInput
             path={location.pathname}
             placeholder="검색어를 입력하세요."
-            width="32%"
+            className="header"
           />
           {isLogin ? (
-            <S.RightBox>
+            <S.RightBox className="iconBox">
               <Notification className="icon" />
               <Link to="/chat">
                 <IoChatbubbleEllipsesSharp className="icon" />

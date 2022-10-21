@@ -72,7 +72,7 @@ const SignupInputs = () => {
 
   useEffect(() => {
     dispatch(signupActions.emailHandler({ email: userEmail }));
-    dispatch(signupActions.nicknameHandler({ nickname: userNickname }));
+    dispatch(signupActions.nicknameHandler({ username: userNickname }));
     dispatch(signupActions.passwordHandler({ password: userPassword }));
     dispatch(
       signupActions.passwordCheckHandler({ passwordCheck: userPasswordCheck })

@@ -20,7 +20,7 @@ public class ProductRequestDto {
 
         private Integer goalQuantity;
 
-        private Long unit;
+        private String unit;
 
         private Long unitPerPrice;
 
@@ -48,7 +48,7 @@ public class ProductRequestDto {
 
         private Integer goalQuantity;
 
-        private Long unit;
+        private String unit;
 
         private Long unitPerPrice;
 

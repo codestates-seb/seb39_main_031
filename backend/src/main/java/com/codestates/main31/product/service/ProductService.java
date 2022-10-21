@@ -7,6 +7,7 @@ import com.codestates.main31.category.repository.CategoryRepository;
 import com.codestates.main31.exception.BusinessLogicException;
 import com.codestates.main31.exception.ExceptionCode;
 import com.codestates.main31.product.entity.Product;
+import com.codestates.main31.product.entity.ProductState;
 import com.codestates.main31.product.repository.ProductRepository;
 import com.codestates.main31.productimage.entity.ProductImage;
 import com.codestates.main31.productimage.handler.ImageHandler;
@@ -26,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,14 +58,18 @@ public class ProductService {
         return savedProduct;
     }
 
-    @Transactional(readOnly = true)
     public Product readProduct(Long productId) {
-        return findProduct(productId);
+        Product product = findProduct(productId);
+        product.endProduct();
+
+        return product;
     }
 
-    @Transactional(readOnly = true)
     public Page<Product> readProductsList(int page, int size, Specification<Product> spec) {
-        return productRepository.findAll(spec, PageRequest.of(page-1, size, Sort.Direction.DESC, "productId"));
+        Page<Product> productList = productRepository.findAll(spec, PageRequest.of(page - 1, size, Sort.Direction.DESC, "productId"));
+        productList.forEach(Product::endProduct);
+
+        return productList;
     }
 
     @Transactional(readOnly = true)

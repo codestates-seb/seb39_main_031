@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -9,17 +8,31 @@ import { saveClosingDate } from "../../utils/saveClosingDate";
 
 const Container = styled.article`
   width: 100%;
+  height: auto;
+  display: flex;
+  column-gap: 10px;
   cursor: pointer;
 
   > a {
     display: block;
   }
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    flex-direction: column;
+  }
 `;
 
 const ThumbnailBox = styled.div`
   overflow: hidden;
-  width: 100%;
-  height: 14em;
+  border: 1px solid ${(props) => props.theme.colors.black200};
+  width: 30%;
+  min-width: 10rem;
+  height: 8rem;
+
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
+    width: 100%;
+    height: 14rem;
+  }
 `;
 
 const Thumbnail = styled.img`
@@ -33,14 +46,22 @@ const Thumbnail = styled.img`
   }
 `;
 
-const TitleUserBox = styled.div`
-  height: 6em;
+const ProductInfo = styled.div`
+  width: 100%;
 `;
 
-const Title = styled.div`
-  color: ${props => props.theme.colors.black000};
-  font-size: ${props => props.theme.fontSize.size18};
-  margin: 0.5em 0;
+const TitleUserBox = styled.div`
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+  height: 5rem;
+`;
+
+const Title = styled.header`
+  color: ${(props) => props.theme.colors.black000};
+  font-size: ${(props) => props.theme.fontSize.size18};
+  font-weight: 700;
   line-height: 1.5em;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -49,18 +70,28 @@ const Title = styled.div`
 `;
 
 const UserInfo = styled.div`
-  font-size: ${props => props.theme.fontSize.size12};
-  color: ${props => props.theme.colors.black500};
-  margin: 0.5em 0;
+  font-size: ${(props) => props.theme.fontSize.size12};
+  color: ${(props) => props.theme.colors.black500};
 `;
 
 const GongguInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  color: ${props => props.theme.colors.black400};
-  font-size: ${props => props.theme.fontSize.size12};
+  color: ${(props) => props.theme.colors.black400};
+  font-size: 13px;
   margin: 0.5em 0;
   font-weight: 700;
+  text-align: center;
+`;
+
+const PercentageBox = styled.div`
+  display: flex;
+  column-gap: 5px;
+
+  .percentage {
+    font-size: 15px;
+    color: ${(props) => props.theme.colors.cyan400};
+  }
 `;
 
 const PreviewItem = ({
@@ -79,26 +110,33 @@ const PreviewItem = ({
     console.log(user_id, product_id);
   };
   return (
-    <Container onClick={onClickHandler}>
-      <Link to={`/${user_id}/${product_id}`}>
+    <Link to={`/${user_id}/${product_id}`}>
+      <Container onClick={onClickHandler}>
         <ThumbnailBox>
           <Thumbnail src={image_uri} alt={title} />
         </ThumbnailBox>
-        <TitleUserBox>
-          <Title>{title}</Title>
-          <UserInfo>
-            {user_name} | {town}
-          </UserInfo>
-        </TitleUserBox>
-        <ProgressBar state_num={state_num} goal_num={goal_num} />
-        <GongguInfo>
-          <div>
-            {state_num} / {goal_num}
-          </div>
-          <div>{saveClosingDate(ended_time)}</div>
-        </GongguInfo>
-      </Link>
-    </Container>
+        <ProductInfo>
+          <TitleUserBox>
+            <Title>{title}</Title>
+            <UserInfo>
+              {user_name} | {town}
+            </UserInfo>
+          </TitleUserBox>
+          <ProgressBar state_num={state_num} goal_num={goal_num} />
+          <GongguInfo>
+            <PercentageBox>
+              <div className="percentage">{`${Math.ceil(
+                (state_num / goal_num) * 100
+              )}%`}</div>
+              <div>
+                {state_num} / {goal_num}
+              </div>
+            </PercentageBox>
+            <div>{saveClosingDate(ended_time)}</div>
+          </GongguInfo>
+        </ProductInfo>
+      </Container>
+    </Link>
   );
 };
 

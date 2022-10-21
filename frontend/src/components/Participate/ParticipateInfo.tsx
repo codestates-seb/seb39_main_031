@@ -68,6 +68,7 @@ const ParticipateInfo = (props: participate_Info) => {
 
   const [quantity, setQuantity] = useState<number>(1);
   const [price, setPrice] = useState<number>(props.base_price);
+  console.log(props.base_price);
 
   const onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();

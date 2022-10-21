@@ -1,3 +1,4 @@
+import { Viewer } from "@toast-ui/react-editor";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -13,7 +14,7 @@ const ProductInfo = ({ body }: Props) => {
   return (
     <Container>
       <h1>ProductInfo</h1>
-      {body}
+      <Viewer initialValue={body} />
     </Container>
   );
 };
