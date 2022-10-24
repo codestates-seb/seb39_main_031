@@ -67,6 +67,7 @@ const Detail = () => {
               ended_time={data.endedTime}
               status={data.state}
               base_price={data.unitPerPrice}
+              enteredUser={data.enteredUser}
             />
           )}
         </Container>
@@ -102,6 +103,7 @@ const Detail = () => {
             ended_time={data.endedTime}
             status={data.state}
             base_price={data.unitPerPrice}
+            enteredUser={data.enteredUser}
           />
         ) : (
           data && (

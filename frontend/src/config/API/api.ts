@@ -112,6 +112,16 @@ export const enteredProduct = async (
 // 모집 종료하기
 export const closeProduct = async (product_id: number, token: string) => {
   const url = `/EnteredUser/close/${product_id}`;
+  return Axios.patch(url, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+// 좋아요 버튼
+export const favoriteBtnHandler = async (product_id: number, token: string) => {
+  const url = `/EnteredUser/close/${product_id}`;
   return Axios.post(url, {
     headers: {
       Authorization: token,
