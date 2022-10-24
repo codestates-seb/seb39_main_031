@@ -8,7 +8,8 @@ import { BlueButton, GrayButton } from "../Button/ColorButton";
 import Modal from "./Modal";
 
 const customModalStyle = css`
-  width: 500px;
+  width: 80%;
+  max-width: 500px;
   height: auto;
   display: flex;
   flex-direction: column;

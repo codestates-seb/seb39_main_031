@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import NoticeItem from "./NoticeItem";
+import { NoticeItem, ParticipantNoticeItem } from "./NoticeItem";
 
 const Container = styled.div`
   margin: 3em 0 5em 0;
@@ -18,7 +18,8 @@ const data = [
   { notice_id: 1, title: "공지1", body: "내용1", generated_time: "2023-09-23" },
 ];
 
-const NoticeList = () => {
+//TODO: 게시자 공지 사항
+export const NoticeList = () => {
   return (
     <Container>
       {data.map((el) => {
@@ -35,4 +36,20 @@ const NoticeList = () => {
   );
 };
 
-export default NoticeList;
+//TODO: 참가자 공지 List
+export const ParticipantNoticeList = () => {
+  return (
+    <Container>
+      {data.map((el) => {
+        return (
+          <ParticipantNoticeItem
+            key={el.notice_id}
+            title={el.title}
+            body={el.body}
+            generated_time={el.generated_time}
+          />
+        );
+      })}
+    </Container>
+  );
+};
