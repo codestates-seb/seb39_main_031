@@ -1,10 +1,14 @@
+/* eslint-disable prettier/prettier */
 import { useState } from "react";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { RiAlarmWarningLine } from "react-icons/ri";
+import { useMutation } from "react-query";
 import styled from "styled-components";
 
+import { favoriteBtnHandler } from "../../../config/API/api";
+import { getCookie } from "../../../config/Cookie";
 import DetailSubButton from "./SubButton";
 
 const Container = styled.div`
@@ -13,10 +17,27 @@ const Container = styled.div`
   column-gap: 1em;
 `;
 
-const SubButtons = () => {
+type Props = {
+  product_id: number;
+};
+
+const SubButtons = ({ product_id }: Props) => {
   const [favorite, setFavorite] = useState(false);
+  const { authorization } = getCookie("userInfo");
+
+  const { mutate } = useMutation((product_id: number) =>
+    favoriteBtnHandler(product_id, authorization)
+  );
 
   const favoriteHandler = () => {
+    mutate(product_id, {
+      onSuccess: () => {
+        console.log("좋아요");
+      },
+      onError: error => {
+        console.log(error);
+      },
+    });
     setFavorite(!favorite);
     console.log("관심버튼");
   };

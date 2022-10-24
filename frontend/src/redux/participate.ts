@@ -1,8 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable import/named */
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type modalState = { modalVisible: boolean };
+import { participateProduct } from "../types/participate";
 
-const initialState: modalState = { modalVisible: false };
+type modalState = { modalVisible: boolean; product_id: number; amount: number };
+
+const initialState: modalState = {
+  modalVisible: false,
+  product_id: 0,
+  amount: 0,
+};
 
 const participate = createSlice({
   name: "modal",
@@ -11,9 +18,14 @@ const participate = createSlice({
     modal(state) {
       state.modalVisible = !state.modalVisible;
     },
+
+    participateData(state, action: PayloadAction<participateProduct>) {
+      state.amount = action.payload.amount;
+      state.product_id = action.payload.product_id;
+    },
   },
 });
 
-export const modalActions = participate.actions;
+export const participateActions = participate.actions;
 
 export default participate;

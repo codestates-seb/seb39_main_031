@@ -27,7 +27,7 @@ export interface Preview {
 }
 
 //Post
-export interface DetailType {
+export type DetailType = {
   user_id: number;
   user_name: string;
   score: number;
@@ -51,7 +51,7 @@ export interface DetailType {
     totalPrice: number;
     username: string;
   }[];
-}
+};
 
 // Edit Post
 export interface EditType {

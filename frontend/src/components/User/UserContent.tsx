@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { useState } from "react";
 import styled from "styled-components";
 
-import JoinedList from "./JoinedList";
+import JoinedList from "./Joined/JoinedList";
 import Keyword from "./Keword/Keyword";
 import ProceedList from "./ProceedList";
 
@@ -9,7 +10,7 @@ const TabTitleBox = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
-  border-bottom: 1px solid ${(props) => props.theme.colors.black300};
+  border-bottom: 1px solid ${props => props.theme.colors.black300};
   column-gap: 3em;
   margin-bottom: 3em;
 `;
@@ -20,15 +21,15 @@ const Tab = styled.div`
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  font-size: ${(props) => props.theme.fontSize.size18};
+  font-size: ${props => props.theme.fontSize.size18};
 
   &:hover {
-    border-bottom: 3px solid ${(props) => props.theme.colors.cyan400};
+    border-bottom: 3px solid ${props => props.theme.colors.cyan400};
   }
 
   &.active {
     font-weight: 900;
-    border-bottom: 3px solid ${(props) => props.theme.colors.cyan400};
+    border-bottom: 3px solid ${props => props.theme.colors.cyan400};
   }
 `;
 

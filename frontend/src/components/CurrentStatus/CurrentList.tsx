@@ -1,10 +1,11 @@
+/* eslint-disable prettier/prettier */
 import styled from "styled-components";
 
-import { Data } from "../../mocks/data";
+import { Data } from "../../MSW/data";
 import CurrentItem from "./CurrentItem";
 
 const Container = styled.div`
-  border: 1px solid ${(props) => props.theme.colors.black300};
+  border: 1px solid ${props => props.theme.colors.black300};
   border-bottom: transparent;
 `;
 
@@ -14,7 +15,7 @@ const CurrentList = () => {
 
   return (
     <Container>
-      {data.map((el) => {
+      {data.map(el => {
         return (
           <CurrentItem
             key={el.product_id}
