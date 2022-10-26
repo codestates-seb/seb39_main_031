@@ -23,10 +23,10 @@ type Props = {
 
 const SubButtons = ({ product_id }: Props) => {
   const [favorite, setFavorite] = useState(false);
-  const { authorization } = getCookie("userInfo");
+  const cookie = getCookie("userInfo");
 
   const { mutate } = useMutation((product_id: number) =>
-    favoriteBtnHandler(product_id, authorization)
+    favoriteBtnHandler(product_id, cookie.authorization)
   );
 
   const favoriteHandler = () => {
