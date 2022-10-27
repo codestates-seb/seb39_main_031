@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { participateProduct } from "../../types/participate";
 import Axios from "./axios";
 
 // 로그인
@@ -27,7 +28,7 @@ export const categoryProductList = async (page: string, category: string) => {
 
 // 공동구매 게시글 상세 조회
 export const detailProduct = async (productId: string) => {
-  const url = `products/${productId}`;
+  const url = `/products/${productId}`;
   return Axios.get(url);
 };
 
@@ -95,12 +96,56 @@ export const deleteNotice = async (productId: string, noticeId: string) => {
   return await Axios.delete(url);
 };
 
+// 공동구매 참여
+export const enteredProduct = async (
+  body: participateProduct,
+  token: string
+) => {
+  const url = "/EnteredUser";
+  return Axios.post(url, body, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+// 모집 종료하기
+export const closeProduct = async (product_id: number, token: string) => {
+  const url = `/EnteredUser/close/${product_id}`;
+  return Axios.patch(url, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+// 좋아요 버튼
+export const favoriteBtnHandler = async (product_id: number, token: string) => {
+  const url = `/EnteredUser/close/${product_id}`;
+  return Axios.post(url, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
 //! image 업로드
 export const imageUpload = async (body: any, type: string) => {
   const url = `/image/upload?type=${type}`;
   return await Axios.post(url, body, {
     headers: {
       "Content-Type": `multipart/form-data`,
+    },
+  });
+};
+
+//! userInfo
+// 내가 참여한 공구
+export const myParticipateList = async (token: string) => {
+  const url = "/EnteredUser/entered";
+  return Axios.get(url, {
+    headers: {
+      Authorization: token,
     },
   });
 };

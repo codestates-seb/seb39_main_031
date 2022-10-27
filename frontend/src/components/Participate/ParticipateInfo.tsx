@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Button from "../../common/Button/ButtonForm";
 import { useAppDispatch } from "../../hooks/Redux";
 import { joinModal } from "../../redux/modalSlice";
+import { participateActions } from "../../redux/participate";
 import { participate_Info } from "../../types/participate";
 
 const InfoContainer = styled.form`
@@ -68,13 +69,15 @@ const ParticipateInfo = (props: participate_Info) => {
 
   const [quantity, setQuantity] = useState<number>(1);
   const [price, setPrice] = useState<number>(props.base_price);
-  console.log(props.base_price);
 
   const onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    // if (!quantity) {
-    //   return alert("수량을 입력해주세요");
-    // }
+    dispatch(
+      participateActions.participateData({
+        product_id: props.product_id,
+        amount: quantity,
+      })
+    );
 
     dispatch(joinModal({ modalType: "joinModal", isVisible: true }));
   };
@@ -90,7 +93,7 @@ const ParticipateInfo = (props: participate_Info) => {
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
 
-      if (quantity >= props.goal_num) {
+      if (quantity >= props.goal_num - props.state_num) {
         return;
       }
       setQuantity(quantity + 1);
@@ -103,7 +106,7 @@ const ParticipateInfo = (props: participate_Info) => {
       event.preventDefault();
 
       if (quantity > 1) {
-        setQuantity(quantity - 1);
+        return setQuantity(quantity - 1);
       }
     },
     [quantity]
@@ -111,17 +114,6 @@ const ParticipateInfo = (props: participate_Info) => {
 
   const onchangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target.valueAsNumber;
-
-    // if (!target) {
-    //   return;
-    // }
-
-    if (target < 1) {
-      return alert("1개 이상 선택해야 합니다");
-    }
-    if (target > props.goal_num) {
-      return alert(`최대 ${props.goal_num}개 선택할 수 있습니다`);
-    }
     setQuantity(target);
   };
 

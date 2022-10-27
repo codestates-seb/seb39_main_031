@@ -1,4 +1,7 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -56,17 +59,20 @@ const List = styled.li`
 `;
 
 type entered = {
-  amount?: number;
-  totalPrice?: number;
-  username?: string;
-}[];
+  enteredUser: { amount: number; totalPrice: number; username: string }[];
+};
 
-const data = [
-  { user_name: "김유저", num: 1, price: 50000 },
-  { user_name: "박유저", num: 1, price: 50000 },
-];
+const ParticipantList = ({ enteredUser }: entered) => {
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalAmount, setTotalAmount] = useState<number>(0);
 
-const ParticipantList = (props: entered) => {
+  useEffect(() => {
+    enteredUser.map(user => {
+      setTotalPrice(totalPrice + user.totalPrice);
+      setTotalAmount(totalAmount + user.amount);
+    });
+  }, [enteredUser]);
+
   return (
     <Container>
       <Title>참여자 정보</Title>
@@ -76,19 +82,19 @@ const ParticipantList = (props: entered) => {
           <div className="quantity">수량</div>
           <div className="price">금액</div>
         </List>
-        {data.map((el, index) => {
+        {enteredUser.map((el, index) => {
           return (
             <List key={index}>
-              <div className="name">{el.user_name}</div>
-              <div className="quantity">{el.num}</div>
-              <div className="price">{el.price}</div>
+              <div className="name">{el.username}</div>
+              <div className="quantity">{el.amount}</div>
+              <div className="price">{el.totalPrice}</div>
             </List>
           );
         })}
         <List className="total">
           <div className="name" />
-          <div className="quantity">2</div>
-          <div className="price">100000</div>
+          <div className="quantity">{totalAmount}</div>
+          <div className="price">{totalPrice}</div>
         </List>
       </ListBox>
     </Container>

@@ -104,7 +104,6 @@ const Participant = ({
 
   const onClickHandler = () => {
     // TODO: 단위, 단위 가격(임의로 state_price 사용) 필요
-    console.log(user_id, product_id);
     isLogin
       ? navigate(`/participate/${user_id}/${product_id}`, {
           state: {
@@ -138,7 +137,7 @@ const Participant = ({
           ) : (
             <CloseDisplay />
           )}
-          <SubButtons />
+          <SubButtons product_id={product_id} />
           <DetailUserInfo
             profileImage_uri={image_uri}
             user_name={user_name}

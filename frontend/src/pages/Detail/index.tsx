@@ -68,6 +68,7 @@ const Detail = () => {
               ended_time={data.endedTime}
               status={data.state}
               base_price={data.unitPerPrice}
+              enteredUser={data.enteredUser}
             />
           )}
           <TopButton />
@@ -75,9 +76,9 @@ const Detail = () => {
       </Page>
     );
   }
-  data && data.userId === parseInt(user.userId)
-    ? console.log("good")
-    : console.log("fasle");
+  // data && data.userId === parseInt(user.userId)
+  //   ? console.log("good")
+  //   : console.log("fasle");
 
   return (
     //TODO: 쿠키의 user_id === user_id ? <게시자 페이지 /> : <참여자 페이지 />
@@ -104,6 +105,7 @@ const Detail = () => {
             ended_time={data.endedTime}
             status={data.state}
             base_price={data.unitPerPrice}
+            enteredUser={data.enteredUser}
           />
         ) : (
           data && (
