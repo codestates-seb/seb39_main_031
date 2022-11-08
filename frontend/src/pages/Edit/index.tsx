@@ -26,7 +26,6 @@ const PageTitle = styled.div`
 `;
 
 const Edit = () => {
-  //TODO: pages/Detail/Publisher에서 데이터 넘어옴 서버 연결되면 수정
   const location = useLocation();
 
   const state = location.state as EditType;

@@ -1,4 +1,3 @@
-// TODO: 타입 정리
 // 썸네일, 대표 이미지 등
 export interface Image {
   image: string;

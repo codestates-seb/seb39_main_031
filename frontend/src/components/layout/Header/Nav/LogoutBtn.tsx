@@ -8,7 +8,7 @@ const Button = styled.div`
   align-items: center;
   padding-left: 2.5em;
   height: 50px;
-  border-top: 1px solid ${props => props.theme.colors.black200};
+  border-top: 1px solid ${(props) => props.theme.colors.black200};
   cursor: pointer;
 
   .icon {
@@ -16,7 +16,7 @@ const Button = styled.div`
   }
 
   &:hover {
-    background: ${props => props.theme.colors.black100};
+    background: ${(props) => props.theme.colors.black100};
   }
 `;
 
@@ -24,7 +24,6 @@ interface logout {
   onClick: () => void;
 }
 
-//TODO: 로그아웃 함수 -> ./NavDropDown.tsx
 const LogoutBtn = ({ onClick }: logout) => {
   return (
     <Button onClick={onClick}>

@@ -12,7 +12,6 @@ import SearchInput from "./Search/SearchInput";
 import * as S from "./style";
 
 const Header = () => {
-  //TODO: 임시 로그인 상태 변수
   const isLogin = useAppSelector((state) => state.login.isLogin);
   const location = useLocation();
 

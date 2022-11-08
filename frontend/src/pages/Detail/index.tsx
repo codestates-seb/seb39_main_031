@@ -28,8 +28,6 @@ const Container = styled.div`
 const Detail = () => {
   const { product_id } = useParams();
 
-  //TODO Detail page Data 받아오기
-
   const { data } = useQuery(
     [product_id],
     () =>
@@ -76,13 +74,8 @@ const Detail = () => {
       </Page>
     );
   }
-  // data && data.userId === parseInt(user.userId)
-  //   ? console.log("good")
-  //   : console.log("fasle");
 
   return (
-    //TODO: 쿠키의 user_id === user_id ? <게시자 페이지 /> : <참여자 페이지 />
-
     <Page>
       <Container>
         {data && parseInt(user.userId) === data.userId ? (
