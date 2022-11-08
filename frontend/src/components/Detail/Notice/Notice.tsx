@@ -16,7 +16,7 @@ const ButtonBox = styled.div`
   width: 100%;
 `;
 
-//TODO: 게시자 공지사항
+//게시자 공지사항
 export const PublisherNotice = () => {
   const [isShow, setIsShow] = useState(false);
 
@@ -31,7 +31,7 @@ export const PublisherNotice = () => {
   );
 };
 
-//TODO: 참가자 공지사항
+//참가자 공지사항
 export const ParticipantNotice = () => {
   return (
     <Container>

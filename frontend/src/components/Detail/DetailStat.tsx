@@ -13,26 +13,26 @@ const SubInfo = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (min-width: ${props => props.theme.breakPoints.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakPoints.tablet}) {
     flex-direction: column;
   }
 `;
 
 const Block = styled.div`
   margin-bottom: 3em;
-  font-size: ${props => props.theme.fontSize.size15};
+  font-size: ${(props) => props.theme.fontSize.size15};
 `;
 
 const Title = styled.div`
   font-size: 12px;
-  color: ${props => props.theme.colors.black400};
+  color: ${(props) => props.theme.colors.black400};
 `;
 
 const Contents = styled.div`
   padding: 0.5em 0;
 
   .strong {
-    font-size: ${props => props.theme.fontSize.size32};
+    font-size: ${(props) => props.theme.fontSize.size32};
   }
 `;
 
@@ -111,7 +111,6 @@ const DetailStats = ({
           <Title>단위 가격</Title>
           <Contents>
             <span className="strong">
-              {/*TODO: 단위 가격으로 수정 필요 */}
               {(goal_price / goal_num).toLocaleString()}
             </span>{" "}
             원
@@ -121,7 +120,6 @@ const DetailStats = ({
       <Block>
         <TotalInfo>
           <div className="title">총 금액</div>
-          {/*TODO: 단위 가격 * goal_num 수정 필요 */}
           <div>{goal_price.toLocaleString()}</div>
         </TotalInfo>
         <TotalInfo>

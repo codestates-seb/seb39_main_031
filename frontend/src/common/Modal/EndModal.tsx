@@ -38,7 +38,6 @@ const EndModal = () => {
   const dispatch = useAppDispatch();
 
   const endButtonHandler = () => {
-    console.log("공구 종료");
     dispatch(closeModal());
   };
 

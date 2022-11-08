@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable prettier/prettier */
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -106,9 +107,7 @@ const PreviewItem = ({
   ended_time,
   ...props
 }: Preview) => {
-  const onClickHandler = () => {
-    console.log(user_id, product_id);
-  };
+  const onClickHandler = () => {};
   return (
     <Link to={`/${user_id}/${product_id}`}>
       <Container onClick={onClickHandler}>

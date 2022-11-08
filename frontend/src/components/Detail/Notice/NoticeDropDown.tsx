@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { useRef } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import styled from "styled-components";
@@ -54,13 +55,9 @@ const NoticeDropDown = () => {
     setIsActive(!isActive);
   };
 
-  const modifyHandler = () => {
-    console.log("수정");
-  };
+  const modifyHandler = () => {};
 
-  const deleteHandler = () => {
-    console.log("삭제");
-  };
+  const deleteHandler = () => {};
 
   return (
     <Container>

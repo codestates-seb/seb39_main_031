@@ -58,10 +58,6 @@ const PreviewList = ({ selected }: Props) => {
               `${url}`
           )
           .then(({ data }) => {
-            console.log({
-              selected,
-              returnedData: data,
-            });
             return data;
           });
       },

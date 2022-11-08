@@ -22,7 +22,7 @@ const SignupButton = styled.div`
 
 const SignupForm = () => {
   const { email, password, passwordCheck, username, region, town, profileUrl } =
-    useAppSelector(state => state.signup);
+    useAppSelector((state) => state.signup);
   const navigate = useNavigate();
   const { mutate } = useMutation(async (userInfo: signupUser) =>
     userSignup(userInfo)
@@ -70,12 +70,12 @@ const SignupForm = () => {
         town,
         profileUrl,
       };
-      console.log(userData);
+
       mutate(userData, {
         onSuccess: () => {
           navigate("/login");
         },
-        onError: error => {
+        onError: (error) => {
           console.log(error);
         },
       });

@@ -34,7 +34,6 @@ const LogoutModal = () => {
   const dispatch = useAppDispatch();
 
   const logoutButtonHandler = () => {
-    console.log("로그아웃");
     dispatch(closeModal());
     dispatch(loginActions.logout());
     removeCookie("userInfo");
@@ -43,7 +42,6 @@ const LogoutModal = () => {
   };
 
   const cancelButtonHandler = () => {
-    console.log("로그아웃 취소 버튼");
     dispatch(closeModal());
   };
 

@@ -49,8 +49,6 @@ const NoticeEditor = ({ setIsShow }: Props) => {
     if (editorRef.current) {
       setValue(editorRef.current?.getInstance().getHTML());
     }
-    console.log(title);
-    console.log(value);
     mutate({ title, body: value });
   };
 
@@ -59,7 +57,7 @@ const NoticeEditor = ({ setIsShow }: Props) => {
       <Card padding="1em" margin="0 0 2em 0">
         <NoticeInput
           value={title}
-          onChange={event => setTitle(event.target.value)}
+          onChange={(event) => setTitle(event.target.value)}
         ></NoticeInput>
         <DefaultEditor ref={editorRef} height="250px" />
         <ButtonBlock>

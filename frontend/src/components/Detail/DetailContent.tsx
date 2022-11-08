@@ -63,7 +63,7 @@ interface Props {
   body: string;
 }
 
-//TODO: 게시자 상세 페이지 내용
+//게시자 상세 페이지 내용
 export const PublisherContent = ({ body }: Props) => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
@@ -87,7 +87,7 @@ export const PublisherContent = ({ body }: Props) => {
   );
 };
 
-//TODO: 참가자 상세 페이지 내용
+//참가자 상세 페이지 내용
 export const ParticipantContent = ({ body }: Props) => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
 

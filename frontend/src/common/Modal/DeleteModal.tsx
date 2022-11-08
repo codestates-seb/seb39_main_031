@@ -39,19 +39,13 @@ const DeleteModal = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const location = useLocation();
-  console.log(params);
-  console.log(location);
 
   const deleteButtonHandler = () => {
-    console.log("삭제 버튼");
     dispatch(closeModal());
     navigate("/");
   };
 
   const cancelButtonHandler = () => {
-    console.log("삭제 취소 버튼");
-    console.log(params);
-
     dispatch(closeModal());
   };
 

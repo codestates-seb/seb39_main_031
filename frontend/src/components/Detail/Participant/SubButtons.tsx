@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable prettier/prettier */
 import { useState } from "react";
 import { AiOutlineShareAlt } from "react-icons/ai";
@@ -31,28 +32,19 @@ const SubButtons = ({ product_id }: Props) => {
 
   const favoriteHandler = () => {
     mutate(product_id, {
-      onSuccess: () => {
-        console.log("좋아요");
-      },
-      onError: error => {
+      onSuccess: () => {},
+      onError: (error) => {
         console.log(error);
       },
     });
     setFavorite(!favorite);
-    console.log("관심버튼");
   };
 
-  const inquiryHandler = () => {
-    console.log("문의버튼");
-  };
+  const inquiryHandler = () => {};
 
-  const shareHandler = () => {
-    console.log("공유버튼");
-  };
+  const shareHandler = () => {};
 
-  const reportHandler = () => {
-    console.log("신고버튼");
-  };
+  const reportHandler = () => {};
 
   return (
     <Container>

@@ -60,10 +60,6 @@ const ProductDatas = () => {
               `${url}`
           )
           .then(({ data }) => {
-            console.log({
-              region: regions,
-              returnedData: data,
-            });
             return data;
           });
       },

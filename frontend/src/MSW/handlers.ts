@@ -77,14 +77,13 @@ const handlers = [
     const { userEmail, userPassword } = await req.json();
     const isUser: user = [];
 
-    users.map(user => {
+    users.map((user) => {
       if (user.userEmail === userEmail && user.userPassword === userPassword) {
         return isUser.push(user);
       }
     });
 
     if (isUser) {
-      console.log(isUser);
       return res(
         ctx.status(200),
         ctx.json({
@@ -109,7 +108,7 @@ const handlers = [
 
   rest.post("/signup", async (req, res, ctx) => {
     const { email, nickname, password } = await req.json();
-    console.log(email, nickname, password);
+
     if (email && password) {
       users.push({
         userEmail: email,
@@ -128,7 +127,7 @@ const handlers = [
   rest.get("/product/:userid/:productid", (req, res, ctx) => {
     const { userid, productid } = req.params;
 
-    fullData.map(data => {
+    fullData.map((data) => {
       if (
         data.user_id === Number(userid) &&
         data.product_id === Number(productid)
@@ -136,14 +135,14 @@ const handlers = [
         productData[0] = data;
       }
     });
-    console.log(productData[0]);
+
     return res(ctx.status(200), ctx.json(productData[0]));
   }),
 
   rest.get("/participate/:user_id/:product_id", async (req, res, ctx) => {
     const { user_id, product_id } = req.params;
 
-    fullData.map(data => {
+    fullData.map((data) => {
       if (
         data.user_id === Number(user_id) &&
         data.product_id === Number(product_id)
@@ -151,7 +150,6 @@ const handlers = [
         productData[0] = data;
       }
     });
-    console.log(productData[0]);
     return res(ctx.status(200), ctx.json(productData[0]));
   }),
 ];

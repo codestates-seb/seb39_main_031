@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { useMutation } from "react-query";
 import styled from "styled-components";
 
@@ -23,9 +24,7 @@ const CloseButton = ({ product_id }: Props) => {
   const CloseHandler = () => {
     if (window.confirm("해당 공동구매 모집을 종료하시겠습니까?")) {
       mutate(product_id, {
-        onSuccess: () => {
-          console.log("종료성공했음");
-        },
+        onSuccess: () => {},
       });
     }
   };

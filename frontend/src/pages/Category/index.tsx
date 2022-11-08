@@ -25,7 +25,6 @@ const Container = styled.div`
 
 const Category = () => {
   const [selected, setSelected] = useState("");
-  console.log(selected);
 
   return (
     <Page>

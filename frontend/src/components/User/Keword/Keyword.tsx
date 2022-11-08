@@ -44,7 +44,7 @@ const DeleteButton = styled.button`
 `;
 
 const Keyword = () => {
-  //TODO: 임시 지역
+  //임시 지역
   const region = "서울특별시";
   const town = "강남구";
 
