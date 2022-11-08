@@ -47,7 +47,6 @@ const EditImage = ({ image_uri, setImageURI }: Props) => {
   const onImgChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
     const file = event.target.files;
-    console.log(file);
 
     file ? setFileImage(URL.createObjectURL(file[0])) : null;
     file ? formData.append("file", file[0]) : null;

@@ -41,7 +41,6 @@ const NotJoinModal = () => {
   const dispatch = useAppDispatch();
 
   const checkButtonHandler = () => {
-    console.log("공구 참여 취소");
     dispatch(closeModal());
   };
 

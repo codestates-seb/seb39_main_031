@@ -37,7 +37,6 @@ const EndedProduct = () => {
     async () => await endedProductList().then(({ data }) => data)
   );
 
-  console.log(data);
   return (
     <Container>
       <Grid>

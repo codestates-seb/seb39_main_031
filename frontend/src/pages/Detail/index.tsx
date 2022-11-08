@@ -33,9 +33,6 @@ const Detail = () => {
     () =>
       product_id &&
       detailProduct(product_id).then(({ data }) => {
-        console.log({
-          returnedData: data,
-        });
         return data;
       })
   );

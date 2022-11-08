@@ -117,7 +117,6 @@ const CurrentItem = ({
   const dispatch = useAppDispatch();
 
   const cancelModalHandler = () => {
-    console.log("공구 참여 취소 모달");
     dispatch(
       notjoinModal({
         modalType: "notjoinModal",
@@ -128,12 +127,10 @@ const CurrentItem = ({
   };
 
   const endModalHandler = () => {
-    console.log("공구 종료 모달");
     dispatch(endModal({ modalType: "endModal", isVisible: true }));
   };
 
   const ratingModalHandlr = () => {
-    console.log("공구 평점 모달");
     dispatch(ratingModal({ modalType: "ratingModal", isVisible: true }));
   };
 

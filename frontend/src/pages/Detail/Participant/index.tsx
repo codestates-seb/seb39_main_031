@@ -103,7 +103,6 @@ const Participant = ({
   const goal_price = goal_num * base_price;
 
   const onClickHandler = () => {
-    // TODO: 단위, 단위 가격(임의로 state_price 사용) 필요
     isLogin
       ? navigate(`/participate/${user_id}/${product_id}`, {
           state: {
@@ -118,7 +117,7 @@ const Participant = ({
         })
       : navigate("/login", { state: { from: pathname } });
   };
-  console.log(status);
+
   return (
     <Container>
       <Title>{title}</Title>

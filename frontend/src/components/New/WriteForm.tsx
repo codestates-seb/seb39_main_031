@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from "react";
@@ -59,7 +60,7 @@ const WriteForm = () => {
     body,
     endedTime,
     productImage,
-  } = useAppSelector(state => state.newProduct);
+  } = useAppSelector((state) => state.newProduct);
 
   useEffect(() => {
     dispatch(newProductActions.regionHandler({ region: selectRegion }));
@@ -83,9 +84,6 @@ const WriteForm = () => {
   const day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
   const toDay = `${year}-${month}-${day}`;
 
-  // if (editorRef.current) {
-  // }
-
   const newProductHandler = (evnet: React.FormEvent<HTMLFormElement>) => {
     evnet.preventDefault();
 
@@ -103,32 +101,19 @@ const WriteForm = () => {
         productImage: productImage,
       },
       {
-        onSuccess: data => {
+        onSuccess: (data) => {
           navigate("/groupbuying");
         },
-        onError: error => {
+        onError: (error) => {
           console.log(error);
         },
       }
     );
-    console.log(title);
-    console.log(category);
-    console.log(goalQuantity);
-    console.log(unit);
-    console.log(unitPerPrice);
-    console.log(region);
-    console.log(town);
-    console.log(body);
-    console.log(endedTime);
-    console.log(productImage);
   };
 
-  const writeButtonHandler = () => {
-    console.log("작성 버튼");
-  };
+  const writeButtonHandler = () => {};
 
   const cancelButtonHandler = () => {
-    console.log("취소 버튼");
     navigate(-1);
   };
 

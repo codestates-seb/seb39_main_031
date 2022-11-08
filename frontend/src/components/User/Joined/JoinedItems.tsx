@@ -33,7 +33,6 @@ const JoinedItems = () => {
     return <h2>Error!</h2>;
   }
 
-  console.log(data.result);
   return (
     <Container>
       {/* <Grid>

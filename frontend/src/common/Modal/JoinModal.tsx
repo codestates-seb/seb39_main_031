@@ -37,23 +37,20 @@ const JoinModal = () => {
   const navigate = useNavigate();
   const { authorization } = getCookie("userInfo");
 
-  const { product_id, amount } = useAppSelector(state => state.participate);
+  const { product_id, amount } = useAppSelector((state) => state.participate);
   const { mutate } = useMutation((body: participateProduct) =>
     enteredProduct(body, authorization)
   );
 
   const JoinButtonHandler = () => {
-    console.log("공구 참여하기");
-    console.log(product_id, amount);
     mutate(
       { product_id, amount },
       {
         onSuccess: () => {
-          console.log("신청됬습니다");
           dispatch(closeModal());
           navigate(-1);
         },
-        onError: error => {
+        onError: (error) => {
           console.log(error);
         },
       }

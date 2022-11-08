@@ -46,7 +46,6 @@ const RatingModal = () => {
   const dispatch = useAppDispatch();
 
   const ratingButtonHandler = () => {
-    console.log("공구 평점 남기기");
     dispatch(closeModal());
   };
 
@@ -63,8 +62,6 @@ const RatingModal = () => {
     }
     setClicked(clickStates);
   };
-
-  console.log("평점: ", clicked.filter((el) => el).length);
 
   return (
     <Modal customModalStyle={customModalStyle}>
